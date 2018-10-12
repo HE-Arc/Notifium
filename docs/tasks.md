@@ -1,16 +1,16 @@
 # MVP
 - Activity
- - accueil
- - edition de notification
+  - accueil
+  - edition de notification
 - Stockage des données
 - Conditions
- - date/heure
- - batterie
- - géolocalisation
+  - date/heure
+  - batterie
+  - géolocalisation
 - Signalement
   - notification
   - alarme
-- service en background
+- Service en background
 # After MVP
 - plusieurs conditions pour une alerte
 - filtres
