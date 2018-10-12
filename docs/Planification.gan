@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="471" order="0"/>
         <field id="tpd4" name="Begin date" width="223" order="1"/>
         <field id="tpd13" name="Resources" width="153" order="2"/>
-        <option id="color.recent"><![CDATA[#990099 #0000ff #ff0000 #00ff33 #ffff33 #f4f4f4 #000000 #ffff66]]></option>
+        <option id="color.recent"><![CDATA[#00ff33 #990099 #0000ff #ff0000 #ffff33 #f4f4f4 #000000 #ffff66]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -41,48 +41,45 @@
             <task id="21" name="Mise en place de la suppression d'alertes" color="#0000ff" meeting="true" start="2018-11-02" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
             <task id="22" name="Mise en place de l'édition d'alertes" color="#0000ff" meeting="true" start="2018-11-02" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="8" name="Gestion des données" color="#0000ff" meeting="false" project="true" start="2018-11-16" duration="5" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
+        <task id="8" name="Gestion des données" color="#0000ff" meeting="false" project="true" start="2018-11-16" duration="10" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
             <task id="10" name="Création des models pour les sharedPreference" color="#0000ff" meeting="true" start="2018-11-16" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="11" name="interface de CRUD des sharedPreferences" color="#0000ff" meeting="true" start="2018-11-23" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="11" name="interface de CRUD des sharedPreferences" color="#0000ff" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="61" name="Récupération des données capteurs" color="#0000ff" meeting="false" start="2018-11-30" duration="5" complete="0" thirdDate="2018-11-30" thirdDate-constraint="0" expand="true">
-            <task id="62" name="Date et heure" color="#0000ff" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
-            <task id="65" name="Batterie" color="#0000ff" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
-            <task id="63" name="Géolocalisation" color="#0000ff" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
+        <task id="61" name="Récupération des données capteurs" color="#0000ff" meeting="false" start="2018-12-07" duration="5" complete="0" thirdDate="2018-11-30" thirdDate-constraint="0" expand="true">
+            <task id="62" name="Date et heure" color="#0000ff" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
+            <task id="65" name="Batterie" color="#0000ff" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
+            <task id="63" name="Géolocalisation" color="#0000ff" meeting="true" start="2018-12-14" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="1" name="Edition d'alertes" color="#00ff33" meeting="false" start="2018-10-26" duration="30" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
+        <task id="1" name="Edition d'alertes" color="#00ff33" meeting="false" start="2018-10-26" duration="35" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
             <task id="24" name="Création de l'activité" color="#00ff33" meeting="true" start="2018-10-26" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="27" name="Sélection du signalement" color="#00ff33" meeting="true" start="2018-11-09" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="28" name="Modification de la séction de paramétrage de données" color="#00ff33" meeting="true" start="2018-11-16" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="23" name="Sélection de la condition" color="#00ff33" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="26" name="Modification de la section de paramétrage de la condition" color="#00ff33" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="122" name="Création d'une alerte" color="#00ff33" meeting="true" start="2018-11-02" duration="0" complete="0" thirdDate="2018-10-01" thirdDate-constraint="0" expand="true"/>
+            <task id="27" name="Sélection du signalement" color="#00ff33" meeting="true" start="2018-11-16" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="28" name="Modification de la séction de paramétrage de données" color="#00ff33" meeting="true" start="2018-11-23" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="23" name="Sélection de la condition" color="#00ff33" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="26" name="Modification de la section de paramétrage de la condition" color="#00ff33" meeting="true" start="2018-12-14" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="12" name="Services en background" color="#ff0000" meeting="false" project="true" start="2018-10-26" duration="30" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
-            <task id="14" name="Création du service" color="#ff0000" meeting="true" start="2018-10-26" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="30" name="Gestion des conditions" color="#ff0000" meeting="false" start="2018-11-02" duration="10" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
-                <task id="29" name="Récupération des conditions" color="#ff0000" meeting="true" start="2018-11-02" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-                <task id="31" name="Création des déclencheurs" color="#ff0000" meeting="true" start="2018-11-16" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="12" name="Services en background" color="#ff0000" meeting="false" project="true" start="2018-11-02" duration="30" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
+            <task id="14" name="Création du service" color="#ff0000" meeting="true" start="2018-11-02" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="30" name="Gestion des conditions" color="#ff0000" meeting="false" start="2018-11-09" duration="10" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
+                <task id="29" name="Récupération des conditions" color="#ff0000" meeting="true" start="2018-11-09" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+                <task id="31" name="Création des déclencheurs" color="#ff0000" meeting="true" start="2018-11-23" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="32" name="Gestion des signaux" color="#ff0000" meeting="false" start="2018-11-30" duration="5" complete="0" thirdDate="2018-11-30" thirdDate-constraint="0" expand="true">
-                <task id="16" name="lancer une notification" color="#ff0000" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-                <task id="17" name="lancer une alarme" color="#ff0000" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="32" name="Gestion des signaux" color="#ff0000" meeting="false" start="2018-12-07" duration="5" complete="0" thirdDate="2018-11-30" thirdDate-constraint="0" expand="true">
+                <task id="16" name="lancer une notification" color="#ff0000" meeting="true" start="2018-12-07" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+                <task id="17" name="lancer une alarme" color="#ff0000" meeting="true" start="2018-12-14" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
             </task>
         </task>
-        <task id="114" name="Tests MVP" color="#990099" meeting="true" start="2018-12-14" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
-        <task id="33" name="MVP" color="#ffff33" meeting="true" start="2018-12-14" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="35" name="Mise en place d'une liste de conditions pour une alerte" color="#0000ff" meeting="true" start="2018-12-28" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="36" name="Mise en place d'une liste de signaux pour une alerte" color="#0000ff" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="37" name="Mise en place de filtres d'affichage pour la liste d'alertes" color="#00ff33" meeting="true" start="2018-12-28" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="38" name="Ajouts d'icônes d'indication" color="#00ff33" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="42" name="Activation/désactivation" color="#ff0000" meeting="false" project="true" start="2018-12-21" duration="10" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
-            <task id="45" name="Alerte" color="#ff0000" meeting="true" start="2018-12-21" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="46" name="Condition" color="#ff0000" meeting="true" start="2018-12-28" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-            <task id="47" name="Signal" color="#ff0000" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="114" name="Tests MVP" color="#990099" meeting="true" start="2018-12-21" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="33" name="MVP" color="#ffff33" meeting="true" start="2018-12-21" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="35" name="Mise en place d'une liste de conditions pour une alerte" color="#0000ff" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="36" name="Mise en place d'une liste de signaux pour une alerte" color="#0000ff" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="37" name="Mise en place de filtres d'affichage pour la liste d'alertes" color="#00ff33" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="38" name="Ajouts d'icônes d'indication" color="#00ff33" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+        <task id="42" name="Activation/désactivation" color="#ff0000" meeting="false" project="true" start="2018-12-28" duration="10" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true">
+            <task id="45" name="Alerte" color="#ff0000" meeting="true" start="2018-12-28" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="46" name="Condition" color="#ff0000" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
+            <task id="47" name="Signal" color="#ff0000" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="39" name="After MVP" color="#ffff33" meeting="true" start="2019-01-04" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="49" name="Ajouts de types d'alertes" color="#0000ff" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="48" name="Sélection de la sonnerie pour l'alarme" color="#00ff33" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
-        <task id="41" name="Création d'un signal pour connecter à l'application IFTTT" color="#ff0000" meeting="true" start="2019-01-11" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
         <task id="110" name="Tests finaux" color="#990099" meeting="true" start="2019-01-18" duration="0" complete="0" thirdDate="2018-10-08" thirdDate-constraint="0" expand="true"/>
         <task id="51" name="Présentation" color="#ffff33" meeting="true" start="2019-01-25" duration="0" complete="0" thirdDate="2018-10-12" thirdDate-constraint="0" expand="true"/>
     </tasks>
@@ -101,7 +98,6 @@
         <allocation task-id="45" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="46" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="47" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="41" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="110" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="114" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="22" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
@@ -116,7 +112,6 @@
         <allocation task-id="62" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="35" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="36" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="49" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="110" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="114" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="24" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
@@ -126,9 +121,9 @@
         <allocation task-id="26" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="37" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="38" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="48" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="110" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="114" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="122" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>
