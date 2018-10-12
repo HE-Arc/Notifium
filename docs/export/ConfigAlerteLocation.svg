@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:p="http://www.evolus.vn/Namespace/Pencil" xmlns:pencil="http://www.evolus.vn/Namespace/Pencil" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:rdfa="http://docs.oasis-open.org/opendocument/meta/rdfa#" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:regexp="http://exslt.org/regular-expressions" xmlns:em="http://exslt.org/math" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="379" height="643" id="exportedSVG" version="1.1" pencil:version="1.2.2" sodipodi:docname="maquette"><g inkscape:label="ConfigAlerteLocation" inkscape:groupmode="layer" id="layer_configalertelocation"><g><rect x="0" y="0" width="379" height="643" fill="none"/><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Card" id="bd2315dbe84c437e97f2dc47ed95fe30" transform="matrix(1,0,0,1,-8,189)"><p:metadata><p:property name="box">378.99999999999994,449</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#FFFFFFFF</p:property></p:metadata>
+
+			<defs>
+				<filter p:name="dropShadow" id="f5b0c544f2b74944bce9216865ffd135">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="0713b1b981a64124b886131f381ce5f5"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+				</filter>
+
+				<rect rx="2px" ry="2px" p:name="card" id="120f0222c27144258ffc5b84d77fa4ec" style="fill: rgb(255, 255, 255); fill-opacity: 1;" height="449" width="379"/>
+			</defs>
+
+			<use xlink:href="#120f0222c27144258ffc5b84d77fa4ec" p:heavy="true" p:filter="url(#f5b0c544f2b74944bce9216865ffd135)" p:name="shadow" id="e8cec81bd4984a6186fbdccd1e2b2583" filter="url(#f5b0c544f2b74944bce9216865ffd135)" style="visibility: visible;"/>
+			<use xlink:href="#120f0222c27144258ffc5b84d77fa4ec"/>
+
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Switch" id="5a4b7837d14d4d8889ce4bd3a93a1b6b" transform="matrix(1,0,0,1,15.000000000000057,138)"><p:metadata><p:property name="box">36,14</p:property><p:property name="on">true</p:property><p:property name="disabled">false</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#00BCD4FF</p:property></p:metadata>
+
+			<defs>
+				<filter height="1.5" y="-0.25" width="1.37" x="-0.2" p:name="dropShadow" id="072ce42e2be040b6a85dbe87aaa09094">
+					<feFlood flood-opacity="0.4" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="105da6b5c93a4863803628ff4ad175c3"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="1"/>
+					<feOffset dx="0" dy="1.5"/>
+				</filter>
+
+				<ellipse rx="9.94" ry="9.94" cy="7" p:name="thumb" id="42e0ba9ae72c4928a78c66281cfeea0e" cx="26.060000000000002" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+			</defs>
+
+			<rect rx="7" ry="7" p:name="bgRect" id="6a51f13c604e4057be80bfc1b92b6922" style="fill: rgb(0, 188, 212); fill-opacity: 0.5;" height="14" width="36"/>
+			<use xlink:href="#42e0ba9ae72c4928a78c66281cfeea0e" p:heavy="true" p:filter="url(#072ce42e2be040b6a85dbe87aaa09094)" p:name="shadow" id="53aeec08d071448eb1256fb344118f4e" filter="url(#072ce42e2be040b6a85dbe87aaa09094)" style="visibility: visible;"/>
+			<use xlink:href="#42e0ba9ae72c4928a78c66281cfeea0e"/>
+		</g><g p:type="Shape" p:def="dgthanhan.AndroidNougatWireframe:rectangle" id="91312ecb27794181930f4afb58952b14" transform="matrix(1,0,0,1,4,160)"><p:metadata><p:property name="box">367.59999999999997,304.2</p:property><p:property name="fillColor">#FFFFFFFF</p:property><p:property name="strokeStyle">2|</p:property><p:property name="radius">0,0</p:property><p:property name="shadowStyle">0|0|0|1</p:property><p:property name="strokeColor">#00BCD4FF</p:property><p:property name="topLeftCorner">true</p:property><p:property name="topRightCorner">true</p:property><p:property name="bottomRightCorner">true</p:property><p:property name="bottomLeftCorner">true</p:property><p:property name="topBorder">true</p:property><p:property name="rightBorder">true</p:property><p:property name="bottomBorder">true</p:property><p:property name="leftBorder">true</p:property><p:property name="padding">0,10</p:property><p:property name="textAlignment">0,0</p:property><p:property name="textColor">#000000DE</p:property><p:property name="textFont">sans-serif|normal|normal|12px|none</p:property><p:property name="text0"/></p:metadata>
+      <defs>
+        <clipPath p:name="sbDefaultClipPath" id="c3eb96c239314255b3d6eb2460d043da">
+          <rect p:filter="url(#42362fcf07a640e79529f0a570c93a82)" rx="0" ry="0" style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: rgb(0, 188, 212); stroke-opacity: 1; stroke-width: 2;" height="282.2" width="345.59999999999997" p:name="rectangle0" id="089681348f4441788b065c9eb577d741" x="11" y="11"/>
+        </clipPath>
+      </defs>
+      <defs>
+        <filter x="-50%" width="200%" y="-50%" height="200%" p:name="pathRect0_shadowFilter" id="685b35cbdf4d411ea1602a2da5b74c30"><feGaussianBlur in="SourceAlpha" stdDeviation="0"/><feOffset dx="0" dy="0"/><feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g p:filter="url(#685b35cbdf4d411ea1602a2da5b74c30)" p:name="pathRect0_globalGroup" id="2a8781f47c954bdeac3734d675b88aff" filter="url(#685b35cbdf4d411ea1602a2da5b74c30)">
+        <path p:filter="url(#6cc6da5d86c5475cba5123e7e81bd7bd)" d="M 0 0 L 366 0 L 366 302 L 0 302 L 0 0 z" style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; stroke-width: 2; visibility: hidden; display: none;" p:name="pathRect0" id="9f28a4032250454da9af2229408ff770" rx="0" ry="0" transform="translate(1,1)"/>
+      </g>
+      <defs>
+        <filter x="-50%" width="200%" y="-50%" height="200%" p:name="pathRect1_shadowFilter" id="adeba4edd5ea48e28c1e8c2f393b5d1a"><feGaussianBlur in="SourceAlpha" stdDeviation="0"/><feOffset dx="0" dy="0"/><feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g p:filter="url(#adeba4edd5ea48e28c1e8c2f393b5d1a)" p:name="pathRect1_globalGroup" id="9392cd02277b437ba667edbb96f98cf6" filter="url(#adeba4edd5ea48e28c1e8c2f393b5d1a)">
+        <path p:filter="url(#1a02185ee5ed4119b95bc2a9ec92950d)" d="M 0 0 L 366 0 L 366 302 L 0 302 L 0 0 z" style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: rgb(0, 188, 212); stroke-opacity: 1; stroke-width: 2;" p:name="pathRect1" id="bf6fac84e54041368394fa001fbca7cf" rx="0" ry="0" transform="translate(1,1)"/>
+      </g>
+      <g style="clip-path: url(#c3eb96c239314255b3d6eb2460d043da);">
+        <g p:filter="url(#1963d3a47a584a4e8f019a57b923c17a)" dominant-baseline="auto" p:name="text0text" id="28568592f46c460298f30859577144d8" style="fill: rgb(0, 0, 0); fill-opacity: 0.870588; color: rgba(0, 0, 0, 0.870588); font-family: sans-serif; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;"/>
+      </g>
+    </g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:TextField" id="158333bde1ad4babac08617376e0dc5f" transform="matrix(1,0,0,1,15.91999816894537,62.239990234375)"><p:metadata><p:property name="box">324.5600018310546,48</p:property><p:property name="focused">false</p:property><p:property name="disabled">false</p:property><p:property name="focusColor">#00BCD4FF</p:property><p:property name="fillColor">#C8C8C8FF</p:property><p:property name="contentText">Faire la lessive</p:property><p:property name="contentWeight">400</p:property><p:property name="textFont">Roboto,sans-serif|400|normal|16px|none</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textAlign">0,2</p:property><p:property name="labelText">Nom de l'alerte</p:property><p:property name="labelWeight">400</p:property><p:property name="labelFont">Roboto, sans-serif|400|normal|12px|none</p:property><p:property name="labelColor">#757575FF</p:property><p:property name="labelAlign">0,0</p:property></p:metadata>
+
+			<foreignObject p:name="content" id="9304de8b227348658fbb4317067d8f72" x="0" y="0" width="324.5600018310546" height="48">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="f393044f5b0b418b9db48dec21d7c150"><div style="color: rgba(117, 117, 117, 1); font: 400 normal 12px Roboto, sans-serif; text-align: left; vertical-align: top; font-weight: 400">Nom de l'alerte</div><div style="padding: 8px 0px; display: table-cell; height: 20px; width: 324.5600018310546px; font: 400 normal 16px Roboto,sans-serif; color: rgba(33, 33, 33, 1); text-align: left; vertical-align: bottom; font-weight: 400">Faire la lessive</div></div>
+				</div>
+			</foreignObject>
+
+			<rect style="fill:#000000;fill-opacity:0;" p:name="fakeLabel" id="18b4e83dfb994b00b1fce372ac887633" height="12" width="324.56"/>
+
+			<path d="M 0 48 L 324.5600018310546 48" p:name="line" id="b783eac390ce41cb892aa312e8d0e4d7" style="stroke: rgb(200, 200, 200); stroke-opacity: 1; stroke-width: 1;"/>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Text" id="0ba58410edb94f8dae052feb1d54a732" transform="matrix(1,0,0,1,76.36000061035162,135.83999633789062)"><p:metadata><p:property name="box">96,36</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="label">Localisation</p:property><p:property name="weight">400</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textFont">Roboto, Arial, sans-serif|400|normal|14px|none</p:property><p:property name="textAlign">0,0</p:property></p:metadata>
+			<rect p:name="bg" id="b490c5cfb1ee43419db155b380061577" style="fill: rgb(255, 255, 255); fill-opacity: 0;" height="36" width="96"/>
+
+			<foreignObject p:name="content" id="f3b245e5da19417c9d275e559ea48611" x="0" y="0" width="96" height="36">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="a6eb9948051d418cb7d9aea0ae20bf40" style="color: rgb(33, 33, 33); font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; text-decoration: none;"><div style="display: table-cell; height: 36px; width: 96px; text-align: left; vertical-align: top; font-weight: 400">Localisation</div></div>
+				</div>
+			</foreignObject>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Text" id="abdf3eef55344fa2ae78aaba63b71d8d" transform="matrix(1,0,0,1,94,608)"><p:metadata><p:property name="box">196,22</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="label">Scroll to ConfigAlerteBatterie</p:property><p:property name="weight">400</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textFont">Roboto, Arial, sans-serif|400|italic|14px|none</p:property><p:property name="textAlign">0,0</p:property></p:metadata>
+			<rect p:name="bg" id="f4b2f80bbecb48acac35788bab6427bc" style="fill: rgb(255, 255, 255); fill-opacity: 0;" height="22" width="196"/>
+
+			<foreignObject p:name="content" id="968559a9075349a092377a8021ae204b" x="0" y="0" width="196" height="22">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="201e46fc5cf740f7b372236021ec6d58" style="color: rgb(33, 33, 33); font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 400; font-style: italic; text-decoration: none;"><div style="display: table-cell; height: 22px; width: 196px; text-align: left; vertical-align: top; font-weight: 400">Scroll to ConfigAlerteBatterie</div></div>
+				</div>
+			</foreignObject>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Slider" id="cf3282c01e364f0295ea52fdea4bdd34" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,14.999999999999943,424.99999999999994)"><p:metadata><p:property name="box">257,10</p:property><p:property name="prog">142.77777777777777,0</p:property><p:property name="disabled">false</p:property><p:property name="bgFillColor">#00000040</p:property><p:property name="fgFillColor">#00BCD4FF</p:property></p:metadata>
+			<rect y="4" p:name="bgRect" id="d9681b3fa04646e8850823a84f02f07e" x="142.77777777777777" width="114.22222222222223" height="2" style="fill: rgb(0, 0, 0); fill-opacity: 0.25098;"/>
+			<rect y="4" p:name="fgRect" id="4ace7fe341f9493db6b65d6bb281aa32" x="0" width="142.77777777777777" height="2" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+			<ellipse p:name="thumb" id="7a46febbb846463bb2e84fa9cbaa9644" cx="142.77777777777777" cy="5" rx="5" ry="5" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+		</g><g p:type="Shape" p:def="Evolus.Common:RichTextBoxV2" id="98b3f34c92f54e958fa9897ccefa016d" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,306.9999999999999,424.99999999999994)"><p:metadata><p:property name="width">200,0</p:property><p:property name="fixedWidth">false</p:property><p:property name="textContent">&lt;span xmlns="http://www.w3.org/1999/xhtml" style="font-weight: bold;"&gt;50 m.&lt;/span&gt;</p:property><p:property name="textFont">"Liberation Sans",Arial,sans-serif|normal|normal|13px|none</p:property><p:property name="textColor">#000000FF</p:property><p:property name="customStyle">
+                </p:property></p:metadata>
+
+            <foreignObject x="0" y="0" width="33" height="18" p:name="htmlObject" id="28c75b9736af42efa5c02ebbaedf5d4d" style="color: rgb(0, 0, 0); font-family: &quot;Liberation Sans&quot;, Arial, sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none;">
+                <div xmlns="http://www.w3.org/1999/xhtml" p:name="textDiv" id="8864994ddce045279b393f863d94c126" style="display: inline-block; white-space: nowrap; text-decoration: none;"><div><span style="font-weight: bold;">50 m.</span></div></div>
+            </foreignObject>
+        </g><g p:type="Shape" p:def="Evolus.Common:RichTextBoxV2" id="1777a17d943c4b9680ec385f0044da5a" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,15.999999999999943,390.99999999999994)"><p:metadata><p:property name="width">200,0</p:property><p:property name="fixedWidth">false</p:property><p:property name="textContent">&lt;span xmlns="http://www.w3.org/1999/xhtml" style="font-weight: bold;"&gt;Rayon :&lt;/span&gt;</p:property><p:property name="textFont">"Liberation Sans",Arial,sans-serif|normal|normal|13px|none</p:property><p:property name="textColor">#000000FF</p:property><p:property name="customStyle">
+                </p:property></p:metadata>
+
+            <foreignObject x="0" y="0" width="48" height="18" p:name="htmlObject" id="a0999314a9f14db683d555f62562b004" style="color: rgb(0, 0, 0); font-family: &quot;Liberation Sans&quot;, Arial, sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none;">
+                <div xmlns="http://www.w3.org/1999/xhtml" p:name="textDiv" id="dbc8c4e5882744debc3e3764d6e09390" style="display: inline-block; white-space: nowrap; text-decoration: none;"><div><span style="font-weight: bold;">Rayon :</span></div></div>
+            </foreignObject>
+        </g><g p:type="Shape" p:def="Evolus.Common:Bitmap" id="a4ef07de2f794014be2c88afec09af7a" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,15.336006164550724,185.7279815673828)"><p:metadata><p:property name="box">335.36,192</p:property><p:property name="imageData">1033,591,ref://ac038416d6f344ec87e5f3947116ec5a.png</p:property><p:property name="withBlur">false</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="strokeColor">#000000FF</p:property><p:property name="strokeStyle">0|</p:property></p:metadata>
+            <defs>
+                <filter height="1.2558399" y="-0.12792" width="1.06396" x="-0.03198" p:name="imageShading" id="96673901bd44490eae2a74c68898a0d8">
+                    <feGaussianBlur stdDeviation="1.3325" in="SourceAlpha"/>
+                </filter>
+                <g p:name="container" id="ec1cd2946dcf45a39c54035a7c1d8339">
+                    <rect style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-opacity: 1; stroke-width: 0; fill-opacity: 0;" p:name="bgRect" id="e1b8b7cb64954039a9d7265c111bdaa0" transform="translate(0,0)" width="335.36" height="192"/>
+                    <g p:name="imageContainer" id="2559084823ff41de883d6b62500689b3" transform="scale(0.32464666021297195,0.3248730964467005)">
+                        <image x="0" y="0" p:name="image" id="8c17bb73ae794ac4b4c7803109f28b8a" xlink:href="file:///tmp/tmp-29514YCgV4PMLBW4u/refs/ac038416d6f344ec87e5f3947116ec5a.png?token=1538811383000" width="1033" height="591"/>
+                    </g>
+                </g>
+            </defs>
+            <use xlink:href="#ec1cd2946dcf45a39c54035a7c1d8339" transform="translate(1, 1)" p:filter="url(#96673901bd44490eae2a74c68898a0d8)" style="opacity: 0.6; visibility: hidden; display: none;" p:name="bgCopy" id="a0279d145c0c43bea41c94f1cddd3700"/>
+            <use xlink:href="#ec1cd2946dcf45a39c54035a7c1d8339"/>
+        </g><g p:type="Shape" p:def="Evolus.Common:ms-oval" id="ec0b53b4961445a8a3004c79a0a36a5c" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,103.99999999999994,206)"><p:metadata><p:property name="box">150,150</p:property><p:property name="textPadding">0,0.5</p:property><p:property name="fillColor">#4388CC00</p:property><p:property name="strokeColor">#66FFFF87</p:property><p:property name="strokeStyle">2|</p:property><p:property name="textContent">
+                </p:property><p:property name="textFont">"Liberation Sans",Arial,sans-serif|normal|normal|13px|none</p:property><p:property name="textColor">#000000FF</p:property><p:property name="textAlign">1,1</p:property></p:metadata>
+            <ellipse style="stroke-linejoin: round; stroke: rgb(102, 255, 255); stroke-opacity: 0.529412; stroke-width: 2; fill: rgb(67, 136, 204); fill-opacity: 0;" p:name="ellipse" id="786dc872156842dd8979bd0ccd29182a" transform="translate(0,0)" cx="75" cy="75" rx="75" ry="75"/>
+            <foreignObject x="0.5" y="75" width="149" height="0" p:name="text" id="e81039c8855e41898c382f2db40e438b" style="font-family: &quot;Liberation Sans&quot;, Arial, sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none; fill: rgb(0, 0, 0); fill-opacity: 1; color: rgb(0, 0, 0); text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml">
+                </div></foreignObject>
+        </g><g p:type="Shape" p:def="Evolus.Common:ms-oval" id="85e3fbf9049f4f40abba000981b883b1" transform="matrix(0.9999999999999999,0,0,0.9999999999999999,174,277.1280212402343)"><p:metadata><p:property name="box">9.376000000000005,8.832000000000008</p:property><p:property name="textPadding">0,2.2080000000000015</p:property><p:property name="fillColor">#66FFFF8F</p:property><p:property name="strokeColor">#3366FF87</p:property><p:property name="strokeStyle">2|</p:property><p:property name="textContent">
+                </p:property><p:property name="textFont">"Liberation Sans",Arial,sans-serif|normal|normal|13px|none</p:property><p:property name="textColor">#000000FF</p:property><p:property name="textAlign">1,1</p:property></p:metadata>
+            <ellipse style="stroke-linejoin: round; stroke: rgb(51, 102, 255); stroke-opacity: 0.529412; stroke-width: 2; fill: rgb(102, 255, 255); fill-opacity: 0.560784;" p:name="ellipse" id="a4b7e8aa37de4d41a3ec9dc2ad0113f7" transform="translate(0,0)" cx="4.688000000000002" cy="4.416000000000004" rx="4.688000000000002" ry="4.416000000000004"/>
+            <foreignObject x="2.208" y="4" width="4.96" height="0" p:name="text" id="e92a41a07e024dffb4341dca6a247a51" style="font-family: &quot;Liberation Sans&quot;, Arial, sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none; fill: rgb(0, 0, 0); fill-opacity: 1; color: rgb(0, 0, 0); text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml">
+                </div></foreignObject>
+        </g><g p:type="Shape" p:def="dgthanhan.AndroidNougatWireframe:fullscreendialogtitlebar" id="085ef86938f643c0b6dffba75d95606d" transform="matrix(1,0,0,1,-10,-2.4944000244140625)"><p:metadata><p:property name="box">389.62880000000007,51.4944</p:property><p:property name="fillColor">#00BCD4FF</p:property><p:property name="strokeColor">#616161FF</p:property><p:property name="strokeStyle">0|</p:property><p:property name="shadowStyle">0|0|4|0.5</p:property><p:property name="textColor">#FFFFFFFF</p:property><p:property name="vectorImage0ImageData">24,24,ref://841bcb721d2702d03bba749c5d49c4fa_svg</p:property><p:property name="textAlignment">0,1</p:property><p:property name="textFont">sans-serif|500|normal|17px|none</p:property><p:property name="text0">Ajouter une alerte</p:property><p:property name="withShadow">true</p:property><p:property name="textColor2">#FFFFFFFF</p:property><p:property name="textFont2">sans-serif|500|normal|12px|none</p:property><p:property name="text1">SAVE</p:property></p:metadata>
+      <defs>
+        <clipPath p:name="sbDefaultClipPath" id="a77fc0c9b38c44e2b778b1fb7cfa77cc">
+          <rect p:filter="url(#ed19e785b010417bb6d63ab8af893bee)" rx="0" ry="0" style="fill: rgb(0, 0, 0); fill-opacity: 0.211765; stroke: rgb(96, 96, 96); stroke-opacity: 1; stroke-width: 0;" width="390" height="72" p:name="rectangle2" id="673951ed6ff34f1b86b72528ae637bb6" x="0" y="0"/>
+        </clipPath>
+      </defs>
+      <g style="clip-path: url(#a77fc0c9b38c44e2b778b1fb7cfa77cc);">
+        <defs>
+          <filter x="-50%" width="200%" y="-50%" height="200%" p:name="rectangle1_shadowFilter" id="377c4b44563d4bfa8044979317f8bb59"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="0"/><feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g p:filter="url(#377c4b44563d4bfa8044979317f8bb59)" p:name="rectangle1_globalGroup" id="34e4cff343e0480b928478c53e246c0f" filter="url(#377c4b44563d4bfa8044979317f8bb59)">
+          <rect p:filter="url(#69190334b1f24ac49617a361406b806c)" rx="0" ry="0" style="fill: rgb(0, 188, 212); fill-opacity: 1; stroke: rgb(97, 97, 97); stroke-opacity: 1; stroke-width: 0; visibility: visible;" width="424" height="51" p:name="rectangle1" id="59f7e50a7fe5450c80d277908cbd7841" x="-15" y="0"/>
+        </g>
+      </g>
+      <rect p:filter="url(#39d26c2b52be413ea3be44c706beb31a)" rx="0" ry="0" style="fill: rgb(0, 188, 212); fill-opacity: 1; stroke: rgb(97, 97, 97); stroke-opacity: 1; stroke-width: 0;" width="390" height="51" p:name="rectangle0" id="8edbe5677a624811a583fea7e6cee00f" x="0" y="0"/>
+      <g p:name="vectorImage0" id="be8519e1e2cd4ca08029db06de79608a" transform="translate(16,14) scale(1,1)">
+        <g x="0" y="0" p:name="vectorImage0Image" id="cdbf691e2a0540f78bb959f709300237"><g>
+	<path fill="rgba(255, 255, 255, 1)" fill-opacity="1" stroke-linejoin="round" d="M 19,6.41L 17.59,5L 12,10.59L 6.41,5L 5,6.41L 10.59,12L 5,17.59L 6.41,19L 12,13.41L 17.59,19L 19,17.59L 13.41,12L 19,6.41 Z " style="fill: rgb(255, 255, 255);"/>
+</g></g>
+      </g>
+      <g p:filter="url(#6d5b37f5a4b54eb3abd1e16bcb95243e)" dominant-baseline="auto" p:name="text0text" id="77063e5e501e4df6b7f8901efa2de070" style="fill: rgb(255, 255, 255); fill-opacity: 1; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 17px; font-weight: 500; font-style: normal; text-decoration: none;"><g transform="translate(0,3)"><text><tspan x="72" y="28" style="font-family: sans-serif; font-size: 17px; font-weight: 500; font-style: normal; text-decoration: none; text-transform: none; fill: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);">Ajouter une alerte</tspan></text></g></g>
+      <g p:filter="url(#361a08c5df1a47248490d4a3e1095beb)" dominant-baseline="auto" p:name="text1text" id="f3abd70f96af4a60aa7b630885810aee" style="fill: rgb(255, 255, 255); fill-opacity: 1; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 12px; font-weight: 500; font-style: normal; text-decoration: none;"><g transform="translate(0,3)"><text><tspan x="343" y="27" style="font-family: sans-serif; font-size: 12px; font-weight: 500; font-style: normal; text-decoration: none; text-transform: none; fill: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);">SAVE</tspan></text></g></g>
+    </g></g></g></svg>
