@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:p="http://www.evolus.vn/Namespace/Pencil" xmlns:pencil="http://www.evolus.vn/Namespace/Pencil" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:rdfa="http://docs.oasis-open.org/opendocument/meta/rdfa#" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:regexp="http://exslt.org/regular-expressions" xmlns:em="http://exslt.org/math" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="360" height="640" id="exportedSVG" version="1.1" pencil:version="1.2.2" sodipodi:docname="maquette"><g inkscape:label="ConfigAlerteTempsUnique" inkscape:groupmode="layer" id="layer_configalertetempsunique"><g><rect x="0" y="0" width="360" height="640" fill="none"/><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Card" id="bd2315dbe84c437e97f2dc47ed95fe30" transform="matrix(1,0,0,1,-7.999999999999943,190)"><p:metadata><p:property name="box">378.99999999999994,449</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#FFFFFFFF</p:property></p:metadata>
+
+			<defs>
+				<filter p:name="dropShadow" id="255ca65e6b3f4542a2f4a432fc23e5f7">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="47f2cba5801c4a0fb35e23d901794289"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+				</filter>
+
+				<rect rx="2px" ry="2px" p:name="card" id="dc352283abe34de79c19fda080b91fef" style="fill: rgb(255, 255, 255); fill-opacity: 1;" height="449" width="379"/>
+			</defs>
+
+			<use xlink:href="#dc352283abe34de79c19fda080b91fef" p:heavy="true" p:filter="url(#255ca65e6b3f4542a2f4a432fc23e5f7)" p:name="shadow" id="46613af3f7c94b109eaa5b804500fb47" filter="url(#255ca65e6b3f4542a2f4a432fc23e5f7)" style="visibility: visible;"/>
+			<use xlink:href="#dc352283abe34de79c19fda080b91fef"/>
+
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Switch" id="5a4b7837d14d4d8889ce4bd3a93a1b6b" transform="matrix(1,0,0,1,15.000000000000057,138)"><p:metadata><p:property name="box">36,14</p:property><p:property name="on">true</p:property><p:property name="disabled">false</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#00BCD4FF</p:property></p:metadata>
+
+			<defs>
+				<filter height="1.5" y="-0.25" width="1.37" x="-0.2" p:name="dropShadow" id="04cbb5e0f43344a5a013e5d079d97578">
+					<feFlood flood-opacity="0.4" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="116f124d768249928a905f905376fbc2"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="1"/>
+					<feOffset dx="0" dy="1.5"/>
+				</filter>
+
+				<ellipse rx="9.94" ry="9.94" cy="7" p:name="thumb" id="5cd9932ab673469c8e8ba9d54b5daa62" cx="26.060000000000002" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+			</defs>
+
+			<rect rx="7" ry="7" p:name="bgRect" id="55700eba5b7e467a8aad2eb0a7c7a639" style="fill: rgb(0, 188, 212); fill-opacity: 0.5;" height="14" width="36"/>
+			<use xlink:href="#5cd9932ab673469c8e8ba9d54b5daa62" p:heavy="true" p:filter="url(#04cbb5e0f43344a5a013e5d079d97578)" p:name="shadow" id="1ed7ed9ec5df48deabdf6963944562bd" filter="url(#04cbb5e0f43344a5a013e5d079d97578)" style="visibility: visible;"/>
+			<use xlink:href="#5cd9932ab673469c8e8ba9d54b5daa62"/>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:TextField" id="158333bde1ad4babac08617376e0dc5f" transform="matrix(1,0,0,1,14.919998168945312,62.239990234375)"><p:metadata><p:property name="box">324.5600018310546,48</p:property><p:property name="focused">false</p:property><p:property name="disabled">false</p:property><p:property name="focusColor">#00BCD4FF</p:property><p:property name="fillColor">#C8C8C8FF</p:property><p:property name="contentText">Faire la lessive</p:property><p:property name="contentWeight">400</p:property><p:property name="textFont">Roboto,sans-serif|400|normal|16px|none</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textAlign">0,2</p:property><p:property name="labelText">Nom de l'alerte</p:property><p:property name="labelWeight">400</p:property><p:property name="labelFont">Roboto, sans-serif|400|normal|12px|none</p:property><p:property name="labelColor">#757575FF</p:property><p:property name="labelAlign">0,0</p:property></p:metadata>
+
+			<foreignObject p:name="content" id="4f501b0d395745e582eb46c9103bd0eb" x="0" y="0" width="324.5600018310546" height="48">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="ce8ea0df704b44e0a886e2da4dddac72"><div style="color: rgba(117, 117, 117, 1); font: 400 normal 12px Roboto, sans-serif; text-align: left; vertical-align: top; font-weight: 400">Nom de l'alerte</div><div style="padding: 8px 0px; display: table-cell; height: 20px; width: 324.5600018310546px; font: 400 normal 16px Roboto,sans-serif; color: rgba(33, 33, 33, 1); text-align: left; vertical-align: bottom; font-weight: 400">Faire la lessive</div></div>
+				</div>
+			</foreignObject>
+
+			<rect style="fill:#000000;fill-opacity:0;" p:name="fakeLabel" id="34bc83fd8f1744d986afdc26830fe0a5" height="12" width="324.56"/>
+
+			<path d="M 0 48 L 324.5600018310546 48" p:name="line" id="5094aaf9ed774699bdb0022576e2251f" style="stroke: rgb(200, 200, 200); stroke-opacity: 1; stroke-width: 1;"/>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Text" id="0ba58410edb94f8dae052feb1d54a732" transform="matrix(1,0,0,1,76.36000061035162,135.83999633789062)"><p:metadata><p:property name="box">96,36</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="label">Temps</p:property><p:property name="weight">400</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textFont">Roboto, Arial, sans-serif|400|normal|14px|none</p:property><p:property name="textAlign">0,0</p:property></p:metadata>
+			<rect p:name="bg" id="f1f9404e95ce45128b8543c69ec80d03" style="fill: rgb(255, 255, 255); fill-opacity: 0;" height="36" width="96"/>
+
+			<foreignObject p:name="content" id="6064714f71654f3e95050d2c6e3a7658" x="0" y="0" width="96" height="36">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="470c54bd1d37459ebec0908d13e915cf" style="color: rgb(33, 33, 33); font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; text-decoration: none;"><div style="display: table-cell; height: 36px; width: 96px; text-align: left; vertical-align: top; font-weight: 400">Temps</div></div>
+				</div>
+			</foreignObject>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:TextField" id="f08ff950db3d43bcba47e213faf6f915" transform="matrix(1,0,0,1,24.000000000000057,173)"><p:metadata><p:property name="box">113,48</p:property><p:property name="focused">false</p:property><p:property name="disabled">false</p:property><p:property name="focusColor">#00BCD4FF</p:property><p:property name="fillColor">#C8C8C8FF</p:property><p:property name="contentText">12:30</p:property><p:property name="contentWeight">400</p:property><p:property name="textFont">Roboto,sans-serif|400|normal|16px|none</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textAlign">0,2</p:property><p:property name="labelText">À</p:property><p:property name="labelWeight">400</p:property><p:property name="labelFont">Roboto, sans-serif|400|normal|12px|none</p:property><p:property name="labelColor">#757575FF</p:property><p:property name="labelAlign">0,0</p:property></p:metadata>
+
+			<foreignObject p:name="content" id="9cd3cfa1b3a3488fa1ea3308af89ffd7" x="0" y="0" width="113" height="48">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="9227cfceba3646898b7ce9f29ede931c"><div style="color: rgba(117, 117, 117, 1); font: 400 normal 12px Roboto, sans-serif; text-align: left; vertical-align: top; font-weight: 400">À</div><div style="padding: 8px 0px; display: table-cell; height: 20px; width: 113px; font: 400 normal 16px Roboto,sans-serif; color: rgba(33, 33, 33, 1); text-align: left; vertical-align: bottom; font-weight: 400">12:30</div></div>
+				</div>
+			</foreignObject>
+
+			<rect style="fill:#000000;fill-opacity:0;" p:name="fakeLabel" id="36e24153554c40bb9c09a7a1294fc986" width="113" height="12"/>
+
+			<path d="M 0 48 L 113 48" p:name="line" id="a410d851df154892b0f01c96746ff20e" style="stroke: rgb(200, 200, 200); stroke-opacity: 1; stroke-width: 1;"/>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Card" id="904b167a089141f1841d881cc479e960" transform="matrix(1,0,0,1,-3,230.20001220703125)" p:sizing-ox="0" p:sizing-oy="0" p:sizing-ow="378.99999999999994" p:sizing-oh="368.79998779296875"><p:metadata><p:property name="box">372.99999999999994,56.479987792968736</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#F0F0F0FF</p:property></p:metadata>
+
+			<defs>
+				<filter p:name="dropShadow" id="e57226c590e94857bf490912381fd7b3">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="637635fb655143baacf9f6e69719511c"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+				</filter>
+
+				<rect rx="2px" ry="2px" p:name="card" id="87801f080aea40f399b3e7b78af6b732" style="fill: rgb(240, 240, 240); fill-opacity: 1;" height="56.48" width="373"/>
+			</defs>
+
+			<use xlink:href="#87801f080aea40f399b3e7b78af6b732" p:heavy="true" p:filter="url(#e57226c590e94857bf490912381fd7b3)" p:name="shadow" id="680dd993b18b4fba9c5fcda1ff8597f3" filter="url(#e57226c590e94857bf490912381fd7b3)" style="visibility: visible;"/>
+			<use xlink:href="#87801f080aea40f399b3e7b78af6b732"/>
+
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Switch" id="50c93d60a7974c03ac9b73e534c99f56" transform="matrix(1,0,0,1,21,249.32000732421875)" p:sizing-ox="24" p:sizing-oy="16.1799955368042" p:sizing-ow="36" p:sizing-oh="14"><p:metadata><p:property name="box">36,14</p:property><p:property name="on">false</p:property><p:property name="disabled">false</p:property><p:property name="shadow">true</p:property><p:property name="fillColor">#00BCD4FF</p:property></p:metadata>
+
+			<defs>
+				<filter height="1.5" y="-0.25" width="1.37" x="-0.2" p:name="dropShadow" id="c6040a8141244d8b9516184d2ecae2d9">
+					<feFlood flood-opacity="0.4" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="9db7cc8fdc87493caba86db34bc43b4f"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="1"/>
+					<feOffset dx="0" dy="1.5"/>
+				</filter>
+
+				<ellipse rx="9.94" ry="9.94" cy="7" p:name="thumb" id="3f129f2b61094be28c1ed356a554aa82" cx="9.94" style="fill: rgb(250, 250, 250); fill-opacity: 1;"/>
+			</defs>
+
+			<rect rx="7" ry="7" p:name="bgRect" id="bccf222c88874692b1d391c7a676d96e" style="fill: rgb(0, 0, 0); fill-opacity: 0.26;" height="14" width="36"/>
+			<use xlink:href="#3f129f2b61094be28c1ed356a554aa82" p:heavy="true" p:filter="url(#c6040a8141244d8b9516184d2ecae2d9)" p:name="shadow" id="3238b795945340039dd4670fa4affe15" filter="url(#c6040a8141244d8b9516184d2ecae2d9)" style="visibility: visible;"/>
+			<use xlink:href="#3f129f2b61094be28c1ed356a554aa82"/>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Text" id="6798e7cd6bb94d379b58ee2ed1ed6306" transform="matrix(1,0,0,1,82,246.27999877929688)" p:sizing-ox="85.00000000000003" p:sizing-oy="16.079986572265625" p:sizing-ow="96" p:sizing-oh="36"><p:metadata><p:property name="box">96,36</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="label">Répétition</p:property><p:property name="weight">400</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textFont">Roboto, Arial, sans-serif|400|normal|14px|none</p:property><p:property name="textAlign">0,0</p:property></p:metadata>
+			<rect p:name="bg" id="cabce6563e8a4d59bf5c3774367a57b1" style="fill: rgb(255, 255, 255); fill-opacity: 0;" height="36" width="96"/>
+
+			<foreignObject p:name="content" id="faa6100ed66d40f8aaf288e64ce72400" x="0" y="0" width="96" height="36">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="d235cf834d6f4cfda7bc9463a3bb91d7" style="color: rgb(33, 33, 33); font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; text-decoration: none;"><div style="display: table-cell; height: 36px; width: 96px; text-align: left; vertical-align: top; font-weight: 400">Répétition</div></div>
+				</div>
+			</foreignObject>
+		</g><g p:type="Shape" p:def="nz.nwatson.AndroidLollipop:Text" id="abdf3eef55344fa2ae78aaba63b71d8d" transform="matrix(1,0,0,1,94,608)"><p:metadata><p:property name="box">196,22</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="label">Scroll to ConfigAlerteLocation</p:property><p:property name="weight">400</p:property><p:property name="textColor">#212121FF</p:property><p:property name="textFont">Roboto, Arial, sans-serif|400|italic|14px|none</p:property><p:property name="textAlign">0,0</p:property></p:metadata>
+			<rect p:name="bg" id="98d424ee4b1244bdbe5b3955eb35acc5" style="fill: rgb(255, 255, 255); fill-opacity: 0;" height="22" width="196"/>
+
+			<foreignObject p:name="content" id="97515973e7e44f19ab67f544201344f1" x="0" y="0" width="196" height="22">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<div p:name="text" id="0d78a3f1adca4e66b33250ee0f0cda0d" style="color: rgb(33, 33, 33); font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 400; font-style: italic; text-decoration: none;"><div style="display: table-cell; height: 22px; width: 196px; text-align: left; vertical-align: top; font-weight: 400">Scroll to ConfigAlerteLocation</div></div>
+				</div>
+			</foreignObject>
+		</g><g p:type="Shape" p:def="dgthanhan.AndroidNougatWireframe:fullscreendialogtitlebar" id="aa46f60b12784ae4ba27280f83b66dfc" transform="matrix(1,0,0,1,-3,-1.494400143623352)"><p:metadata><p:property name="box">364.02880000000005,51.4944</p:property><p:property name="fillColor">#00BCD4FF</p:property><p:property name="strokeColor">#616161FF</p:property><p:property name="strokeStyle">0|</p:property><p:property name="shadowStyle">0|0|4|0.5</p:property><p:property name="textColor">#FFFFFFFF</p:property><p:property name="vectorImage0ImageData">24,24,ref://841bcb721d2702d03bba749c5d49c4fa_svg</p:property><p:property name="textAlignment">0,1</p:property><p:property name="textFont">sans-serif|500|normal|17px|none</p:property><p:property name="text0">Ajouter une alerte</p:property><p:property name="withShadow">true</p:property><p:property name="textColor2">#FFFFFFFF</p:property><p:property name="textFont2">sans-serif|500|normal|12px|none</p:property><p:property name="text1">SAVE</p:property></p:metadata>
+      <defs>
+        <clipPath p:name="sbDefaultClipPath" id="0c46f8571e7a450c80832204fa25c191">
+          <rect p:filter="url(#ed19e785b010417bb6d63ab8af893bee)" rx="0" ry="0" style="fill: rgb(0, 0, 0); fill-opacity: 0.211765; stroke: rgb(96, 96, 96); stroke-opacity: 1; stroke-width: 0;" width="364" height="72" p:name="rectangle2" id="be997dfb5f824f49af95bb06d0e3d7b7" x="0" y="0"/>
+        </clipPath>
+      </defs>
+      <g style="clip-path: url(#0c46f8571e7a450c80832204fa25c191);">
+        <defs>
+          <filter x="-50%" width="200%" y="-50%" height="200%" p:name="rectangle1_shadowFilter" id="4fe55c7e05264701a58449004544b5f9"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="0"/><feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g p:filter="url(#4fe55c7e05264701a58449004544b5f9)" p:name="rectangle1_globalGroup" id="ef95f6a551a14499b48cd40782f73686" filter="url(#4fe55c7e05264701a58449004544b5f9)">
+          <rect p:filter="url(#69190334b1f24ac49617a361406b806c)" rx="0" ry="0" style="fill: rgb(0, 188, 212); fill-opacity: 1; stroke: rgb(97, 97, 97); stroke-opacity: 1; stroke-width: 0; visibility: visible;" width="398" height="51" p:name="rectangle1" id="decf4b0877654514bad8bf9ea1362e6b" x="-15" y="0"/>
+        </g>
+      </g>
+      <rect p:filter="url(#39d26c2b52be413ea3be44c706beb31a)" rx="0" ry="0" style="fill: rgb(0, 188, 212); fill-opacity: 1; stroke: rgb(97, 97, 97); stroke-opacity: 1; stroke-width: 0;" width="364" height="51" p:name="rectangle0" id="f3c2b97f17a541aeab91fd25a799c495" x="0" y="0"/>
+      <g p:name="vectorImage0" id="4895e704274c4e6481cc0c6f6b37436e" transform="translate(16,14) scale(1,1)">
+        <g x="0" y="0" p:name="vectorImage0Image" id="369dae2cb054425984e0b81d043975ea"><g>
+	<path fill="rgba(255, 255, 255, 1)" fill-opacity="1" stroke-linejoin="round" d="M 19,6.41L 17.59,5L 12,10.59L 6.41,5L 5,6.41L 10.59,12L 5,17.59L 6.41,19L 12,13.41L 17.59,19L 19,17.59L 13.41,12L 19,6.41 Z " style="fill: rgb(255, 255, 255);"/>
+</g></g>
+      </g>
+      <g p:filter="url(#6d5b37f5a4b54eb3abd1e16bcb95243e)" dominant-baseline="auto" p:name="text0text" id="4c5a2d00734f41af96055d230c6aa4d5" style="fill: rgb(255, 255, 255); fill-opacity: 1; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 17px; font-weight: 500; font-style: normal; text-decoration: none;"><g transform="translate(0,3)"><text><tspan x="72" y="28" style="font-family: sans-serif; font-size: 17px; font-weight: 500; font-style: normal; text-decoration: none; text-transform: none; fill: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);">Ajouter une alerte</tspan></text></g></g>
+      <g p:filter="url(#361a08c5df1a47248490d4a3e1095beb)" dominant-baseline="auto" p:name="text1text" id="fc132b57464b4d4f98e732b4aecfb0a0" style="fill: rgb(255, 255, 255); fill-opacity: 1; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 12px; font-weight: 500; font-style: normal; text-decoration: none;"><g transform="translate(0,3)"><text><tspan x="317" y="27" style="font-family: sans-serif; font-size: 12px; font-weight: 500; font-style: normal; text-decoration: none; text-transform: none; fill: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);">SAVE</tspan></text></g></g>
+    </g><g p:type="Shape" p:def="dgthanhan.AndroidNougatWireframe:inputtext-single" p:sc="Input (date)" id="f99aec0e35044202985029b03f02f5b4" transform="matrix(1,0,0,1,182,173)"><p:metadata><p:property name="box">157,48</p:property><p:property name="fillColor">#FFFFFF00</p:property><p:property name="strokeColor">#0000006B</p:property><p:property name="strokeStyle">1|</p:property><p:property name="textAlignment">0,1</p:property><p:property name="textColor">#000000DE</p:property><p:property name="textFont">sans-serif|normal|normal|14px|none</p:property><p:property name="text1">Thu, Oct 19 2017</p:property><p:property name="textFont2">sans-serif|normal|normal|10px|none</p:property><p:property name="text0">Date</p:property><p:property name="vectorImage0ImageData">24,24,ref://e5bd5c7e25f754a45b5b16b4e44d376d_svg</p:property><p:property name="iconColor">#000000DE</p:property><p:property name="handle0">0,0</p:property><p:property name="withCaret">false</p:property><p:property name="text2"/></p:metadata>
+      <rect p:filter="url(#e0dccf3d615d4998851f568b6dfccdfc)" rx="0" ry="0" style="fill: rgb(255, 255, 255); fill-opacity: 0; stroke: rgb(0, 0, 0); stroke-opacity: 1; stroke-width: 0;" width="157" height="48" p:name="rectangle0" id="7ed54042e0984f7e9ecc2efc416a6255" x="0" y="0"/>
+      <path p:filter="url(#86497b6d5b04484094a775fd02b75625)" d="M 0 0 M 157 0 M 157 47.5 L 0 47.5 M 0 0" style="fill: rgb(255, 255, 255); fill-opacity: 0; stroke: rgb(0, 0, 0); stroke-opacity: 0.419608; stroke-width: 1;" p:name="pathRect0" id="e69528a4ddeb464cb68d95785bec6370" rx="0" ry="0" transform="translate(0,0)"/>
+      <g p:filter="url(#87f9b99f3f3d4d35837450fc97771f0e)" dominant-baseline="auto" p:name="text1text" id="7e1049f48e9743908f512416d0265195" style="fill: rgb(0, 0, 0); fill-opacity: 0.870588; color: rgba(0, 0, 0, 0.870588); font-family: sans-serif; font-size: 14px; font-weight: normal; font-style: normal; text-decoration: none;"><g transform="translate(0,2)"><text><tspan x="0" y="33" style="font-family: sans-serif; font-size: 14px; font-weight: normal; font-style: normal; text-decoration: none; text-transform: none; fill: rgba(0, 0, 0, 0.870588); background-color: rgba(0, 0, 0, 0);">Thu, Oct 19 2017</tspan></text></g></g>
+      <g p:filter="url(#f9a6ee1ae9ed40a48cc3b658399a34f6)" dominant-baseline="auto" p:name="text0text" id="facf56d35fd24fa2b259183c32b2d926" style="fill: rgb(0, 0, 0); fill-opacity: 0.419608; color: rgba(0, 0, 0, 0.419608); font-family: sans-serif; font-size: 10px; font-weight: normal; font-style: normal; text-decoration: none;"><g transform="translate(0,1)"><text><tspan x="0" y="9" style="font-family: sans-serif; font-size: 10px; font-weight: normal; font-style: normal; text-decoration: none; text-transform: none; fill: rgba(0, 0, 0, 0.419608); background-color: rgba(0, 0, 0, 0);">Date</tspan></text></g></g>
+      <g p:name="vectorImage0" id="e836261a4718456db39c10f5e66c3852" transform="translate(133,16) scale(1,1)">
+        <g x="0" y="0" p:name="vectorImage0Image" id="34b441617173434cb3eb8977df4061f7"><g>
+	<path fill="rgba(0, 0, 0, 0.87)" fill-opacity="1" stroke-width="1.33333" stroke-linejoin="miter" d="M 7,10L 12,15L 17,10L 7,10 Z " style="fill: rgba(0, 0, 0, 0.870588);"/>
+</g></g>
+      </g>
+      <rect p:filter="url(#fa3673619023477ea67d906943009364)" rx="0" ry="0" style="fill: rgb(0, 0, 0); fill-opacity: 0.419608; stroke: rgb(0, 0, 0); stroke-opacity: 1; stroke-width: 0; visibility: hidden; display: none;" width="1" height="24" p:name="rectangle1" id="793248d9746b412f9137fc68d91a71c7" x="0" y="18"/>
+      <g p:filter="url(#de6d15fb821045af82a3e79330489ca5)" dominant-baseline="auto" p:name="text2text" id="af034d3574c34c42b920ceffa630f75a" style="fill: rgb(0, 0, 0); fill-opacity: 0.419608; color: rgba(0, 0, 0, 0.419608); font-family: sans-serif; font-size: 10px; font-weight: normal; font-style: normal; text-decoration: none;"/>
+    </g></g></g></svg>
