@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Notifium</string>
+    <string name="addAlert">+</string>
+    <string name="addAlertTime">Temps</string>
+    <string name="addAlertLocation">Emplacement</string>
+    <string name="addAlertBattery">Batterie</string>
+    <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
 </resources>

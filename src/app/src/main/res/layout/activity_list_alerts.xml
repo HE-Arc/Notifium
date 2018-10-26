@@ -15,4 +15,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/addAlert"
+
+        android:textSize="30px"
+        android:text="@string/addAlert"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"
+        />
+
 </android.support.constraint.ConstraintLayout>
