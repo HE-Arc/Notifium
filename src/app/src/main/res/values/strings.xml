@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Notifium</string>
+    <string name="listAlerts_tab_all">Toutes</string>
+    <string name="listAlerts_tab_timed">Temps</string>
+    <string name="listAlerts_tab_location">Géolocalisation</string>
+    <string name="listAlerts_tab_battery">Batterie</string>
 </resources>
