@@ -18,12 +18,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
@@ -33,7 +31,9 @@
                 android:hint="@string/addAlertDefaultName"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="16dp" />
-
+            <!--
+                Time
+            -->
             <Switch
                 android:id="@+id/switchTime"
                 android:layout_width="150dp"
@@ -42,13 +42,18 @@
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="138dp" />
 
-
             <LinearLayout
                 android:id="@+id/layoutTime"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
                 <Button
                     android:id="@+id/btnTime"
                     android:layout_width="150dp"
@@ -59,8 +64,108 @@
                     android:layout_width="150dp"
                     android:layout_height="38dp"
                     android:text="00:00:00"/>
-            </LinearLayout>
+                </LinearLayout>
 
+                <Switch
+                    android:id="@+id/switchPeriodic"
+                    android:layout_width="150dp"
+                    android:layout_height="38dp"
+                    android:text="@string/addAlertPeriodic"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="138dp" />
+                <LinearLayout
+                    android:id="@+id/layoutPeriodic"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <RadioGroup
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/rbtnEveryNDays"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addAlertEveryDay"/>
+                        <LinearLayout
+                            android:id="@+id/layoutEveryNDays"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+                            <Button
+                                android:layout_width="150dp"
+                                android:layout_height="38dp"
+                                android:text="00:00:00"/>
+                            <Spinner
+                                android:id="@+id/spinnerEveryNDaysWeekDays"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                            </Spinner>
+                        </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbtnEveryWeek"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addAlertEveryWeek"/>
+                        <LinearLayout
+                            android:id="@+id/layoutEveryWeek"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="L"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="M"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="M"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="J"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="V"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="S"/>
+                            <Button
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:text="D"/>
+                        </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbtnEveryMonth"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addAlertEveryMonth"/>
+                        <LinearLayout
+                            android:id="@+id/layoutEveryMonth"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+                            <Button
+                                android:layout_width="150dp"
+                                android:layout_height="38dp"
+                                android:text="00:00:00"/>
+                        </LinearLayout>
+                    </RadioGroup>
+                </LinearLayout><!-- End of the periodic layout -->
+
+            </LinearLayout> <!-- End of the time layout -->
+            <!--
+                Location
+            -->
             <Switch
                 android:id="@+id/switchLocation"
                 android:layout_width="150dp"
@@ -68,21 +173,21 @@
                 android:text="@string/addAlertLocation"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="138dp" />
-
             <LinearLayout
                 android:id="@+id/layoutLocation"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="gone">
-
                 <Button
                     android:id="@+id/foo"
                     android:layout_width="150dp"
                     android:layout_height="38dp"
                     android:text="00:00:00"/>
             </LinearLayout>
-
+            <!--
+                Battery
+            -->
             <Switch
                 android:id="@+id/switchBattery"
                 android:layout_width="150dp"
@@ -90,7 +195,6 @@
                 android:text="@string/addAlertBattery"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="138dp" />
-
             <LinearLayout
                 android:id="@+id/layoutBattery"
                 android:layout_width="fill_parent"
