@@ -6,8 +6,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
 
 public class ListAlerts extends AppCompatActivity {
+
+    private Button btnAddAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +28,11 @@ public class ListAlerts extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView_alert_items);
 
         listView.setAdapter(adapter);
+        loadUI();
+    }
+
+    private void loadUI()
+    {
+        btnAddAlert = (Button) findViewById(R.id.addAlert);
     }
 }
