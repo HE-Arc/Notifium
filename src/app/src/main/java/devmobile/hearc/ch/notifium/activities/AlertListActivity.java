@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import devmobile.hearc.ch.notifium.R;
+import android.R;
 import devmobile.hearc.ch.notifium.AlertAdapter;
 
 /**
@@ -23,7 +23,7 @@ import devmobile.hearc.ch.notifium.AlertAdapter;
  */
 public class AlertListActivity extends AppCompatActivity {
 
-    private Button addGarbageButton;
+    private Button addAlertButton;
 
     private ListView alertListView;
 
@@ -35,7 +35,7 @@ public class AlertListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.garbage_list_activity);
+        setContentView(R.layout.activity_list_item);
 
         retrieveViews();
         setUpViews();
@@ -45,7 +45,7 @@ public class AlertListActivity extends AppCompatActivity {
      * Retrieve all views inside res/layout/garbage_list_activity.xml.
      */
     private void retrieveViews() {
-        addGarbageButton = (Button) findViewById(R.id.addGarbageButton);
+        addAlertButton = (Button) findViewById(R.id.);
         alertListView = (ListView) findViewById(R.id.garbageListView);
     }
 
