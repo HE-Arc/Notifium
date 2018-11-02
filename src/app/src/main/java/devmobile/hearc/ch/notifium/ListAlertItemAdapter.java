@@ -43,7 +43,7 @@ public class ListAlertItemAdapter extends ArrayAdapter<ListAlertItem> {
 
             // Inflate layout
             convertView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout., parent, false);
+                    .inflate(R.layout.adapter, parent, false);
 
             // Setup ViewHolder
             holder = new ViewHolder();
