@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
+
+import java.util.Observable;
+import java.util.Observer;
+
 import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.AlertAdapter;
 
@@ -20,14 +23,11 @@ import devmobile.hearc.ch.notifium.AlertAdapter;
  *   - start an intent to create a garbage;
  *   - start an intent to see a garbage details.
  */
-public class AlertListActivity extends AppCompatActivity {
+public class AlertListActivity extends ObserverActivity {
 
     private Button addAlertButton;
 
     private ListView alertListView;
-
-    private SearchView alertSearchView;
-
     private AlertAdapter alertAdapter;
 
     @Override
@@ -38,6 +38,7 @@ public class AlertListActivity extends AppCompatActivity {
 
         retrieveViews();
         setUpViews();
+        updateRows();
     }
 
     /**
@@ -46,6 +47,22 @@ public class AlertListActivity extends AppCompatActivity {
     private void retrieveViews() {
         addAlertButton = (Button) findViewById(R.id.addAlertButton);
         alertListView = (ListView) findViewById(R.id.alertListView);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        updateRows();
+    }
+
+    private void updateRows()
+    {
+        alertListView.post(new Runnable() {
+            @Override
+            public void run() {
+                alertAdapter.notifyDataSetChanged();
+                alertListView.smoothScrollToPosition(0);
+            }
+        });
     }
 
     /**

@@ -2,44 +2,48 @@ package devmobile.hearc.ch.notifium;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
+import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 
-public class AlertStorage {
+public class AlertStorage extends Observable {
     private final List<Alert> listAlerts;
 
-    public AlertStorage()
+    public AlertStorage(ObserverActivity observer)
     {
         listAlerts = new ArrayList<Alert>();
+        this.addObserver(observer);
     }
 
-    public void addAlert(Alert alert)
+    public synchronized void addAlert(Alert alert)
     {
         listAlerts.add(alert);
+        this.notifyAll();
     }
 
-    public void removeAlert(Alert alert)
+    public synchronized void removeAlert(Alert alert)
     {
         listAlerts.remove(alert);
     }
 
-    public Alert getAlert(int index)
+    public synchronized Alert getAlert(int index)
     {
         return listAlerts.get(index);
     }
 
-    public Alert getAlert(String name) {
+    public synchronized Alert getAlert(String name) {
         for(Alert a : listAlerts)
             if(a.getName() == name) return a;
         return null;
     }
 
-    public List<Alert> getAlerts()
+    public synchronized List<Alert> getAlerts()
     {
         return listAlerts;
     }
 
-    public List<Alert> getEnabledAlerts()
+    public synchronized List<Alert> getEnabledAlerts()
     {
         List<Alert> x = new ArrayList<Alert>();
         for(Alert a : listAlerts)
@@ -47,7 +51,7 @@ public class AlertStorage {
         return x;
     }
 
-    public List<Alert> getDisabledAlerts()
+    public synchronized List<Alert> getDisabledAlerts()
     {
         List<Alert> x = new ArrayList<Alert>();
         for(Alert a : listAlerts)

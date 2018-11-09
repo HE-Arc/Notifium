@@ -5,6 +5,8 @@
     <string name="listAlerts_tab_location">Géolocalisation</string>
     <string name="listAlerts_tab_battery">Batterie</string>
     <string name="listAlerts_button_add">+</string>
+    <string name="rowAlert_button_edit">🖋️</string>
+    <string name="rowAlert_button_remove">❌</string>
 
     <string name="addAlert">+</string>
     <string name="addAlertTime">Temps</string>

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import devmobile.hearc.ch.notifium.R;
+import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
@@ -34,31 +35,39 @@ public class AlertAdapter extends BaseAdapter {
     /**
      * The filtered alerts; the alerts currently shown on the list.
      */
-    private List<Alert> filteredAlerts = new ArrayList<Alert>();
+    private AlertStorage alerts;
 
-    public AlertAdapter(Context context) {
+    public AlertAdapter(ObserverActivity context) {
         super();
         this.CONTEXT = context;
+        this.alerts = new AlertStorage(context);
 
-        // Create an alert
-        Alert a = new Alert("MyAlert");
-        Trigger t = new Trigger();
-        ConditionHour ch = new ConditionHour(11, 30);
-        t.add(ch);
-        a.add(t);
 
-        // store it in list
-        filteredAlerts.add(a);
+        for(int i = 0; i < 10; i++) {
+            // Create an alert
+            Alert a = new Alert("MyAlert" + i);
+            Trigger t = new Trigger();
+            ConditionHour ch = new ConditionHour(i + 10, 30);
+            t.add(ch);
+            a.add(t);
+
+            // store it in list
+            alerts.addAlert(a);
+        }
     }
 
     @Override
     public int getCount() {
-        return filteredAlerts.size();
+        return alerts.getAlerts().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return filteredAlerts.get(position);
+        return alerts.getAlert(position);
+    }
+
+    public Object getItem(String name) {
+        return alerts.getAlert(name);
     }
 
     @Override
@@ -84,7 +93,7 @@ public class AlertAdapter extends BaseAdapter {
             holder = (AlertHolder) convertView.getTag();
         }
 
-        Alert alert = filteredAlerts.get(position);
+        Alert alert = alerts.getAlert(position);
 
         holder.nameTextView.setText(alert.getName());
         holder.editButton.setOnClickListener(new View.OnClickListener() {
