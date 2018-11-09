@@ -35,18 +35,20 @@
                 Time
             -->
             <Switch
-                android:id="@+id/switchTime"
+                android:id="@+id/switchDateTime"
                 android:layout_width="150dp"
                 android:layout_height="38dp"
-                android:text="@string/addAlertTime"
+                android:text="@string/addAlertDateTime"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="138dp" />
 
             <LinearLayout
-                android:id="@+id/layoutTime"
+                android:id="@+id/layoutDateTime"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryLight"
                 android:orientation="vertical"
+                android:padding="10dp"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -54,16 +56,44 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:visibility="visible">
-                <Button
-                    android:id="@+id/btnTime"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:text="00:00:00"/>
-                <Button
-                    android:id="@+id/btnDate"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:text="00:00:00"/>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addAlertTime" />
+
+                        <Button
+                            android:id="@+id/btnTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00:00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addAlertDate" />
+
+                        <Button
+                            android:id="@+id/btnDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00:00" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <Switch
@@ -73,91 +103,121 @@
                     android:text="@string/addAlertPeriodic"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="138dp" />
+
                 <LinearLayout
                     android:id="@+id/layoutPeriodic"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
+
                     <RadioGroup
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
+
                         <RadioButton
                             android:id="@+id/rbtnEveryNDays"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/addAlertEveryDay"/>
+                            android:text="@string/addAlertEveryDay" />
+
                         <LinearLayout
                             android:id="@+id/layoutEveryNDays"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:visibility="gone">
-                            <Button
-                                android:layout_width="150dp"
-                                android:layout_height="38dp"
-                                android:text="00:00:00"/>
-                            <Spinner
-                                android:id="@+id/spinnerEveryNDaysWeekDays"
+
+                            <EditText
+                                android:id="@+id/etEveryNDays"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="numberDecimal" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            </Spinner>
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/addAlertFromWeekDay" />
+
+                                <Spinner
+                                    android:id="@+id/spinnerEveryNDaysWeekDays"
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"></Spinner>
+                            </LinearLayout>
                         </LinearLayout>
+
                         <RadioButton
                             android:id="@+id/rbtnEveryWeek"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/addAlertEveryWeek"/>
+                            android:text="@string/addAlertEveryWeek" />
+
                         <LinearLayout
                             android:id="@+id/layoutEveryWeek"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:visibility="gone">
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="L"/>
+                                android:text="L" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="M"/>
+                                android:text="M" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="M"/>
+                                android:text="M" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="J"/>
+                                android:text="J" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="V"/>
+                                android:text="V" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="S"/>
+                                android:text="S" />
+
                             <Button
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
-                                android:text="D"/>
+                                android:text="D" />
                         </LinearLayout>
+
                         <RadioButton
                             android:id="@+id/rbtnEveryMonth"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/addAlertEveryMonth"/>
+                            android:text="@string/addAlertEveryMonth" />
+
                         <LinearLayout
                             android:id="@+id/layoutEveryMonth"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:visibility="gone">
+
                             <Button
                                 android:layout_width="150dp"
                                 android:layout_height="38dp"
-                                android:text="00:00:00"/>
+                                android:text="00:00:00" />
                         </LinearLayout>
                     </RadioGroup>
                 </LinearLayout><!-- End of the periodic layout -->
@@ -178,7 +238,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="@color/colorPrimaryLight"
+                android:padding="10dp">
                 <Button
                     android:id="@+id/foo"
                     android:layout_width="150dp"
@@ -200,7 +262,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="@color/colorPrimaryLight"
+                android:padding="10dp">
                 <SeekBar
                     android:id="@+id/seekBarBattery"
                     android:layout_width="0dp"

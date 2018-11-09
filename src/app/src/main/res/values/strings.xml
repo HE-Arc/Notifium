@@ -6,12 +6,15 @@
     <string name="listAlerts_tab_battery">Batterie</string>
 
     <string name="addAlert">+</string>
-    <string name="addAlertTime">Temps</string>
+    <string name="addAlertDateTime">Temps</string>
+    <string name="addAlertDate">Date</string>
+    <string name="addAlertTime">Heure</string>
     <string name="addAlertLocation">Emplacement</string>
     <string name="addAlertBattery">Batterie</string>
     <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
     <string name="addAlertPeriodic">Répétition</string>
-    <string name="addAlertEveryDay">Quotidien</string>
+    <string name="addAlertEveryDay">Tous les N jours</string>
+    <string name="addAlertFromWeekDay">À partir de</string>
     <string-array name="addAlertWeekDays">
         <item>Lundi</item>
         <item>Mardi</item>

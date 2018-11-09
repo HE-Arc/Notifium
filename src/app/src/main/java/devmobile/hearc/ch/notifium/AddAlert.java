@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -17,16 +18,25 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import android.widget.TimePicker;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddAlert extends AppCompatActivity {
-
-    private DatePickerDialog dpd;
-    private TimePickerDialog tpd;
-
-    private Switch switchTime;
-    private LinearLayout layoutTime;
+    private Switch switchDateTime;
+    private LinearLayout layoutDateTime;
 
     private Button btnTime;
+    private LinearLayout layoutTime;
+
     private Button btnDate;
+    private LinearLayout layoutDate;
 
     private Switch switchPeriodic;
     private LinearLayout layoutPeriodic;
@@ -53,20 +63,22 @@ public class AddAlert extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dpd = new DatePickerDialog(this);
-        //tpd = new TimePickerDialog(this);
         setContentView(R.layout.activity_add_alert);
         loadUI();
         addEventsListener();
+        setDefaultValues();
     }
 
     private void loadUI()
     {
-        switchTime = (Switch) findViewById(R.id.switchTime);
-        layoutTime = (LinearLayout) findViewById(R.id.layoutTime);
+        switchDateTime = (Switch) findViewById(R.id.switchDateTime);
+        layoutDateTime = (LinearLayout) findViewById(R.id.layoutDateTime);
 
         btnTime = (Button) findViewById(R.id.btnTime);
+        layoutTime = (LinearLayout) findViewById(R.id.layoutTime);
+
         btnDate = (Button) findViewById(R.id.btnDate);
+        layoutDate = (LinearLayout) findViewById(R.id.layoutDate);
 
         switchPeriodic = (Switch) findViewById(R.id.switchPeriodic);
         layoutPeriodic = (LinearLayout) findViewById(R.id.layoutPeriodic);
@@ -93,10 +105,10 @@ public class AddAlert extends AppCompatActivity {
 
     private void addEventsListener() {
 
-        switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchDateTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutTime.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutDateTime.setVisibility(isChecked ? View.VISIBLE: View.GONE);
             }
         });
 
@@ -118,7 +130,46 @@ public class AddAlert extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutPeriodic.setVisibility(isChecked ? View.VISIBLE: View.GONE);
-                btnDate.setVisibility(!isChecked ? View.VISIBLE: View.GONE);
+                layoutDate.setVisibility(!isChecked ? View.VISIBLE: View.GONE);
+            }
+        });
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(AddAlert.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        LocalDate ld = LocalDate.of(year, month, dayOfMonth);
+                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                        btnDate.setText(ld.format(dateTimeFormatter));
+                    }
+                }, year, month, dayOfMonth);
+                dpd.show();
+            }
+        });
+
+
+        btnTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
+                int minute = cal.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(AddAlert.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        LocalTime lt = LocalTime.of(selectedHour, selectedMinute);
+                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
+                        btnTime.setText(lt.format(dateTimeFormatter));
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
             }
         });
 
@@ -163,5 +214,17 @@ public class AddAlert extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setDefaultValues()
+    {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        btnDate.setText(LocalDate.of(year, month, dayOfMonth).format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
+        btnTime.setText(LocalTime.of(hour, minute).format(DateTimeFormatter.ISO_LOCAL_TIME));
     }
 }
