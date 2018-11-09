@@ -4,9 +4,23 @@
     <string name="listAlerts_tab_timed">Temps</string>
     <string name="listAlerts_tab_location">Géolocalisation</string>
     <string name="listAlerts_tab_battery">Batterie</string>
+
     <string name="addAlert">+</string>
     <string name="addAlertTime">Temps</string>
     <string name="addAlertLocation">Emplacement</string>
     <string name="addAlertBattery">Batterie</string>
     <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
+    <string name="addAlertPeriodic">Répétition</string>
+    <string name="addAlertEveryDay">Quotidien</string>
+    <string-array name="addAlertWeekDays">
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+        <item>Samedi</item>
+        <item>Dimanche</item>
+    </string-array>
+    <string name="addAlertEveryWeek">Hébdomadaire</string>
+    <string name="addAlertEveryMonth">Mensuel</string>
 </resources>
