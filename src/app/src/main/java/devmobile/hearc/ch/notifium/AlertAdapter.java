@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import devmobile.hearc.ch.notifium.R;
@@ -31,7 +32,7 @@ public class AlertAdapter extends BaseAdapter {
     /**
      * The filtered alerts; the alerts currently shown on the list.
      */
-    private List<Alert> filteredAlerts;
+    private List<Alert> filteredAlerts = new ArrayList<Alert>();
 
     public AlertAdapter(Context context) {
         super();

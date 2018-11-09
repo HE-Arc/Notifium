@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import devmobile.hearc.ch.notifium.R;
-
 import devmobile.hearc.ch.notifium.AlertAdapter;
 
 /**
@@ -83,7 +82,6 @@ public class AlertListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AlertListActivity.this, AddAlertActivity.class);
-
                 startActivity(intent);
             }
         });
