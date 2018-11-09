@@ -1,4 +1,4 @@
-package devmobile.hearc.ch.notifium;
+package devmobile.hearc.ch.notifium.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,18 +17,15 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import android.widget.TimePicker;
-
-import java.sql.Time;
-import java.text.SimpleDateFormat;
+import devmobile.hearc.ch.notifium.R;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 
-public class AddAlert extends AppCompatActivity {
+public class AddAlertActivity extends AppCompatActivity {
+
     private Switch switchDateTime;
     private LinearLayout layoutDateTime;
 
@@ -58,6 +55,7 @@ public class AddAlert extends AppCompatActivity {
     private LinearLayout layoutBattery;
     private SeekBar seekBarBattery;
     private TextView textViewBattery;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -141,7 +139,7 @@ public class AddAlert extends AppCompatActivity {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dpd = new DatePickerDialog(AddAlert.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dpd = new DatePickerDialog(AddAlertActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         LocalDate ld = LocalDate.of(year, month, dayOfMonth);
@@ -161,7 +159,7 @@ public class AddAlert extends AppCompatActivity {
                 int hour = cal.get(Calendar.HOUR_OF_DAY);
                 int minute = cal.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(AddAlert.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(AddAlertActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         LocalTime lt = LocalTime.of(selectedHour, selectedMinute);
