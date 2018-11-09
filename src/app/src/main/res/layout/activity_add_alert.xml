@@ -73,7 +73,7 @@
                             android:id="@+id/btnTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00:00:00" />
+                            android:text="@string/addAlertDefaultHour" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -92,7 +92,7 @@
                             android:id="@+id/btnDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00:00:00" />
+                            android:text="@string/addAlertDefaultHour" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -148,7 +148,8 @@
                                 <Spinner
                                     android:id="@+id/spinnerEveryNDaysWeekDays"
                                     android:layout_width="200dp"
-                                    android:layout_height="wrap_content"></Spinner>
+                                    android:layout_height="wrap_content">
+                                </Spinner>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -217,7 +218,7 @@
                             <Button
                                 android:layout_width="150dp"
                                 android:layout_height="38dp"
-                                android:text="00:00:00" />
+                                android:text="@string/addAlertDefaultHour" />
                         </LinearLayout>
                     </RadioGroup>
                 </LinearLayout><!-- End of the periodic layout -->
@@ -245,7 +246,7 @@
                     android:id="@+id/foo"
                     android:layout_width="150dp"
                     android:layout_height="38dp"
-                    android:text="00:00:00"/>
+                    android:text="@string/addAlertDefaultHour"/>
             </LinearLayout>
             <!--
                 Battery
