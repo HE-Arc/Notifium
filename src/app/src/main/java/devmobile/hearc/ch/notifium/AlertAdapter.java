@@ -14,6 +14,8 @@ import java.util.List;
 
 import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.logicals.Alert;
+import devmobile.hearc.ch.notifium.logicals.Trigger;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 
 /**
  * Our garbage adapter for list views containing garbages.
@@ -37,6 +39,16 @@ public class AlertAdapter extends BaseAdapter {
     public AlertAdapter(Context context) {
         super();
         this.CONTEXT = context;
+
+        // Create an alert
+        Alert a = new Alert("MyAlert");
+        Trigger t = new Trigger();
+        ConditionHour ch = new ConditionHour(11, 30);
+        t.add(ch);
+        a.add(t);
+
+        // store it in list
+        filteredAlerts.add(a);
     }
 
     @Override
@@ -93,5 +105,6 @@ public class AlertAdapter extends BaseAdapter {
         CheckBox selectCheckBox;
         TextView nameTextView;
         Button editButton;
+        Button suppressButton;
     }
 }

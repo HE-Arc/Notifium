@@ -1,14 +1,14 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ConditionDate implements Condition_I {
 
-    private Date dateCondition;
+    private LocalDate dateCondition;
 
     public ConditionDate(int day, int month, int year)
     {
-        dateCondition = new Date(year, month, day);
+        dateCondition = LocalDate.of(year, month, day);
     }
 
     /**
@@ -17,6 +17,6 @@ public class ConditionDate implements Condition_I {
      */
     public boolean evaluatePredicate()
     {
-        return new Date().after(dateCondition);
+        return LocalDate.now().isAfter(dateCondition);
     }
 }

@@ -1,13 +1,13 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 public class ConditionHour implements Condition_I {
-    private Date dateCondition;
+    private LocalTime dateCondition;
 
     public ConditionHour(int hours, int minutes)
     {
-        dateCondition = new Date(0,0,0, hours, minutes);
+        dateCondition = LocalTime.of(hours, minutes, 0);
     }
 
     /**
@@ -16,10 +16,10 @@ public class ConditionHour implements Condition_I {
      */
     public boolean evaluatePredicate()
     {
-        Date now = new Date();
-        if(now.getHours() >= dateCondition.getHours())
+        LocalTime now = LocalTime.now();
+        if(now.getHour() >= dateCondition.getHour())
         {
-            if(now.getMinutes() >= dateCondition.getMinutes())
+            if(now.getMinute() >= dateCondition.getMinute())
                 return true;
         }
         return false;
