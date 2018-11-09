@@ -29,7 +29,7 @@ public class AlertAdapter extends BaseAdapter {
     public static Context CONTEXT;
 
     /**
-     * The filtered garbages; the garbages currently shown on the list.
+     * The filtered alerts; the alerts currently shown on the list.
      */
     private List<Alert> filteredAlerts;
 
@@ -77,6 +77,7 @@ public class AlertAdapter extends BaseAdapter {
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //TODO
             }
         });

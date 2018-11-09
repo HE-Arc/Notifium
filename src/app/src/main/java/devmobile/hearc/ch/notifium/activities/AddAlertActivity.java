@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import devmobile.hearc.ch.notifium.R;
+
 public class AddAlertActivity extends AppCompatActivity {
 
     private DatePickerDialog dpd;
@@ -48,6 +50,7 @@ public class AddAlertActivity extends AppCompatActivity {
     private LinearLayout layoutBattery;
     private SeekBar seekBarBattery;
     private TextView textViewBattery;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

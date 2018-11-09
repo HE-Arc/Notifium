@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import devmobile.hearc.ch.notifium.R;
 
-import android.R;
 import devmobile.hearc.ch.notifium.AlertAdapter;
 
 /**
@@ -35,7 +35,7 @@ public class AlertListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_list_item);
+        setContentView(R.layout.activity_alert_list);
 
         retrieveViews();
         setUpViews();
@@ -78,11 +78,11 @@ public class AlertListActivity extends AppCompatActivity {
         });*/
 
         // Start the activity to add a garbage when clicking the "Add" button
-        addGarbageButton.setOnClickListener(new View.OnClickListener() {
+        addAlertButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlertListActivity.this, AddAlert.class);
+                Intent intent = new Intent(AlertListActivity.this, AddAlertActivity.class);
 
                 startActivity(intent);
             }
