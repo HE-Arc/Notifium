@@ -45,8 +45,8 @@ public class AlertListActivity extends AppCompatActivity {
      * Retrieve all views inside res/layout/garbage_list_activity.xml.
      */
     private void retrieveViews() {
-        addAlertButton = (Button) findViewById(R.id.);
-        alertListView = (ListView) findViewById(R.id.garbageListView);
+        addAlertButton = (Button) findViewById(R.id.addAlertButton);
+        alertListView = (ListView) findViewById(R.id.alertListView);
     }
 
     /**

@@ -58,7 +58,7 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(CONTEXT).inflate(R.layout.garbage_list_row, parent, false);
+            convertView = LayoutInflater.from(CONTEXT).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();
 

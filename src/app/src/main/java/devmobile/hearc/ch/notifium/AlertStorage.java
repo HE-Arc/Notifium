@@ -28,6 +28,12 @@ public class AlertStorage {
         return listAlerts.get(index);
     }
 
+    public Alert getAlert(String name) {
+        for(Alert a : listAlerts)
+            if(a.getName() == name) return a;
+        return null;
+    }
+
     public List<Alert> getAlerts()
     {
         return listAlerts;

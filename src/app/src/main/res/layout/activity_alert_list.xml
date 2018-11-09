@@ -7,7 +7,7 @@
     <SearchView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/garbageSearchView"
+        android:id="@+id/alertSearchView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -15,10 +15,10 @@
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/garbageListView"
+        android:id="@+id/alertListView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/garbageSearchView" />
+        android:layout_below="@+id/alertSearchView" />
 
     <Button
         android:layout_width="wrap_content"
