@@ -26,10 +26,6 @@
             android:exported="true" />
 
         <receiver
-            android:name=".NotificationReceiver"
-            android:enabled="true"
-            android:exported="true" />
-        <receiver
             android:name=".RestartReceiver"
             android:enabled="true"
             android:exported="true" >
@@ -38,6 +34,10 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
             </intent-filter>
         </receiver>
     </application>

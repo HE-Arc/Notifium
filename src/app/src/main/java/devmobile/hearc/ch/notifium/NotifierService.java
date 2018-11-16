@@ -1,9 +1,14 @@
 package devmobile.hearc.ch.notifium;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -37,13 +42,6 @@ public class NotifierService extends Service {
         startTimer();
 
         return START_STICKY;
-    }
-
-    private void lauchNotification()
-    {
-        NotificationReceiver nr = new NotificationReceiver();
-        Intent intent1 = new Intent(this, NotificationReceiver.class);
-        nr.onReceive(getApplicationContext(), intent1);
     }
 
     @Override
@@ -100,6 +98,12 @@ public class NotifierService extends Service {
         };
     }
 
+    private void lauchNotification()
+    {
+        //startAlert(getApplicationContext());
+        showNotification(getApplicationContext());
+    }
+
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -113,6 +117,36 @@ public class NotifierService extends Service {
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void showNotification(Context context) {
+        Log.i("cool", "notification");
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Notification notification =
+                new Notification.Builder(context)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!")
+                        .setChannelId("Notifier Channel").build();
+
+        notificationManager.notify(1, notification);
+    }
+
+    private void startAlert(Context context) {
+        try {
+            Uri alarmUri = RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_ALARM);
+            if (alarmUri == null) {
+                alarmUri = RingtoneManager
+                        .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            }
+            Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
+            ringtone.play();
+
+        } catch (Exception ex) {
         }
     }
 }
