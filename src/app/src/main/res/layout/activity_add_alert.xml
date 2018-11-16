@@ -128,12 +128,21 @@
                             android:orientation="horizontal"
                             android:visibility="gone">
 
-                            <EditText
-                                android:id="@+id/etEveryNDays"
+                            <LinearLayout
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:digits="0123456789"
-                                android:inputType="numberDecimal" />
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/addAlertEveryNDay" />
+                                <EditText
+                                    android:id="@+id/etEveryNDays"
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:digits="0123456789"
+                                    android:inputType="numberDecimal" />
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -165,41 +174,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:visibility="gone">
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="L" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="M" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="M" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="J" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="V" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="S" />
-
-                            <Button
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:text="D" />
                         </LinearLayout>
 
                         <RadioButton
@@ -216,9 +190,17 @@
                             android:visibility="gone">
 
                             <Button
-                                android:layout_width="150dp"
-                                android:layout_height="38dp"
-                                android:text="@string/addAlertDefaultHour" />
+                                android:id="@+id/btnEveryMonthDatePicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/addAlertDefaultHour"/>
+
+                            <Spinner
+                                android:id="@+id/spinnerEveryMonth"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content">
+                            </Spinner>
+
                         </LinearLayout>
                     </RadioGroup>
                 </LinearLayout><!-- End of the periodic layout -->
@@ -243,10 +225,10 @@
                 android:background="@color/colorPrimaryLight"
                 android:padding="10dp">
                 <Button
-                    android:id="@+id/foo"
-                    android:layout_width="150dp"
+                    android:id="@+id/btnPickLocation"
+                    android:layout_width="wrap_content"
                     android:layout_height="38dp"
-                    android:text="@string/addAlertDefaultHour"/>
+                    android:text="@string/addAlertPickLocation"/>
             </LinearLayout>
             <!--
                 Battery

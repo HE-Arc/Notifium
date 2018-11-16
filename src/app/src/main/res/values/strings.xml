@@ -9,16 +9,16 @@
     <string name="rowAlert_button_remove">❌</string>
 
     <string name="addAlert">+</string>
+
+    <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
     <string name="addAlertDateTime">Temps</string>
     <string name="addAlertDate">Date</string>
     <string name="addAlertTime">Heure</string>
-    <string name="addAlertLocation">Emplacement</string>
-    <string name="addAlertBattery">Batterie</string>
-    <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
-    <string name="addAlertPeriodic">Répétition</string>
-    <string name="addAlertEveryDay">Tous les N jours</string>
-    <string name="addAlertFromWeekDay">À partir de</string>
     <string name="addAlertDefaultHour">00:00:00</string>
+    <string name="addAlertPeriodic">Répétition</string>
+    <string name="addAlertEveryDay">Jours</string>
+    <string name="addAlertEveryNDay">Tous les N jours</string>
+    <string name="addAlertEveryWeek">Semaine</string>
     <string-array name="addAlertWeekDays">
         <item>Lundi</item>
         <item>Mardi</item>
@@ -28,6 +28,11 @@
         <item>Samedi</item>
         <item>Dimanche</item>
     </string-array>
-    <string name="addAlertEveryWeek">Hébdomadaire</string>
-    <string name="addAlertEveryMonth">Mensuel</string>
+    <string name="addAlertFromWeekDay">À partir de</string>
+    <string name="addAlertEveryMonth">Mois</string>
+
+    <string name="addAlertLocation">Emplacement</string>
+    <string name="addAlertPickLocation">Choisir un emplacement</string>
+    <string name="addAlertBattery">Batterie</string>
+
 </resources>

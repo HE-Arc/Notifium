@@ -2,27 +2,40 @@ package devmobile.hearc.ch.notifium.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import devmobile.hearc.ch.notifium.R;
+import android.widget.ToggleButton;
+
+import java.security.Security;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+
+import devmobile.hearc.ch.notifium.R;
 
 public class AddAlertActivity extends AppCompatActivity {
 
@@ -44,12 +57,14 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private RadioButton rbtnEveryWeek;
     private LinearLayout layoutEveryWeek;
+    private ToggleButton[] tbsEveryWeek;
 
     private RadioButton rbtnEveryMonth;
     private LinearLayout layoutEveryMonth;
 
     private Switch switchLocation;
     private LinearLayout layoutLocation;
+    private Button btnPickLocation;
 
     private Switch switchBattery;
     private LinearLayout layoutBattery;
@@ -63,6 +78,7 @@ public class AddAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alert);
         loadUI();
+        generateDynamicUI();
         addEventsListener();
         setDefaultValues();
     }
@@ -93,12 +109,29 @@ public class AddAlertActivity extends AppCompatActivity {
 
         switchLocation = (Switch) findViewById(R.id.switchLocation);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
+        btnPickLocation = (Button)findViewById(R.id.btnPickLocation);
 
         switchBattery = (Switch) findViewById(R.id.switchBattery);
         layoutBattery = (LinearLayout) findViewById(R.id.layoutBattery);
 
         seekBarBattery = (SeekBar) findViewById(R.id.seekBarBattery);
         textViewBattery = (TextView) findViewById(R.id.textViewBattery);
+    }
+
+    private void generateDynamicUI() {
+        String[] stringArray = getResources().getStringArray(R.array.addAlertWeekDays);
+        tbsEveryWeek = new ToggleButton[stringArray.length];
+        for(int i = 0; i < tbsEveryWeek.length; i++) {
+            String name = stringArray[i];
+            String firstLetter = "" + name.charAt(0);
+            ToggleButton btn = new ToggleButton(this);
+            btn.setTextOn(firstLetter);
+            btn.setTextOff(firstLetter);
+            btn.setText(firstLetter);
+            btn.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            layoutEveryWeek.addView(btn);
+            tbsEveryWeek[i] = btn;
+        }
     }
 
     private void addEventsListener() {
@@ -209,6 +242,13 @@ public class AddAlertActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        btnPickLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
