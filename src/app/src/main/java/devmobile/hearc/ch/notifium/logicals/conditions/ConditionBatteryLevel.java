@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class ConditionBatteryLevel implements Condition_I {
 
@@ -26,5 +27,10 @@ public class ConditionBatteryLevel implements Condition_I {
         float batteryPct = level / (float)scale;
 
         return false;
+    }
+
+    @Override
+    public ConditionType getConditionType() {
+        return ConditionType.Battery;
     }
 }
