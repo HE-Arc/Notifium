@@ -11,7 +11,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,13 +30,11 @@ public class NotifierService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i("cool", "create");
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("cool", "start");
         createNotificationChannel();
         startTimer();
 
@@ -46,7 +43,6 @@ public class NotifierService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i("cool", "stop");
         super.onDestroy();
 
         //stop the timer, if it's not already null
@@ -63,7 +59,6 @@ public class NotifierService extends Service {
 
     @Override
     public void onTaskRemoved(Intent intent) {
-        Log.i("cool", "remove");
         super.onTaskRemoved(intent);
 
         //stop the timer, if it's not already null
@@ -93,7 +88,6 @@ public class NotifierService extends Service {
         timerTask = new TimerTask() {
             public void run() {
                 lauchNotification();
-                Log.i("cool", "timer");
             }
         };
     }
@@ -121,7 +115,6 @@ public class NotifierService extends Service {
     }
 
     private void showNotification(Context context) {
-        Log.i("cool", "notification");
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
