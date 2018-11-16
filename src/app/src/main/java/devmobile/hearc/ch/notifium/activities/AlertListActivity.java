@@ -1,6 +1,7 @@
 package devmobile.hearc.ch.notifium.activities;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ public class AlertListActivity extends ObserverActivity {
 
     private Button addAlertButton;
 
+    private TabLayout alertsLayout;
     private ListView alertListView;
     private AlertAdapter alertAdapter;
 
@@ -47,6 +49,7 @@ public class AlertListActivity extends ObserverActivity {
     private void retrieveViews() {
         addAlertButton = (Button) findViewById(R.id.addAlertButton);
         alertListView = (ListView) findViewById(R.id.alertListView);
+        alertsLayout = (TabLayout) findViewById(R.id.tabLayout);
     }
 
     @Override
@@ -102,6 +105,39 @@ public class AlertListActivity extends ObserverActivity {
                 startActivity(intent);
             }
         });
+
+        alertsLayout.setOnTabSelectedListener(
+            new TabLayout.BaseOnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition())
+                    {
+                        case 0:
+                            alertAdapter.displayAll();
+                            break;
+                        case 1:
+                            alertAdapter.displayDates();
+                            break;
+                        case 2:
+                            alertAdapter.displayPositions();
+                            break;
+                        case 3:
+                            alertAdapter.displayBattery();
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+                }
+            }
+        );
     }
 
     @Override

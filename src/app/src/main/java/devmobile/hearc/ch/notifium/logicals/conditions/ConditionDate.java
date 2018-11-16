@@ -1,6 +1,9 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
 import java.time.LocalDate;
+import java.util.concurrent.locks.Condition;
+
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class ConditionDate implements Condition_I {
 
@@ -18,5 +21,10 @@ public class ConditionDate implements Condition_I {
     public boolean evaluatePredicate()
     {
         return LocalDate.now().isAfter(dateCondition);
+    }
+
+    @Override
+    public ConditionType getConditionType() {
+        return ConditionType.Date;
     }
 }
