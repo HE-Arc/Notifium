@@ -6,11 +6,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -18,13 +22,25 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.R;
+import devmobile.hearc.ch.notifium.logicals.Alert;
+import devmobile.hearc.ch.notifium.logicals.Trigger;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class AddAlertActivity extends AppCompatActivity {
+
+    private EditText etAlertName;
 
     private Switch switchDateTime;
     private LinearLayout layoutDateTime;
@@ -56,19 +72,37 @@ public class AddAlertActivity extends AppCompatActivity {
     private SeekBar seekBarBattery;
     private TextView textViewBattery;
 
+    private Button btnSave;
+
+    private DateTimeFormatter formatDate;
+    private DateTimeFormatter formatTime;
+
+    private LocalTime time;
+    private LocalDate date;
+
+    private boolean[] daysOfTheWeek;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        formatDate = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        formatTime = DateTimeFormatter.ofPattern("HH:mm");
+        daysOfTheWeek = new boolean[7];
+
         setContentView(R.layout.activity_add_alert);
         loadUI();
         addEventsListener();
         setDefaultValues();
+        updateSave();
+
     }
 
     private void loadUI()
     {
+        etAlertName = (EditText) findViewById(R.id.etAlertName);
+
         switchDateTime = (Switch) findViewById(R.id.switchDateTime);
         layoutDateTime = (LinearLayout) findViewById(R.id.layoutDateTime);
 
@@ -99,14 +133,51 @@ public class AddAlertActivity extends AppCompatActivity {
 
         seekBarBattery = (SeekBar) findViewById(R.id.seekBarBattery);
         textViewBattery = (TextView) findViewById(R.id.textViewBattery);
+
+        btnSave = (Button) findViewById(R.id.btnSave);
+    }
+
+    private void updateSave()
+    {
+        btnSave.setEnabled(isValid());
+    }
+
+    private boolean isValid()
+    {
+        boolean valid;
+
+        boolean hasName = !etAlertName.getText().toString().equals("");
+        boolean atLeastOnChecked = switchDateTime.isChecked() || switchLocation.isChecked() || switchBattery.isChecked();
+
+        valid = hasName && atLeastOnChecked;
+
+        //Periodic
+        if(switchDateTime.isChecked() && switchPeriodic.isChecked())
+        {
+            boolean atLeastOneRadio = rbtnEveryMonth.isChecked() || rbtnEveryNDays.isChecked() || rbtnEveryNDays.isChecked();
+            if(!atLeastOneRadio)
+                valid = false;
+        }
+
+
+        return valid;
     }
 
     private void addEventsListener() {
+
+        etAlertName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                updateSave();
+                return false;
+            }
+        });
 
         switchDateTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutDateTime.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -114,6 +185,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutLocation.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -121,6 +193,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutBattery.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -129,6 +202,7 @@ public class AddAlertActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutPeriodic.setVisibility(isChecked ? View.VISIBLE: View.GONE);
                 layoutDate.setVisibility(!isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -142,12 +216,12 @@ public class AddAlertActivity extends AppCompatActivity {
                 DatePickerDialog dpd = new DatePickerDialog(AddAlertActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        LocalDate ld = LocalDate.of(year, month, dayOfMonth);
-                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-                        btnDate.setText(ld.format(dateTimeFormatter));
+                        date = LocalDate.of(year, month, dayOfMonth);
+                        updateDate();
                     }
                 }, year, month, dayOfMonth);
                 dpd.show();
+                updateSave();
             }
         });
 
@@ -162,12 +236,12 @@ public class AddAlertActivity extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(AddAlertActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        LocalTime lt = LocalTime.of(selectedHour, selectedMinute);
-                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
-                        btnTime.setText(lt.format(dateTimeFormatter));
+                        time = LocalTime.of(selectedHour, selectedMinute);
+                        updateTime();
                     }
                 }, hour, minute, true);
                 mTimePicker.show();
+                updateSave();
             }
         });
 
@@ -175,6 +249,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutEveryNDays.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -186,6 +261,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutEveryWeek.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -193,6 +269,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 layoutEveryMonth.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                updateSave();
             }
         });
 
@@ -200,6 +277,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textViewBattery.setText("" + progress + "%");
+                updateSave();
             }
 
             @Override
@@ -212,17 +290,87 @@ public class AddAlertActivity extends AppCompatActivity {
 
             }
         });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alert alert = createAlert();
+            }
+        });
     }
 
     private void setDefaultValues()
     {
-        Calendar cal = Calendar.getInstance();
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int minute = cal.get(Calendar.MINUTE);
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-        btnDate.setText(LocalDate.of(year, month, dayOfMonth).format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
-        btnTime.setText(LocalTime.of(hour, minute).format(DateTimeFormatter.ISO_LOCAL_TIME));
+        date = LocalDate.now();
+        time = LocalTime.now();
+        updateDate();
+        updateTime();
+    }
+
+    private void updateDate()
+    {
+        btnDate.setText(date.format(formatDate));
+    }
+
+    private void updateTime()
+    {
+        btnTime.setText(time.format(formatTime));
+    }
+
+    private Alert createAlert()
+    {
+        Alert alert = new Alert(etAlertName.getText().toString());
+
+        if(switchDateTime.isEnabled())
+        {
+            Trigger trigger = new Trigger();
+            trigger.add(new ConditionHour(time));
+
+            if(!switchPeriodic.isEnabled())
+            {
+                trigger.add(new ConditionDate(date));
+            }
+            else
+            {
+                if(rbtnEveryNDays.isChecked())
+                {
+
+                }
+                else if(rbtnEveryWeek.isChecked())
+                {
+                    for(int i = 0; i < daysOfTheWeek.length; i++)
+                    {
+                        if(daysOfTheWeek[i])
+                        {
+                            //ConditionDay cond = new ConditionDay(i);
+                            //trigger.add(cond);
+                        }
+                    }
+                }
+                else if(rbtnEveryMonth.isChecked())
+                {
+
+                }
+            }
+
+            alert.add(trigger);
+        }
+
+        if(switchLocation.isEnabled())
+        {
+            Trigger trigger = new Trigger();
+            trigger.add(new ConditionLocalisation(0,0,0));
+            alert.add(trigger);
+        }
+
+        if(switchBattery.isEnabled())
+        {
+            Trigger trigger = new Trigger();
+            trigger.add(new ConditionBatteryLevel(seekBarBattery.getProgress()));
+            alert.add(trigger);
+        }
+
+
+        return alert;
     }
 }

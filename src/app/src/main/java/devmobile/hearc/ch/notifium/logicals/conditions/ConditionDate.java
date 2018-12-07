@@ -11,7 +11,12 @@ public class ConditionDate implements Condition_I {
 
     public ConditionDate(int day, int month, int year)
     {
-        dateCondition = LocalDate.of(year, month, day);
+        this(LocalDate.of(year, month, day));
+    }
+
+    public ConditionDate(LocalDate date)
+    {
+        dateCondition = date;
     }
 
     /**

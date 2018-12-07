@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etAlertName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -280,6 +280,20 @@
                     android:layout_height="38dp"
                     android:layout_weight=".20"
                     android:text="15%"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutSave"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/addAlertSave" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
