@@ -24,6 +24,7 @@ import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
@@ -83,6 +84,19 @@ public class AlertAdapter extends BaseAdapter {
             Alert a = new Alert("MyAlert" + i);
             Trigger t = new Trigger();
             Condition_I c = new ConditionDay(DayOfWeek.of((i % 7) + 1));
+            t.add(c);
+            a.add(t);
+
+            // store it in list
+            alerts.addAlert(a);
+        }
+
+        // Location alerts
+        for(int i = 0; i < 10; i++) {
+            // Create an alert
+            Alert a = new Alert("MyAlert" + i);
+            Trigger t = new Trigger();
+            Condition_I c = new ConditionLocalisation(1, 1, 10);
             t.add(c);
             a.add(t);
 
