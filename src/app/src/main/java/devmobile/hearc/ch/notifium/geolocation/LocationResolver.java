@@ -14,7 +14,29 @@ import android.widget.Toast;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
 
+/**
+ * FROM :
+ * - https://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
+ * - https://stackoverflow.com/questions/3145089/what-is-the-simplest-and-most-robust-way-to-get-the-users-current-location-on-a/3145655#3145655
+ * - https://stackoverflow.com/questions/32491960/android-check-permission-for-locationmanager
+ * - https://stackoverflow.com/questions/6899988/android-location-manager-permissions-to-be-used
+ */
 public class LocationResolver  {
+
+    private static LocationResolver instance = null;
+    public static LocationResolver getInstance() {
+        if(instance == null)
+        {
+            instance = new LocationResolver();
+        }
+        return instance;
+    }
+
+    // Turn the constructor to private
+    private LocationResolver()
+    {
+        this.prepare();
+    }
 
     private Timer timer;
     private LocationManager locationManager;
@@ -69,6 +91,7 @@ public class LocationResolver  {
             }
         }
     };
+
     private final LocationListener locationListenerGps = new LocationListener() {
         public void onLocationChanged(Location location) {
             timer.cancel();
@@ -86,6 +109,7 @@ public class LocationResolver  {
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
     };
+
     private final LocationListener locationListenerNetwork = new LocationListener() {
         public void onLocationChanged(Location location) {
             timer.cancel();
