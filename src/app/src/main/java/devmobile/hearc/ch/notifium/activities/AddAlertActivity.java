@@ -125,6 +125,8 @@ public class AddAlertActivity extends AppCompatActivity {
         layoutEveryMonth = (LinearLayout) findViewById(R.id.layoutEveryMonth);
         rbtnEveryMonth = (RadioButton) findViewById(R.id.rbtnEveryMonth);
 
+
+        // TODO: Voir Arcgis ou Mapbox
         switchLocation = (Switch) findViewById(R.id.switchLocation);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
 
