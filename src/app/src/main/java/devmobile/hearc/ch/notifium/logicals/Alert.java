@@ -1,14 +1,17 @@
 package devmobile.hearc.ch.notifium.logicals;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class Alert extends ArrayList<Trigger> {
+    @SerializedName("alert_name")
     private String name;
+    @SerializedName("alert_bEnabled")
     private boolean bEnabled;
 
     public Alert(String name)
@@ -68,3 +71,4 @@ public class Alert extends ArrayList<Trigger> {
     }
 
 }
+

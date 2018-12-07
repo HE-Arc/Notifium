@@ -6,3 +6,4 @@ public interface Condition_I {
     public boolean evaluatePredicate();
     public ConditionType getConditionType();
 }
+

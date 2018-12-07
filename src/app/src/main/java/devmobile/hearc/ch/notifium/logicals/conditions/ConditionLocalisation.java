@@ -1,7 +1,5 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import java.util.concurrent.locks.Condition;
-
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class ConditionLocalisation implements Condition_I {
@@ -26,8 +24,21 @@ public class ConditionLocalisation implements Condition_I {
         return false;
     }
 
+    public float getLat() {
+        return lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
     @Override
     public ConditionType getConditionType() {
         return ConditionType.Position;
     }
 }
+

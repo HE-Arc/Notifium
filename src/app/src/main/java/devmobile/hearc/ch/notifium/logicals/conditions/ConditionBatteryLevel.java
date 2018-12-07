@@ -29,8 +29,13 @@ public class ConditionBatteryLevel implements Condition_I {
         return false;
     }
 
+    public int getThreshold()
+    {
+       return threshold;
+    }
     @Override
     public ConditionType getConditionType() {
         return ConditionType.Battery;
     }
 }
+

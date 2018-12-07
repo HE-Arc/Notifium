@@ -1,7 +1,6 @@
 package devmobile.hearc.ch.notifium;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
@@ -25,7 +18,6 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
-import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 /**
  * Our garbage adapter for list views containing garbages.
@@ -92,6 +84,8 @@ public class AlertAdapter extends BaseAdapter {
 
         // Get filtered alerts
         alerts.applyFilter(AlertStorage.ALL);
+        alerts.save(context);
+        alerts.load(context);
     }
 
     @Override

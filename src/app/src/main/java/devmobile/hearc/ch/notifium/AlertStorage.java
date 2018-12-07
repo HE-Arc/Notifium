@@ -1,7 +1,16 @@
 package devmobile.hearc.ch.notifium;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +21,7 @@ import java.util.Set;
 
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.logicals.Alert;
+import devmobile.hearc.ch.notifium.logicals.serializer.AlertSerializer;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class AlertStorage extends Observable {
@@ -118,7 +128,6 @@ public class AlertStorage extends Observable {
             if(respectFilter)
                 filteredAlerts.add(a);
         }
-
     }
 
     /**
@@ -239,5 +248,54 @@ public class AlertStorage extends Observable {
         for(Alert a : listAlerts)
             if (!a.isEnabled()) x.add(a);
         return x;
+    }
+
+    public synchronized void save(Context context)
+    {
+        try {
+            File file = new File(context.getFilesDir(), "listAlert.json");
+            if (file.exists())
+            {
+                file.delete();
+                file.createNewFile();
+            }
+
+            FileOutputStream outputStream;
+            outputStream = context.openFileOutput("listAlert.json", Context.MODE_PRIVATE);
+            AlertSerializer alertSerializer = new AlertSerializer();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
+            Gson gson = gsonBuilder.create();
+
+            String json = gson.toJson(listAlerts);
+            Log.i("cool", json);
+            outputStream.write(json.getBytes());
+            outputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void load(Context context) {
+        try {
+            listAlerts.clear();
+            FileInputStream fis = context.openFileInput("listAlert.json");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            String line;
+            AlertSerializer alertSerializer = new AlertSerializer();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
+            Gson gson = gsonBuilder.create();
+            if ((line = bufferedReader.readLine()) != null) {
+                listAlerts.addAll(gson.fromJson(line, ArrayList.class));
+            }
+            Log.i("cool",listAlerts.get(0).getName());
+            Log.i("cool","load");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("cool",e.getMessage());
+        }
     }
 }
