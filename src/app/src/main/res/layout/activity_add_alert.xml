@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etAlertName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -167,36 +167,43 @@
                             android:visibility="gone">
 
                             <Button
+                                android:id="@+id/everyWeek0"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="L" />
 
                             <Button
+                                android:id="@+id/everyWeek1"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="M" />
 
                             <Button
+                                android:id="@+id/everyWeek2"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="M" />
 
                             <Button
+                                android:id="@+id/everyWeek3"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="J" />
 
                             <Button
+                                android:id="@+id/everyWeek4"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="V" />
 
                             <Button
+                                android:id="@+id/everyWeek5"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="S" />
 
                             <Button
+                                android:id="@+id/everyWeek6"
                                 android:layout_width="38dp"
                                 android:layout_height="38dp"
                                 android:text="D" />
@@ -215,10 +222,20 @@
                             android:orientation="horizontal"
                             android:visibility="gone">
 
-                            <Button
-                                android:layout_width="150dp"
-                                android:layout_height="38dp"
-                                android:text="@string/addAlertDefaultHour" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/addAlertEveryMonth1" />
+                            <EditText
+                                android:id="@+id/etEveryMonth"
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="numberDecimal" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/addAlertEveryMonth2" />
                         </LinearLayout>
                     </RadioGroup>
                 </LinearLayout><!-- End of the periodic layout -->
@@ -280,6 +297,20 @@
                     android:layout_height="38dp"
                     android:layout_weight=".20"
                     android:text="15%"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutSave"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/addAlertSave" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
