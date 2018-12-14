@@ -5,12 +5,14 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,8 +23,9 @@ import java.util.Set;
 
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.logicals.Alert;
-import devmobile.hearc.ch.notifium.logicals.serializer.AlertSerializer;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
+import devmobile.hearc.ch.notifium.logicals.serializer.AlertDeserializer;
+import devmobile.hearc.ch.notifium.logicals.serializer.AlertSerializer;
 
 public class AlertStorage extends Observable {
 
@@ -284,14 +287,15 @@ public class AlertStorage extends Observable {
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
             String line;
-            AlertSerializer alertSerializer = new AlertSerializer();
+            AlertDeserializer alertDeserializer = new AlertDeserializer();
             GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
+            gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
             Gson gson = gsonBuilder.create();
+            Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
             if ((line = bufferedReader.readLine()) != null) {
-                listAlerts.addAll(gson.fromJson(line, ArrayList.class));
+                ArrayList<Alert> alertsLoaded =  gson.fromJson(line, listAlertType);
+                listAlerts.addAll(alertsLoaded);
             }
-            Log.i("cool",listAlerts.get(0).getName());
             Log.i("cool","load");
         } catch (Exception e) {
             e.printStackTrace();

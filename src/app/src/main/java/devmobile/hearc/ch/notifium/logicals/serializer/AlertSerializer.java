@@ -1,5 +1,6 @@
 package devmobile.hearc.ch.notifium.logicals.serializer;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
@@ -21,12 +22,15 @@ public class AlertSerializer implements JsonSerializer<Alert> {
         object.addProperty("name", alert.getName() );
         object.addProperty("isEnabled", alert.isEnabled());
 
+        JsonArray jsonArray = new JsonArray();
+
         for (int i = 0; i < alert.size(); ++i)
         {
             Trigger trigger = alert.get(i);
-            object.add(Integer.toString(i), triggerSerializer.serialize(trigger, Trigger.class, context));
+            jsonArray.add(triggerSerializer.serialize(trigger, Trigger.class, context));
         }
 
+        object.add("triggers", jsonArray);
         return object;
     }
 }

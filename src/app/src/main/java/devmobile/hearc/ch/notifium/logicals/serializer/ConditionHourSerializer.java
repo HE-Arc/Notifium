@@ -8,12 +8,15 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class ConditionHourSerializer implements JsonSerializer<ConditionHour> {
     @Override
     public JsonElement serialize(ConditionHour cond, Type ConditionHour, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
-        object.addProperty("dateCondition", cond.getDateCondition().toString());
+        object.addProperty("type", ConditionType.Hour.name());
+        object.addProperty("hours", cond.getDateCondition().getHour());
+        object.addProperty("minutes", cond.getDateCondition().getMinute());
         return object;
     }
 }
