@@ -30,5 +30,7 @@
     </string-array>
     <string name="addAlertEveryWeek">Hébdomadaire</string>
     <string name="addAlertEveryMonth">Mensuel</string>
+    <string name="addAlertEveryMonth1">Tous les</string>
+    <string name="addAlertEveryMonth2">du mois</string>
     <string name="addAlertSave">Enregistrer</string>
 </resources>

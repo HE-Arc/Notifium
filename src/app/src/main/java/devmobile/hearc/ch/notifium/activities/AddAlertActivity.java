@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,7 +33,9 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
+import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -56,13 +59,15 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private RadioButton rbtnEveryNDays;
     private LinearLayout layoutEveryNDays;
-    private Spinner spinnerEveryNDaysWeekDays;
+    private EditText etEveryNDays;
 
     private RadioButton rbtnEveryWeek;
     private LinearLayout layoutEveryWeek;
+    private Button[] btnsEveryWeek;
 
     private RadioButton rbtnEveryMonth;
     private LinearLayout layoutEveryMonth;
+    private EditText etEveryMonth;
 
     private Switch switchLocation;
     private LinearLayout layoutLocation;
@@ -90,6 +95,7 @@ public class AddAlertActivity extends AppCompatActivity {
         formatDate = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         formatTime = DateTimeFormatter.ofPattern("HH:mm");
         daysOfTheWeek = new boolean[7];
+        btnsEveryWeek = new Button[7];
 
         setContentView(R.layout.activity_add_alert);
         loadUI();
@@ -117,13 +123,21 @@ public class AddAlertActivity extends AppCompatActivity {
 
         layoutEveryNDays = (LinearLayout) findViewById(R.id.layoutEveryNDays);
         rbtnEveryNDays = (RadioButton) findViewById(R.id.rbtnEveryNDays);
-        spinnerEveryNDaysWeekDays = (Spinner) findViewById(R.id.spinnerEveryNDaysWeekDays);
+        etEveryNDays = (EditText)findViewById(R.id.etEveryNDays);
 
         layoutEveryWeek = (LinearLayout) findViewById(R.id.layoutEveryWeek);
         rbtnEveryWeek = (RadioButton) findViewById(R.id.rbtnEveryWeek);
+        btnsEveryWeek[0] = (Button) findViewById(R.id.everyWeek0);
+        btnsEveryWeek[1] = (Button) findViewById(R.id.everyWeek1);
+        btnsEveryWeek[2] = (Button) findViewById(R.id.everyWeek2);
+        btnsEveryWeek[3] = (Button) findViewById(R.id.everyWeek3);
+        btnsEveryWeek[4] = (Button) findViewById(R.id.everyWeek4);
+        btnsEveryWeek[5] = (Button) findViewById(R.id.everyWeek5);
+        btnsEveryWeek[6] = (Button) findViewById(R.id.everyWeek6);
 
         layoutEveryMonth = (LinearLayout) findViewById(R.id.layoutEveryMonth);
         rbtnEveryMonth = (RadioButton) findViewById(R.id.rbtnEveryMonth);
+        etEveryMonth = (EditText) findViewById(R.id.etEveryMonth);
 
 
         // TODO: Voir Arcgis ou Mapbox
@@ -255,9 +269,7 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.addAlertWeekDays, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEveryNDaysWeekDays.setAdapter(adapter);
+        etEveryMonth.setFilters(new InputFilter[]{ new MinMaxFilter("1", "31")});
 
         rbtnEveryWeek.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -299,6 +311,23 @@ public class AddAlertActivity extends AppCompatActivity {
                 Alert alert = createAlert();
             }
         });
+
+        for(int i = 0; i < 7; i++)
+        {
+            final int finalI = i;
+            btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
+            btnsEveryWeek[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    daysOfTheWeek[finalI] = !daysOfTheWeek[finalI];
+                    if(daysOfTheWeek[finalI])
+                        btnsEveryWeek[finalI].setBackgroundColor(0xFFFA3F7E);
+                    else
+                        btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
+                }
+            });
+            daysOfTheWeek[i] = false;
+        }
     }
 
     private void setDefaultValues()
@@ -336,7 +365,8 @@ public class AddAlertActivity extends AppCompatActivity {
             {
                 if(rbtnEveryNDays.isChecked())
                 {
-
+                    //ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
+                    //trigger.add(cond);
                 }
                 else if(rbtnEveryWeek.isChecked())
                 {
@@ -344,14 +374,15 @@ public class AddAlertActivity extends AppCompatActivity {
                     {
                         if(daysOfTheWeek[i])
                         {
-                            //ConditionDay cond = new ConditionDay(i);
-                            //trigger.add(cond);
+                            ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
+                            trigger.add(cond);
                         }
                     }
                 }
                 else if(rbtnEveryMonth.isChecked())
                 {
-
+                    //ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
+                    //trigger.add(cond);
                 }
             }
 
