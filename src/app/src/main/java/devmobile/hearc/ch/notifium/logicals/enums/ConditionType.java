@@ -4,7 +4,11 @@ public enum ConditionType {
     Position,
     Date,
     DateDelay,
-    Day,
+    DateEveryNDay,
+    DateEveryNMonth,
+    DateEveryNYear,
+    DateDayOfWeek,
+    DateDayOfTheMonth,
     Hour,
     Battery
 }
