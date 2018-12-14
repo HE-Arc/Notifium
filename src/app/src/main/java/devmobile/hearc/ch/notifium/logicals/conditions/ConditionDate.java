@@ -19,11 +19,6 @@ public class ConditionDate implements Condition_I {
         dateCondition = date;
     }
 
-    public ConditionDate(LocalDate date)
-    {
-        this.dateCondition = date;
-    }
-
     /**
      * Evaluate current date with this condition date
      * @return True if now is after this condition date

@@ -30,7 +30,10 @@ import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateEveryNDay;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateEveryNMonth;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateMonthly;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
@@ -365,8 +368,9 @@ public class AddAlertActivity extends AppCompatActivity {
             {
                 if(rbtnEveryNDays.isChecked())
                 {
-                    //ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
-                    //trigger.add(cond);
+                    int dt = Integer.parseInt(etEveryNDays.getText().toString());
+                    ConditionDateEveryNDay cond = new ConditionDateEveryNDay(dt);
+                    trigger.add(cond);
                 }
                 else if(rbtnEveryWeek.isChecked())
                 {
@@ -374,15 +378,16 @@ public class AddAlertActivity extends AppCompatActivity {
                     {
                         if(daysOfTheWeek[i])
                         {
-                            ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
+                            ConditionDateDayOfWeek cond = new ConditionDateDayOfWeek(DayOfWeek.of(i));
                             trigger.add(cond);
                         }
                     }
                 }
                 else if(rbtnEveryMonth.isChecked())
                 {
-                    //ConditionDay cond = new ConditionDay(DayOfWeek.of(i));
-                    //trigger.add(cond);
+                    int val = Integer.parseInt(etEveryMonth.getText().toString());
+                    ConditionDateMonthly cond = new ConditionDateMonthly(val);
+                    trigger.add(cond);
                 }
             }
 

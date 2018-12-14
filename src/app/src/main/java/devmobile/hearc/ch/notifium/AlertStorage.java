@@ -25,7 +25,7 @@ public class AlertStorage extends Observable {
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Position,
                     ConditionType.Date,
-                    ConditionType.Day,
+                    ConditionType.DateDayOfWeek,
                     ConditionType.Hour,
                     ConditionType.Battery
                 )
@@ -48,7 +48,7 @@ public class AlertStorage extends Observable {
     public static final Set<ConditionType> TIME = Collections.unmodifiableSet(
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Date,
-                    ConditionType.Day,
+                    ConditionType.DateDayOfWeek,
                     ConditionType.Hour
                 )
             )
