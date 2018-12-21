@@ -1,6 +1,5 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
@@ -34,7 +33,7 @@ public class ConditionHour implements Condition_I {
     }
 
     public LocalTime getDateCondition() {
-        return dateCondition;
+        return timeCondition;
     }
 
     @Override

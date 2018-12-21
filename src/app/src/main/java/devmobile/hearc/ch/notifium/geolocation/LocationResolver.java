@@ -13,6 +13,7 @@ import android.os.Message;
 import android.widget.Toast;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.activities.AlertListActivity;
 
 /**
  * FROM :
@@ -86,8 +87,8 @@ public class LocationResolver  {
                 int duration = Toast.LENGTH_SHORT;
 
                 // Should not be done like this but ...
-                Toast toast = Toast.makeText(AlertAdapter.CONTEXT, text, duration);
-                toast.show();
+                // Toast toast = Toast.makeToast(, text, duration);
+                // toast.show();
             }
         }
     };

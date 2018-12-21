@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
@@ -41,8 +41,8 @@ public class TriggerSerializer implements JsonSerializer<Trigger> {
                 case Date:
                     jsonArray.add(conditionDateSerializer.serialize((ConditionDate) cond, ConditionDate.class, context));
                     break;
-                case Day:
-                    jsonArray.add(conditionDaySerializer.serialize((ConditionDay) cond, ConditionDay.class, context));
+                case DateDayOfWeek:
+                    jsonArray.add(conditionDaySerializer.serialize((ConditionDateDayOfWeek) cond, ConditionDateDayOfWeek.class, context));
                     break;
                 case Hour:
                     jsonArray.add(conditionHourSerializer.serialize((ConditionHour) cond, ConditionHour.class, context));

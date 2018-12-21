@@ -1,5 +1,8 @@
 package devmobile.hearc.ch.notifium.activities;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.lang.ref.SoftReference;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,6 +30,8 @@ import devmobile.hearc.ch.notifium.AlertAdapter;
  */
 public class AlertListActivity extends ObserverActivity {
 
+    private static transient SoftReference<Context> contextReference;
+
     private Button addAlertButton;
 
     private TabLayout alertsLayout;
@@ -41,6 +47,11 @@ public class AlertListActivity extends ObserverActivity {
         retrieveViews();
         setUpViews();
         updateRows();
+    }
+
+    public static Context getContext()
+    {
+        return contextReference.get();
     }
 
     /**

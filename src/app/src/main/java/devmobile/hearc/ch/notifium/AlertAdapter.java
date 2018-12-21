@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.time.DayOfWeek;
 
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
+import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
@@ -29,20 +30,8 @@ import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
  */
 public class AlertAdapter extends BaseAdapter {
 
-    /**
-     * The context (activity) in which this adapter is used.
-     */
-    public static Context CONTEXT;
-
-    /**
-     * The filtered alerts; the alerts currently shown on the list.
-     */
-    private AlertStorage alerts;
-
     public AlertAdapter(ObserverActivity context) {
         super();
-        this.CONTEXT = context;
-        this.alerts = new AlertStorage(context);
 
         // Hour alerts
         for(int i = 0; i < 10; i++) {
@@ -54,7 +43,7 @@ public class AlertAdapter extends BaseAdapter {
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Battery alerts
@@ -67,7 +56,7 @@ public class AlertAdapter extends BaseAdapter {
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Day alerts
@@ -80,7 +69,7 @@ public class AlertAdapter extends BaseAdapter {
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Location alerts
@@ -93,47 +82,47 @@ public class AlertAdapter extends BaseAdapter {
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Get filtered alerts
-        alerts.applyFilter(AlertStorage.ALL);
-        alerts.save(context);
-        alerts.load(context);
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
+        AlertStorage.getInstance().save(context);
+        AlertStorage.getInstance().load(context);
     }
 
     @Override
     public int getCount() {
-        return alerts.getFilteredAlerts().size();
+        return AlertStorage.getInstance().getFilteredAlerts().size();
     }
 
     public void displayAll()
     {
-        alerts.applyFilter(AlertStorage.ALL);
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
         notifyDataSetChanged();
     }
 
     public void displayDates()
     {
-        alerts.applyFilter(AlertStorage.TIME);
+        AlertStorage.getInstance().applyFilter(Filters.TIME);
         notifyDataSetChanged();
     }
 
     public void displayPositions()
     {
-        alerts.applyFilter(AlertStorage.POSITION);
+        AlertStorage.getInstance().applyFilter(Filters.POSITION);
         notifyDataSetChanged();
     }
 
     public void displayBattery()
     {
-        alerts.applyFilter(AlertStorage.BATTERY);
+        AlertStorage.getInstance().applyFilter(Filters.BATTERY);
         notifyDataSetChanged();
     }
 
     @Override
     public Object getItem(int position) {
-        return alerts.getFilteredAlerts().get(position);
+        return AlertStorage.getInstance().getFilteredAlerts().get(position);
     }
 
     @Override
@@ -146,7 +135,7 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(CONTEXT).inflate(R.layout.row_alert_list, parent, false);
+            convertView = LayoutInflater.from(convertView.getContext()).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();
 
@@ -161,7 +150,7 @@ public class AlertAdapter extends BaseAdapter {
         }
 
         // Get alert
-        final Alert alert = alerts.getFilteredAlert(position);
+        final Alert alert = AlertStorage.getInstance().getFilteredAlert(position);
 
         // Set data
         holder.selectCheckBox.setChecked(false);
@@ -176,7 +165,7 @@ public class AlertAdapter extends BaseAdapter {
         holder.suppressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alerts.removeAlert(alert);
+                AlertStorage.getInstance().removeAlert(alert);
             }
         });
 
