@@ -14,14 +14,12 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 import java.util.Set;
 
-import devmobile.hearc.ch.notifium.activities.ObserverActivity;
+import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 import devmobile.hearc.ch.notifium.logicals.serializer.AlertDeserializer;
@@ -32,50 +30,24 @@ public class AlertStorage extends Observable {
     private final Set<ConditionType> all = new HashSet<ConditionType>();
 
     /**
-     * Filter : all alerts
+     * Constructor of AlertStorage, by default the filter will be ALL
      */
-    public static final Set<ConditionType> ALL = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Position,
-                    ConditionType.Date,
-                    ConditionType.Day,
-                    ConditionType.Hour,
-                    ConditionType.Battery
-                )
-            )
-    );
+    private AlertStorage()
+    {
+        listAlerts = new ArrayList<Alert>();
+        filteredAlerts = new ArrayList<Alert>();
 
-    /**
-     * Filter : only positioned alerts
-     */
-    public static final Set<ConditionType> POSITION = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Position
-                )
-            )
-    );
+        this.applyFilter(Filters.ALL);
 
-    /**
-     * Filter : only timed alerts [Date, Day, Hour]
-     */
-    public static final Set<ConditionType> TIME = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Date,
-                    ConditionType.Day,
-                    ConditionType.Hour
-                )
-            )
-    );
+    }
 
-    /**
-     * Filter : only battery alerts
-     */
-    public static final Set<ConditionType> BATTERY = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Battery
-                )
-            )
-    );
+    /** Instance unique pré-initialisée */
+    private static AlertStorage INSTANCE = new AlertStorage();
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static AlertStorage getInstance()
+    {   return INSTANCE;
+    }
 
     // Vars
     private final List<Alert> listAlerts;
@@ -89,19 +61,6 @@ public class AlertStorage extends Observable {
     public synchronized List<Alert> getFilteredAlerts()
     {
         return filteredAlerts;
-    }
-
-    /**
-     * Constructor of AlertStorage, by default the filter will be ALL
-     * @param observer
-     */
-    public AlertStorage(ObserverActivity observer)
-    {
-        listAlerts = load(observer.getApplicationContext());
-        filteredAlerts = new ArrayList<Alert>();
-
-        this.addObserver(observer);
-        this.applyFilter(ALL);
     }
 
     /**

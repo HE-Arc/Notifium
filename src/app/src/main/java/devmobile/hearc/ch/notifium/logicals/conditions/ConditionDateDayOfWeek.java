@@ -5,11 +5,11 @@ import java.time.LocalDate;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
-public class ConditionDay implements Condition_I {
+public class ConditionDateDayOfWeek implements Condition_I {
 
     private DayOfWeek dayOfWeek;
 
-    public ConditionDay(DayOfWeek day)
+    public ConditionDateDayOfWeek(DayOfWeek day)
     {
         dayOfWeek = day;
     }
@@ -25,7 +25,7 @@ public class ConditionDay implements Condition_I {
 
     @Override
     public ConditionType getConditionType() {
-        return ConditionType.Day;
+        return ConditionType.DateDayOfWeek;
     }
 }
 

@@ -9,14 +9,14 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.time.DayOfWeek;
 
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDay;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 
-public class ConditionDayDeserializer implements JsonDeserializer<ConditionDay> {
+public class ConditionDayDeserializer implements JsonDeserializer<ConditionDateDayOfWeek> {
     @Override
-    public ConditionDay deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
+    public ConditionDateDayOfWeek deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject object = json.getAsJsonObject();
         DayOfWeek dayOfWeek = DayOfWeek.of(object.get("dayOfWeek").getAsInt());
 
-        return new ConditionDay(dayOfWeek);
+        return new ConditionDateDayOfWeek(dayOfWeek);
     }
 }
