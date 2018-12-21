@@ -97,7 +97,7 @@ public class AlertStorage extends Observable {
      */
     public AlertStorage(ObserverActivity observer)
     {
-        listAlerts = new ArrayList<Alert>();
+        listAlerts = load(observer.getApplicationContext());
         filteredAlerts = new ArrayList<Alert>();
 
         this.addObserver(observer);
@@ -271,7 +271,6 @@ public class AlertStorage extends Observable {
             Gson gson = gsonBuilder.create();
 
             String json = gson.toJson(listAlerts);
-            Log.i("cool", json);
             outputStream.write(json.getBytes());
             outputStream.close();
 
@@ -280,9 +279,8 @@ public class AlertStorage extends Observable {
         }
     }
 
-    public synchronized void load(Context context) {
+    public synchronized static ArrayList<Alert> load(Context context) {
         try {
-            listAlerts.clear();
             FileInputStream fis = context.openFileInput("listAlert.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
@@ -293,13 +291,13 @@ public class AlertStorage extends Observable {
             Gson gson = gsonBuilder.create();
             Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
             if ((line = bufferedReader.readLine()) != null) {
-                ArrayList<Alert> alertsLoaded =  gson.fromJson(line, listAlertType);
-                listAlerts.addAll(alertsLoaded);
+                return  gson.fromJson(line, listAlertType);
             }
-            Log.i("cool","load");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i("cool",e.getMessage());
+            Log.i("fabien",e.getMessage());
         }
+
+        return new ArrayList<Alert>();
     }
 }

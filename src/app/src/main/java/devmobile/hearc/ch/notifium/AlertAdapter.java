@@ -84,8 +84,6 @@ public class AlertAdapter extends BaseAdapter {
 
         // Get filtered alerts
         alerts.applyFilter(AlertStorage.ALL);
-        alerts.save(context);
-        alerts.load(context);
     }
 
     @Override
