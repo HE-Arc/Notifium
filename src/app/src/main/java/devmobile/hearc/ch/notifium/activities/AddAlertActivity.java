@@ -1,5 +1,6 @@
 package devmobile.hearc.ch.notifium.activities;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
@@ -8,6 +9,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -20,6 +23,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
@@ -101,6 +105,13 @@ public class AddAlertActivity extends AppCompatActivity {
         setDefaultValues();
         updateSave();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_alert_menu, menu);
+        return true;
     }
 
     private void loadUI()
@@ -311,6 +322,9 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Alert alert = createAlert();
+
+
+                AddAlertActivity.this.finish();
             }
         });
 
