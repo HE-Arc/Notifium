@@ -1,12 +1,5 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import android.location.Location;
-
-import java.util.concurrent.locks.Condition;
-
-import devmobile.hearc.ch.notifium.geolocation.Coordinates;
-import devmobile.hearc.ch.notifium.geolocation.LocationGetter;
-import devmobile.hearc.ch.notifium.geolocation.LocationResolver;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 import static devmobile.hearc.ch.notifium.geolocation.LocationGetter.getInstance;
@@ -37,6 +30,18 @@ public class ConditionLocalisation implements Condition_I {
             );
         }
         return false;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public float getRadius() {
+        return radius;
     }
 
     @Override
