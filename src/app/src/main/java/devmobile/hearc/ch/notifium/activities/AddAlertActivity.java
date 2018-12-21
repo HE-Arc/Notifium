@@ -57,6 +57,7 @@ public class AddAlertActivity extends AppCompatActivity {
     private RadioButton rbtnEveryNDays;
     private LinearLayout layoutEveryNDays;
     private EditText etEveryNDays;
+    private Button btnDate2;
 
     private RadioButton rbtnEveryWeek;
     private LinearLayout layoutEveryWeek;
@@ -121,6 +122,7 @@ public class AddAlertActivity extends AppCompatActivity {
         layoutEveryNDays = (LinearLayout) findViewById(R.id.layoutEveryNDays);
         rbtnEveryNDays = (RadioButton) findViewById(R.id.rbtnEveryNDays);
         etEveryNDays = (EditText)findViewById(R.id.etEveryNDays);
+        btnDate2 = (Button) findViewById(R.id.btnDate2);
 
         layoutEveryWeek = (LinearLayout) findViewById(R.id.layoutEveryWeek);
         rbtnEveryWeek = (RadioButton) findViewById(R.id.rbtnEveryWeek);
@@ -219,7 +221,7 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
-        btnDate.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener vcl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -236,7 +238,10 @@ public class AddAlertActivity extends AppCompatActivity {
                 dpd.show();
                 updateSave();
             }
-        });
+        };
+
+        btnDate.setOnClickListener(vcl);
+        btnDate2.setOnClickListener(vcl);
 
 
         btnTime.setOnClickListener(new View.OnClickListener() {
@@ -337,7 +342,9 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private void updateDate()
     {
+
         btnDate.setText(date.format(formatDate));
+        btnDate2.setText(date.format(formatDate));
     }
 
     private void updateTime()
@@ -363,7 +370,7 @@ public class AddAlertActivity extends AppCompatActivity {
                 if(rbtnEveryNDays.isChecked())
                 {
                     int dt = Integer.parseInt(etEveryNDays.getText().toString());
-                    ConditionDateEveryNDay cond = new ConditionDateEveryNDay(dt);
+                    ConditionDateEveryNDay cond = new ConditionDateEveryNDay(date, dt);
                     trigger.add(cond);
                 }
                 else if(rbtnEveryWeek.isChecked())

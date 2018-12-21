@@ -18,7 +18,8 @@
     <string name="addAlertPeriodic">Répétition</string>
     <string name="addAlertEveryDay">Tous les N jours</string>
     <string name="addAlertFromWeekDay">À partir de</string>
-    <string name="addAlertDefaultHour">00:00:00</string>
+    <string name="addAlertDefaultTime">00:00:00</string>
+    <string name="addAlertDefaultDate">01.01.1900</string>
     <string-array name="addAlertWeekDays">
         <item>Lundi</item>
         <item>Mardi</item>
