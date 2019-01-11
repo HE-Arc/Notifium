@@ -1,28 +1,38 @@
 package devmobile.hearc.ch.notifium.logicals;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class Alert extends ArrayList<Trigger> {
+    @SerializedName("alert_name")
     private String name;
+
+    @SerializedName("alert_notif")
+    private String notification;
+
+    @SerializedName("alert_bEnabled")
     private boolean bEnabled;
 
-    public Alert(String name)
+    public Alert(String name, String notification)
     {
-        this(name, true);
+        this(name, notification, true);
     }
 
-    public Alert(String name, boolean enabled)
+    public Alert(String name, String notification, boolean enabled)
     {
         this.name = name;
+        this.notification = notification;
         bEnabled = enabled;
     }
 
     public String getName() { return name; }
+
+    public String getNotification() { return notification; }
 
     public boolean isEnabled() { return bEnabled; }
 
@@ -68,3 +78,4 @@ public class Alert extends ArrayList<Trigger> {
     }
 
 }
+

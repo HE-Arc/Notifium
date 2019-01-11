@@ -1,24 +1,21 @@
 package devmobile.hearc.ch.notifium.logicals.conditions;
 
-import android.location.Location;
-
-import java.util.concurrent.locks.Condition;
-
 import devmobile.hearc.ch.notifium.geolocation.Coordinates;
 import devmobile.hearc.ch.notifium.geolocation.LocationGetter;
-import devmobile.hearc.ch.notifium.geolocation.LocationResolver;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 import static devmobile.hearc.ch.notifium.geolocation.LocationGetter.getInstance;
 
 public class ConditionLocalisation implements Condition_I {
 
-    private Coordinates coords;
+    private float lat;
+    private float lng;
     private float radius;
 
     public ConditionLocalisation(float _lat, float _lng, float _radius)
     {
-        coords = new Coordinates(_lat, _lng);
+        lat = _lat;
+        lng = _lng;
         radius = _radius;
     }
 
@@ -28,15 +25,28 @@ public class ConditionLocalisation implements Condition_I {
      */
     public boolean evaluatePredicate() {
         Coordinates currentCoords = LocationGetter.getInstance().getLocation(100, 10);
-        if (currentCoords != null && currentCoords != coords.UNDEFINED) {
+        if (currentCoords != null && currentCoords != Coordinates.UNDEFINED) {
             return (
-                (currentCoords.getX() > (coords.getX() - radius)) &&
-                (currentCoords.getX() < (coords.getX() + radius)) &&
-                (currentCoords.getY() > (coords.getY() - radius)) &&
-                (currentCoords.getY() < (coords.getY() + radius))
+                (currentCoords.getX() > (lng - radius)) &&
+                (currentCoords.getX() < (lng + radius)) &&
+                (currentCoords.getY() > (lat - radius)) &&
+                (currentCoords.getY() < (lat + radius))
             );
         }
         return false;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+
+    public float getRadius() {
+        return radius;
     }
 
     @Override

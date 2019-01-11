@@ -1,68 +1,53 @@
 package devmobile.hearc.ch.notifium;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 import java.util.Set;
 
-import devmobile.hearc.ch.notifium.activities.ObserverActivity;
+import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
+import devmobile.hearc.ch.notifium.logicals.serializer.AlertDeserializer;
+import devmobile.hearc.ch.notifium.logicals.serializer.AlertSerializer;
 
 public class AlertStorage extends Observable {
 
     private final Set<ConditionType> all = new HashSet<ConditionType>();
 
     /**
-     * Filter : all alerts
+     * Constructor of AlertStorage, by default the filter will be ALL
      */
-    public static final Set<ConditionType> ALL = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Position,
-                    ConditionType.Date,
-                    ConditionType.DateDayOfWeek,
-                    ConditionType.Hour,
-                    ConditionType.Battery
-                )
-            )
-    );
+    private AlertStorage()
+    {
+        listAlerts = new ArrayList<Alert>();
+        filteredAlerts = new ArrayList<Alert>();
 
-    /**
-     * Filter : only positioned alerts
-     */
-    public static final Set<ConditionType> POSITION = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Position
-                )
-            )
-    );
+        this.applyFilter(Filters.ALL);
 
-    /**
-     * Filter : only timed alerts [Date, Day, Hour]
-     */
-    public static final Set<ConditionType> TIME = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Date,
-                    ConditionType.DateDayOfWeek,
-                    ConditionType.Hour
-                )
-            )
-    );
+    }
 
-    /**
-     * Filter : only battery alerts
-     */
-    public static final Set<ConditionType> BATTERY = Collections.unmodifiableSet(
-            new HashSet<ConditionType>(Arrays.asList(
-                    ConditionType.Battery
-                )
-            )
-    );
+    /** Instance unique pré-initialisée */
+    private static AlertStorage INSTANCE = new AlertStorage();
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static AlertStorage getInstance()
+    {   return INSTANCE;
+    }
 
     // Vars
     private final List<Alert> listAlerts;
@@ -76,19 +61,6 @@ public class AlertStorage extends Observable {
     public synchronized List<Alert> getFilteredAlerts()
     {
         return filteredAlerts;
-    }
-
-    /**
-     * Constructor of AlertStorage, by default the filter will be ALL
-     * @param observer
-     */
-    public AlertStorage(ObserverActivity observer)
-    {
-        listAlerts = new ArrayList<Alert>();
-        filteredAlerts = new ArrayList<Alert>();
-
-        this.addObserver(observer);
-        this.applyFilter(ALL);
     }
 
     /**
@@ -118,7 +90,6 @@ public class AlertStorage extends Observable {
             if(respectFilter)
                 filteredAlerts.add(a);
         }
-
     }
 
     /**
@@ -239,5 +210,53 @@ public class AlertStorage extends Observable {
         for(Alert a : listAlerts)
             if (!a.isEnabled()) x.add(a);
         return x;
+    }
+
+    public synchronized void save(Context context)
+    {
+        try {
+            File file = new File(context.getFilesDir(), "listAlert.json");
+            if (file.exists())
+            {
+                file.delete();
+                file.createNewFile();
+            }
+
+            FileOutputStream outputStream;
+            outputStream = context.openFileOutput("listAlert.json", Context.MODE_PRIVATE);
+            AlertSerializer alertSerializer = new AlertSerializer();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
+            Gson gson = gsonBuilder.create();
+
+            String json = gson.toJson(listAlerts);
+            outputStream.write(json.getBytes());
+            outputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized static ArrayList<Alert> load(Context context) {
+        try {
+            FileInputStream fis = context.openFileInput("listAlert.json");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            String line;
+            AlertDeserializer alertDeserializer = new AlertDeserializer();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
+            Gson gson = gsonBuilder.create();
+            Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
+            if ((line = bufferedReader.readLine()) != null) {
+                return  gson.fromJson(line, listAlertType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("fabien",e.getMessage());
+        }
+
+        return new ArrayList<Alert>();
     }
 }

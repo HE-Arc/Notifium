@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.time.DayOfWeek;
 
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
+import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
@@ -29,109 +30,98 @@ import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
  */
 public class AlertAdapter extends BaseAdapter {
 
-    /**
-     * The context (activity) in which this adapter is used.
-     */
-    public static Context CONTEXT;
-
-    /**
-     * The filtered alerts; the alerts currently shown on the list.
-     */
-    private AlertStorage alerts;
-
-    public AlertAdapter(ObserverActivity context) {
+    public AlertAdapter() {
         super();
-        this.CONTEXT = context;
-        this.alerts = new AlertStorage(context);
 
         // Hour alerts
         for(int i = 0; i < 10; i++) {
             // Create an alert
-            Alert a = new Alert("MyAlert" + i);
+            Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
             Condition_I ch = new ConditionHour(i + 10, 30);
             t.add(ch);
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Battery alerts
         for(int i = 0; i < 10; i++) {
             // Create an alert
-            Alert a = new Alert("MyAlert" + i);
+            Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
             Condition_I c = new ConditionBatteryLevel(i * 10);
             t.add(c);
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Day alerts
         for(int i = 0; i < 10; i++) {
             // Create an alert
-            Alert a = new Alert("MyAlert" + i);
+            Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
             Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
             t.add(c);
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Location alerts
         for(int i = 0; i < 10; i++) {
             // Create an alert
-            Alert a = new Alert("MyAlert" + i);
+            Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
             Condition_I c = new ConditionLocalisation(1, 1, 10);
             t.add(c);
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
 
         // Get filtered alerts
-        alerts.applyFilter(AlertStorage.ALL);
+
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
     }
 
     @Override
     public int getCount() {
-        return alerts.getFilteredAlerts().size();
+        return AlertStorage.getInstance().getFilteredAlerts().size();
     }
 
     public void displayAll()
     {
-        alerts.applyFilter(AlertStorage.ALL);
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
         notifyDataSetChanged();
     }
 
     public void displayDates()
     {
-        alerts.applyFilter(AlertStorage.TIME);
+        AlertStorage.getInstance().applyFilter(Filters.TIME);
         notifyDataSetChanged();
     }
 
     public void displayPositions()
     {
-        alerts.applyFilter(AlertStorage.POSITION);
+        AlertStorage.getInstance().applyFilter(Filters.POSITION);
         notifyDataSetChanged();
     }
 
     public void displayBattery()
     {
-        alerts.applyFilter(AlertStorage.BATTERY);
+        AlertStorage.getInstance().applyFilter(Filters.BATTERY);
         notifyDataSetChanged();
     }
 
     @Override
     public Object getItem(int position) {
-        return alerts.getFilteredAlerts().get(position);
+        return AlertStorage.getInstance().getFilteredAlerts().get(position);
     }
 
     @Override
@@ -144,7 +134,7 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(CONTEXT).inflate(R.layout.row_alert_list, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();
 
@@ -159,7 +149,7 @@ public class AlertAdapter extends BaseAdapter {
         }
 
         // Get alert
-        final Alert alert = alerts.getFilteredAlert(position);
+        final Alert alert = AlertStorage.getInstance().getFilteredAlert(position);
 
         // Set data
         holder.selectCheckBox.setChecked(false);
@@ -167,14 +157,14 @@ public class AlertAdapter extends BaseAdapter {
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO
+                //Nice to have, for now users will have to suppress and add a new alert
+                
             }
         });
         holder.suppressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alerts.removeAlert(alert);
+                AlertStorage.getInstance().removeAlert(alert);
             }
         });
 

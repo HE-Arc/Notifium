@@ -2,7 +2,6 @@ package devmobile.hearc.ch.notifium.logicals.conditions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Calendar;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
@@ -15,6 +14,10 @@ public class ConditionDateDayOfWeek implements Condition_I {
         dayOfWeek = day;
     }
 
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
     @Override
     public boolean evaluatePredicate() {
         return LocalDate.now().getDayOfWeek() == dayOfWeek;
@@ -25,3 +28,4 @@ public class ConditionDateDayOfWeek implements Condition_I {
         return ConditionType.DateDayOfWeek;
     }
 }
+

@@ -45,6 +45,7 @@ import java.util.Calendar;
 public class AddAlertActivity extends AppCompatActivity {
 
     private EditText etAlertName;
+    private EditText etAlertDescription;
 
     private Switch switchDateTime;
     private LinearLayout layoutDateTime;
@@ -117,6 +118,7 @@ public class AddAlertActivity extends AppCompatActivity {
     private void loadUI()
     {
         etAlertName = (EditText) findViewById(R.id.etAlertName);
+        etAlertDescription = (EditText) findViewById(R.id.etAlertDescription);
 
         switchDateTime = (Switch) findViewById(R.id.switchDateTime);
         layoutDateTime = (LinearLayout) findViewById(R.id.layoutDateTime);
@@ -173,9 +175,10 @@ public class AddAlertActivity extends AppCompatActivity {
         boolean valid;
 
         boolean hasName = !etAlertName.getText().toString().equals("");
+        boolean hasDesc = !etAlertDescription.getText().toString().equals("");
         boolean atLeastOnChecked = switchDateTime.isChecked() || switchLocation.isChecked() || switchBattery.isChecked();
 
-        valid = hasName && atLeastOnChecked;
+        valid = hasName && hasDesc && atLeastOnChecked;
 
         //Periodic
         if(switchDateTime.isChecked() && switchPeriodic.isChecked())
@@ -192,6 +195,14 @@ public class AddAlertActivity extends AppCompatActivity {
     private void addEventsListener() {
 
         etAlertName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                updateSave();
+                return false;
+            }
+        });
+
+        etAlertDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 updateSave();
@@ -322,8 +333,7 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Alert alert = createAlert();
-
-
+                AlertStorage.getInstance().addAlert(alert);
                 AddAlertActivity.this.finish();
             }
         });
@@ -368,7 +378,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private Alert createAlert()
     {
-        Alert alert = new Alert(etAlertName.getText().toString());
+        Alert alert = new Alert(etAlertName.getText().toString(), etAlertDescription.getText().toString());
 
         if(switchDateTime.isEnabled())
         {

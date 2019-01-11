@@ -33,6 +33,15 @@
                 android:hint="@string/addAlertDefaultName"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/etAlertDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/addAlertDefaultDescription"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
             <!--
                 Time
             -->

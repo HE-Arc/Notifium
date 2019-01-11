@@ -2,9 +2,7 @@ package devmobile.hearc.ch.notifium.logicals;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
@@ -27,3 +25,4 @@ public class Trigger extends ArrayList<Condition_I> {
         return types;
     }
 }
+
