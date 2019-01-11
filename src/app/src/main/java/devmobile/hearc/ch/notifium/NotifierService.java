@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -18,17 +20,25 @@ import java.util.TimerTask;
 
 import devmobile.hearc.ch.notifium.logicals.Alert;
 
+
+
+
 public class NotifierService extends Service {
     private Timer timer;
     private TimerTask timerTask;
     private ArrayList<Alert> alerts;
-    public NotifierService() {
+    private final IBinder mBinder = new NotifierBinder();
 
+    public class NotifierBinder extends Binder {
+        NotifierService getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return NotifierService.this;
+        }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mBinder;
     }
 
     @Override
@@ -38,7 +48,7 @@ public class NotifierService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        this.alerts = AlertStorage.load(this.getApplicationContext());
+        loadAlerts();
         createNotificationChannel();
         startTimer();
 
@@ -55,7 +65,7 @@ public class NotifierService extends Service {
             timer = null;
         }
 
-        Intent restartIntent = new Intent(this, RestartReceiver.class);
+        Intent restartIntent = new Intent(this, RestartServiceReceiver.class);
         restartIntent.setAction("devmobile.hearc.ch.notifium");
 
         sendBroadcast(restartIntent);
@@ -71,7 +81,7 @@ public class NotifierService extends Service {
             timer = null;
         }
 
-        Intent restartIntent = new Intent(this, RestartReceiver.class);
+        Intent restartIntent = new Intent(this, RestartServiceReceiver.class);
         restartIntent.setAction("devmobile.hearc.ch.notifium");
 
         sendBroadcast(restartIntent);
@@ -98,8 +108,13 @@ public class NotifierService extends Service {
 
     private void lauchNotification()
     {
-        //startAlert(getApplicationContext());
-        showNotification(getApplicationContext());
+        for (Alert alert: alerts) {
+            if (alert.evaluate())
+            {
+                startRingtone(getApplicationContext());
+                showNotification(getApplicationContext(),alert.getName(),"toto");
+            }
+        }
     }
 
     private void createNotificationChannel() {
@@ -118,21 +133,21 @@ public class NotifierService extends Service {
         }
     }
 
-    private void showNotification(Context context) {
+    private void showNotification(Context context, String title, String text) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Notification notification =
                 new Notification.Builder(context)
                         .setSmallIcon(R.drawable.ic_launcher_background)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!")
+                        .setContentTitle(title)
+                        .setContentText(text)
                         .setChannelId("Notifier Channel").build();
 
         notificationManager.notify(1, notification);
     }
 
-    private void startAlert(Context context) {
+    private void startRingtone(Context context) {
         try {
             Uri alarmUri = RingtoneManager
                     .getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -145,5 +160,11 @@ public class NotifierService extends Service {
 
         } catch (Exception ex) {
         }
+    }
+
+    public void loadAlerts()
+    {
+        Log.i("fabien","load service alert");
+        this.alerts = AlertStorage.load(this.getApplicationContext());
     }
 }
