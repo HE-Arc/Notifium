@@ -6,8 +6,13 @@ import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 public class ConditionDateEveryNYear implements Condition_I {
 
+    private int dayOfYear;
     private int year;
     private int dt;
+
+    public int getDayOfYear() {return dayOfYear;}
+    public int getYear() {return year;}
+    public int getDt() {return dt;}
 
     /**
      * Set a condition from the given date, every n year it will return true
@@ -16,6 +21,7 @@ public class ConditionDateEveryNYear implements Condition_I {
      */
     public ConditionDateEveryNYear(LocalDate date, int dt)
     {
+        this.dayOfYear = date.getDayOfYear();
         this.year = date.getYear();
         this.dt = dt;
     }
@@ -37,16 +43,17 @@ public class ConditionDateEveryNYear implements Condition_I {
     {
         LocalDate now =  LocalDate.now();
         int currentYear = now.getMonthValue();
+        int currentDayOfYear = now.getDayOfYear();
 
-        if(currentYear == year)
-            return true;
-        else if(currentYear > year)
-        {
-            int diff = currentYear - year;
-            return diff % dt == 0;
+        if(currentDayOfYear == dayOfYear) {
+            if (currentYear == year)
+                return true;
+            else if (currentYear > year) {
+                int diff = currentYear - year;
+                return diff % dt == 0;
+            }
         }
-        else
-            return false;
+        return false;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class TriggerSerializer implements JsonSerializer<Trigger> {
         ConditionLocalisationSerializer conditionLocalisationSerializer = new ConditionLocalisationSerializer();
         ConditionBatteryLevelSerializer conditionBatteryLevelSerializer = new ConditionBatteryLevelSerializer();
         ConditionDateSerializer conditionDateSerializer = new ConditionDateSerializer();
-        ConditionDaySerializer conditionDaySerializer = new ConditionDaySerializer();
+        ConditionDateDayOfWeekSerializer conditionDateDayOfWeekSerializer = new ConditionDateDayOfWeekSerializer();
         ConditionHourSerializer conditionHourSerializer = new ConditionHourSerializer();
 
         JsonObject object = new JsonObject();
@@ -42,7 +42,7 @@ public class TriggerSerializer implements JsonSerializer<Trigger> {
                     jsonArray.add(conditionDateSerializer.serialize((ConditionDate) cond, ConditionDate.class, context));
                     break;
                 case DateDayOfWeek:
-                    jsonArray.add(conditionDaySerializer.serialize((ConditionDateDayOfWeek) cond, ConditionDateDayOfWeek.class, context));
+                    jsonArray.add(conditionDateDayOfWeekSerializer.serialize((ConditionDateDayOfWeek) cond, ConditionDateDayOfWeek.class, context));
                     break;
                 case Hour:
                     jsonArray.add(conditionHourSerializer.serialize((ConditionHour) cond, ConditionHour.class, context));

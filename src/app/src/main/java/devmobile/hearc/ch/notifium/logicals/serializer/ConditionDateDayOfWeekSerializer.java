@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
-public class ConditionDaySerializer implements JsonSerializer<ConditionDateDayOfWeek> {
+public class ConditionDateDayOfWeekSerializer implements JsonSerializer<ConditionDateDayOfWeek> {
     @Override
     public JsonElement serialize(ConditionDateDayOfWeek cond, Type ConditionDay, JsonSerializationContext context) {
         JsonObject object = new JsonObject();

@@ -27,7 +27,7 @@ public class TriggerDeserializer implements JsonDeserializer<Trigger> {
         ConditionLocalisationDeserializer conditionLocalisationDeserializer = new ConditionLocalisationDeserializer();
         ConditionBatteryLevelDeserializer conditionBatteryLevelDeserializer = new ConditionBatteryLevelDeserializer();
         ConditionDateDeserializer conditionDateDeserializer = new ConditionDateDeserializer();
-        ConditionDayDeserializer conditionDayDeserializer = new ConditionDayDeserializer();
+        ConditionDateDayOfWeekDeserializer conditionDateDayOfWeekDeserializer = new ConditionDateDayOfWeekDeserializer();
         ConditionHourDeserializer conditionHourDeserializer = new ConditionHourDeserializer();
 
         JsonArray conditions = object.get("conditions").getAsJsonArray();
@@ -43,7 +43,7 @@ public class TriggerDeserializer implements JsonDeserializer<Trigger> {
                     trigger.add(conditionDateDeserializer.deserialize(condition, ConditionDate.class, context));
                     break;
                 case DateDayOfWeek:
-                    trigger.add(conditionDayDeserializer.deserialize(condition, ConditionDateDayOfWeek.class, context));
+                    trigger.add(conditionDateDayOfWeekDeserializer.deserialize(condition, ConditionDateDayOfWeek.class, context));
                     break;
                 case Hour:
                     trigger.add(conditionHourDeserializer.deserialize(condition, ConditionHour.class, context));

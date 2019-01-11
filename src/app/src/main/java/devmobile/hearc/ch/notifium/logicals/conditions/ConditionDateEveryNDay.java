@@ -9,6 +9,9 @@ public class ConditionDateEveryNDay implements Condition_I {
     private int dayOfYear;
     private int dt;
 
+    public int getDayOfYear() {return dayOfYear;}
+    public int getDt() {return dt;}
+
     /**
      * Set a condition from the given date, every n day it will return true
      * @param date
