@@ -7,10 +7,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -115,6 +118,17 @@ public class AddAlertActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cancelNewAlert:
+                AddAlertActivity.this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void loadUI()
     {
         etAlertName = (EditText) findViewById(R.id.etAlertName);
@@ -163,6 +177,9 @@ public class AddAlertActivity extends AppCompatActivity {
         textViewBattery = (TextView) findViewById(R.id.textViewBattery);
 
         btnSave = (Button) findViewById(R.id.btnSave);
+
+
+        btnSave = (Button) findViewById(R.id.btnSave);
     }
 
     private void updateSave()
@@ -194,19 +211,38 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private void addEventsListener() {
 
-        etAlertName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+        etAlertName.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateSave();
-                return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
-        etAlertDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        etAlertDescription.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateSave();
-                return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
