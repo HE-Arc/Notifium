@@ -45,10 +45,6 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name=".UpdateServiceReceiver"
-            android:enabled="true"
-            android:exported="true"></receiver>
     </application>
 
 </manifest>

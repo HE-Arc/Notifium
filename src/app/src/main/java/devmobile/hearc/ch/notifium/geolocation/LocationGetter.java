@@ -1,10 +1,8 @@
 package devmobile.hearc.ch.notifium.geolocation;
 
-import android.content.Context;
 import android.location.Location;
 import android.os.Looper;
 
-import devmobile.hearc.ch.notifium.AlertAdapter;
 import devmobile.hearc.ch.notifium.activities.AlertListActivity;
 
 
@@ -53,7 +51,7 @@ public class LocationGetter {
                     public void run() {
                         Looper.prepare();
                         // Context should not be retrieved like this but ...
-                        LocationResolver.getInstance().getLocation(AlertListActivity.getContext(), locationResult, updateTimeoutPar);
+                        LocationResolver.getInstance().getLocation(AlertListActivity.context, locationResult, updateTimeoutPar);
                         Looper.loop();
                     }
                 }.start();

@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.lang.ref.SoftReference;
 import java.util.Observable;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
-import devmobile.hearc.ch.notifium.AlertStorage;
-import devmobile.hearc.ch.notifium.NotifierService;
 import devmobile.hearc.ch.notifium.R;
 
 /**
@@ -28,8 +25,7 @@ import devmobile.hearc.ch.notifium.R;
  */
 public class AlertListActivity extends ObserverActivity {
 
-    private static transient SoftReference<Context> contextReference;
-
+    public static Context context;
     private Button addAlertButton;
 
     private TabLayout alertsLayout;
@@ -39,19 +35,12 @@ public class AlertListActivity extends ObserverActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        context = this.getApplicationContext();
         setContentView(R.layout.activity_alert_list);
 
         retrieveViews();
         setUpViews();
         updateRows();
-        AlertStorage.load(this.getApplicationContext());
-        this.startForegroundService(new Intent(this, NotifierService.class));
-    }
-
-    public static Context getContext()
-    {
-        return contextReference.get();
     }
 
     /**

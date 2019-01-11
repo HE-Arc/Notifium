@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 
-import devmobile.hearc.ch.notifium.AlertAdapter;
 import devmobile.hearc.ch.notifium.activities.AlertListActivity;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
@@ -20,7 +19,7 @@ public class ConditionBatteryLevel implements Condition_I {
     @Override
     public boolean evaluatePredicate() {
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus =  AlertListActivity.getContext().registerReceiver(null, ifilter);
+        Intent batteryStatus =  AlertListActivity.context.registerReceiver(null, ifilter);
 
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);

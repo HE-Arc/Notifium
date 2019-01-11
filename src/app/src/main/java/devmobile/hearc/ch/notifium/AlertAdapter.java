@@ -1,6 +1,5 @@
 package devmobile.hearc.ch.notifium;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import java.time.DayOfWeek;
 
-import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
@@ -134,6 +132,7 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
+
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();

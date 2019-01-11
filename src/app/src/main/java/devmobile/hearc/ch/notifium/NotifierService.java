@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -27,18 +26,12 @@ public class NotifierService extends Service {
     private Timer timer;
     private TimerTask timerTask;
     private ArrayList<Alert> alerts;
-    private final IBinder mBinder = new NotifierBinder();
 
-    public class NotifierBinder extends Binder {
-        NotifierService getService() {
-            // Return this instance of LocalService so clients can call public methods
-            return NotifierService.this;
-        }
-    }
+    public NotifierService() {}
 
     @Override
     public IBinder onBind(Intent intent) {
-        return mBinder;
+        return null;
     }
 
     @Override
@@ -48,7 +41,6 @@ public class NotifierService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        loadAlerts();
         createNotificationChannel();
         startTimer();
 
@@ -101,13 +93,15 @@ public class NotifierService extends Service {
     public void initializeTimerTask() {
         timerTask = new TimerTask() {
             public void run() {
-                lauchNotification();
+                launchNotification();
             }
         };
     }
 
-    private void lauchNotification()
+    private void launchNotification()
     {
+        loadAlerts();
+
         for (Alert alert: alerts) {
             if (alert.evaluate())
             {
