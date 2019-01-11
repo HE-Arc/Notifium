@@ -134,7 +134,7 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(convertView.getContext()).inflate(R.layout.row_alert_list, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();
 
@@ -157,8 +157,8 @@ public class AlertAdapter extends BaseAdapter {
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO
+                //Nice to have, for now users will have to suppress and add a new alert
+                
             }
         });
         holder.suppressButton.setOnClickListener(new View.OnClickListener() {
