@@ -15,6 +15,7 @@
     <string name="addAlertLocation">Emplacement</string>
     <string name="addAlertBattery">Batterie</string>
     <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
+    <string name="addAlertDefaultDescription">Ce que vous voulez vous rappelez</string>
     <string name="addAlertPeriodic">Répétition</string>
     <string name="addAlertEveryDay">Tous les N jours</string>
     <string name="addAlertFromWeekDay">À partir de</string>
