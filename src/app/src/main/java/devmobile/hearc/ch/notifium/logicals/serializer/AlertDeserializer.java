@@ -18,9 +18,10 @@ public class AlertDeserializer implements JsonDeserializer<Alert> {
     public Alert deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject object = json.getAsJsonObject();
         String name = object.get("name").getAsString();
+        String notification = object.get("notification").getAsString();
         boolean isEnabled = object.get("isEnabled").getAsBoolean();
 
-        Alert alert = new Alert(name, isEnabled);
+        Alert alert = new Alert(name, notification, isEnabled);
         TriggerDeserializer triggerDeserializer = new TriggerDeserializer();
         JsonArray triggers = object.get("triggers").getAsJsonArray();
         for (JsonElement trigger:triggers) {

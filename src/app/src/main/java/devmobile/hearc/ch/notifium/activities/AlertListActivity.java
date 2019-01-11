@@ -1,22 +1,18 @@
 package devmobile.hearc.ch.notifium.activities;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.lang.ref.SoftReference;
 import java.util.Observable;
-import java.util.Observer;
 
-import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.R;
 
 /**
  * Show the garbage list.
@@ -87,7 +83,7 @@ public class AlertListActivity extends ObserverActivity {
      *   - being able to start the creation of a new garbage by clicking the "Add" button.
      */
     private void setUpViews() {
-        alertAdapter = new AlertAdapter(this);
+        alertAdapter = new AlertAdapter();
 
         // Tell by which adapter we will handle our list
         alertListView.setAdapter(alertAdapter);

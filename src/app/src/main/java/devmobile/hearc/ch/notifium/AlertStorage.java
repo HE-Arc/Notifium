@@ -14,14 +14,11 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 import java.util.Set;
 
-import devmobile.hearc.ch.notifium.activities.ObserverActivity;
 import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
@@ -65,7 +62,6 @@ public class AlertStorage extends Observable {
     {
         return filteredAlerts;
     }
-
 
     /**
      * Apply a filter on alerts
@@ -234,7 +230,6 @@ public class AlertStorage extends Observable {
             Gson gson = gsonBuilder.create();
 
             String json = gson.toJson(listAlerts);
-            Log.i("cool", json);
             outputStream.write(json.getBytes());
             outputStream.close();
 
@@ -243,9 +238,8 @@ public class AlertStorage extends Observable {
         }
     }
 
-    public synchronized void load(Context context) {
+    public synchronized static ArrayList<Alert> load(Context context) {
         try {
-            listAlerts.clear();
             FileInputStream fis = context.openFileInput("listAlert.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
@@ -256,13 +250,13 @@ public class AlertStorage extends Observable {
             Gson gson = gsonBuilder.create();
             Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
             if ((line = bufferedReader.readLine()) != null) {
-                ArrayList<Alert> alertsLoaded =  gson.fromJson(line, listAlertType);
-                listAlerts.addAll(alertsLoaded);
+                return  gson.fromJson(line, listAlertType);
             }
-            Log.i("cool","load");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i("cool",e.getMessage());
+            Log.i("fabien",e.getMessage());
         }
+
+        return new ArrayList<Alert>();
     }
 }

@@ -12,13 +12,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import devmobile.hearc.ch.notifium.logicals.Alert;
 
 public class NotifierService extends Service {
     private Timer timer;
     private TimerTask timerTask;
-
+    private ArrayList<Alert> alerts;
     public NotifierService() {
 
     }
@@ -35,6 +38,7 @@ public class NotifierService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        this.alerts = AlertStorage.load(this.getApplicationContext());
         createNotificationChannel();
         startTimer();
 
