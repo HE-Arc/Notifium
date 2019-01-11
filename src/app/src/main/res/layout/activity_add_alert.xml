@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,6 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -29,6 +31,15 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="@string/addAlertDefaultName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/etAlertDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/addAlertDefaultDescription"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="16dp" />
             <!--
@@ -73,7 +84,7 @@
                             android:id="@+id/btnTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/addAlertDefaultHour" />
+                            android:text="@string/addAlertDefaultTime" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -92,7 +103,7 @@
                             android:id="@+id/btnDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/addAlertDefaultHour" />
+                            android:text="@string/addAlertDefaultDate" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -145,11 +156,11 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/addAlertFromWeekDay" />
 
-                                <Spinner
-                                    android:id="@+id/spinnerEveryNDaysWeekDays"
-                                    android:layout_width="200dp"
-                                    android:layout_height="wrap_content">
-                                </Spinner>
+                                <Button
+                                    android:id="@+id/btnDate2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/addAlertDefaultDate" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -263,7 +274,7 @@
                     android:id="@+id/foo"
                     android:layout_width="150dp"
                     android:layout_height="38dp"
-                    android:text="@string/addAlertDefaultHour"/>
+                    android:text="@string/addAlertDefaultTime"/>
             </LinearLayout>
             <!--
                 Battery
@@ -313,5 +324,13 @@
                     android:text="@string/addAlertSave" />
             </LinearLayout>
         </LinearLayout>
+
+     <!--   <android.support.design.widget.FloatingActionButton
+            android:id="@+id/a12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp" />-->
+
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -1,25 +1,27 @@
 package devmobile.hearc.ch.notifium.activities;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputFilter;
-import android.util.Log;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -32,7 +34,6 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateEveryNDay;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateEveryNMonth;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateMonthly;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
@@ -47,6 +48,7 @@ import java.util.Calendar;
 public class AddAlertActivity extends AppCompatActivity {
 
     private EditText etAlertName;
+    private EditText etAlertDescription;
 
     private Switch switchDateTime;
     private LinearLayout layoutDateTime;
@@ -63,6 +65,7 @@ public class AddAlertActivity extends AppCompatActivity {
     private RadioButton rbtnEveryNDays;
     private LinearLayout layoutEveryNDays;
     private EditText etEveryNDays;
+    private Button btnDate2;
 
     private RadioButton rbtnEveryWeek;
     private LinearLayout layoutEveryWeek;
@@ -108,9 +111,28 @@ public class AddAlertActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_alert_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cancelNewAlert:
+                AddAlertActivity.this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void loadUI()
     {
         etAlertName = (EditText) findViewById(R.id.etAlertName);
+        etAlertDescription = (EditText) findViewById(R.id.etAlertDescription);
 
         switchDateTime = (Switch) findViewById(R.id.switchDateTime);
         layoutDateTime = (LinearLayout) findViewById(R.id.layoutDateTime);
@@ -127,6 +149,7 @@ public class AddAlertActivity extends AppCompatActivity {
         layoutEveryNDays = (LinearLayout) findViewById(R.id.layoutEveryNDays);
         rbtnEveryNDays = (RadioButton) findViewById(R.id.rbtnEveryNDays);
         etEveryNDays = (EditText)findViewById(R.id.etEveryNDays);
+        btnDate2 = (Button) findViewById(R.id.btnDate2);
 
         layoutEveryWeek = (LinearLayout) findViewById(R.id.layoutEveryWeek);
         rbtnEveryWeek = (RadioButton) findViewById(R.id.rbtnEveryWeek);
@@ -154,6 +177,9 @@ public class AddAlertActivity extends AppCompatActivity {
         textViewBattery = (TextView) findViewById(R.id.textViewBattery);
 
         btnSave = (Button) findViewById(R.id.btnSave);
+
+
+        btnSave = (Button) findViewById(R.id.btnSave);
     }
 
     private void updateSave()
@@ -166,9 +192,10 @@ public class AddAlertActivity extends AppCompatActivity {
         boolean valid;
 
         boolean hasName = !etAlertName.getText().toString().equals("");
+        boolean hasDesc = !etAlertDescription.getText().toString().equals("");
         boolean atLeastOnChecked = switchDateTime.isChecked() || switchLocation.isChecked() || switchBattery.isChecked();
 
-        valid = hasName && atLeastOnChecked;
+        valid = hasName && hasDesc && atLeastOnChecked;
 
         //Periodic
         if(switchDateTime.isChecked() && switchPeriodic.isChecked())
@@ -184,11 +211,38 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private void addEventsListener() {
 
-        etAlertName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+        etAlertName.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateSave();
-                return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etAlertDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSave();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -225,7 +279,7 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
-        btnDate.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener vcl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -242,7 +296,10 @@ public class AddAlertActivity extends AppCompatActivity {
                 dpd.show();
                 updateSave();
             }
-        });
+        };
+
+        btnDate.setOnClickListener(vcl);
+        btnDate2.setOnClickListener(vcl);
 
 
         btnTime.setOnClickListener(new View.OnClickListener() {
@@ -312,6 +369,8 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Alert alert = createAlert();
+                AlertStorage.getInstance().addAlert(alert);
+                AddAlertActivity.this.finish();
             }
         });
 
@@ -343,7 +402,9 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private void updateDate()
     {
+
         btnDate.setText(date.format(formatDate));
+        btnDate2.setText(date.format(formatDate));
     }
 
     private void updateTime()
@@ -353,7 +414,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private Alert createAlert()
     {
-        Alert alert = new Alert(etAlertName.getText().toString());
+        Alert alert = new Alert(etAlertName.getText().toString(), etAlertDescription.getText().toString());
 
         if(switchDateTime.isEnabled())
         {
@@ -369,7 +430,7 @@ public class AddAlertActivity extends AppCompatActivity {
                 if(rbtnEveryNDays.isChecked())
                 {
                     int dt = Integer.parseInt(etEveryNDays.getText().toString());
-                    ConditionDateEveryNDay cond = new ConditionDateEveryNDay(dt);
+                    ConditionDateEveryNDay cond = new ConditionDateEveryNDay(date, dt);
                     trigger.add(cond);
                 }
                 else if(rbtnEveryWeek.isChecked())

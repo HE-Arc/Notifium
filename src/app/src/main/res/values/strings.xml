@@ -15,10 +15,15 @@
     <string name="addAlertLocation">Emplacement</string>
     <string name="addAlertBattery">Batterie</string>
     <string name="addAlertDefaultName">Le nom de votre l\'alerte</string>
+    <string name="addAlertDefaultDescription">Ce que vous voulez vous rappelez</string>
     <string name="addAlertPeriodic">Répétition</string>
     <string name="addAlertEveryDay">Tous les N jours</string>
     <string name="addAlertFromWeekDay">À partir de</string>
-    <string name="addAlertDefaultHour">00:00:00</string>
+    <string name="addAlertDefaultTime">00:00:00</string>
+    <string name="addAlertDefaultDate">01.01.1900</string>
+    <string name="addAlertCancelButtonMenu">Cancel</string>
+    <string name="addAlertAddButtonMenu">Add alert</string>
+
     <string-array name="addAlertWeekDays">
         <item>Lundi</item>
         <item>Mardi</item>
