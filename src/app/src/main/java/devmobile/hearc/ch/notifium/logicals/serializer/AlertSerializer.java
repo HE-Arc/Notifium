@@ -20,6 +20,7 @@ public class AlertSerializer implements JsonSerializer<Alert> {
         TriggerSerializer triggerSerializer = new TriggerSerializer();
 
         object.addProperty("name", alert.getName() );
+        object.addProperty("notification", alert.getNotification());
         object.addProperty("isEnabled", alert.isEnabled());
 
         JsonArray jsonArray = new JsonArray();
