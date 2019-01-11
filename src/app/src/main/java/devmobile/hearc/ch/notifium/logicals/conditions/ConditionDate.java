@@ -2,13 +2,20 @@ package devmobile.hearc.ch.notifium.logicals.conditions;
 
 import java.time.LocalDate;
 
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
+
 public class ConditionDate implements Condition_I {
 
     private LocalDate dateCondition;
 
     public ConditionDate(int day, int month, int year)
     {
-        dateCondition = LocalDate.of(year, month, day);
+        this(LocalDate.of(year, month, day));
+    }
+
+    public ConditionDate(LocalDate date)
+    {
+        dateCondition = date;
     }
 
     /**
@@ -19,4 +26,14 @@ public class ConditionDate implements Condition_I {
     {
         return LocalDate.now().isAfter(dateCondition);
     }
+
+    public LocalDate getDateCondition() {
+        return dateCondition;
+    }
+
+    @Override
+    public ConditionType getConditionType() {
+        return ConditionType.Date;
+    }
 }
+

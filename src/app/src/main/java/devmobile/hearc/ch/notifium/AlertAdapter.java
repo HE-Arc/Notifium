@@ -9,14 +9,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.DayOfWeek;
 
-import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.activities.ObserverActivity;
+import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
+import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 
 /**
  * Our garbage adapter for list views containing garbages.
@@ -27,47 +30,98 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
  */
 public class AlertAdapter extends BaseAdapter {
 
-    /**
-     * The context (activity) in which this adapter is used.
-     */
-    public static Context CONTEXT;
-
-    /**
-     * The filtered alerts; the alerts currently shown on the list.
-     */
-    private AlertStorage alerts;
-
-    public AlertAdapter(ObserverActivity context) {
+    public AlertAdapter() {
         super();
-        this.CONTEXT = context;
-        this.alerts = new AlertStorage(context);
 
-
+        // Hour alerts
         for(int i = 0; i < 10; i++) {
             // Create an alert
-            Alert a = new Alert("MyAlert" + i);
+            Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
-            ConditionHour ch = new ConditionHour(i + 10, 30);
+            Condition_I ch = new ConditionHour(i + 10, 30);
             t.add(ch);
             a.add(t);
 
             // store it in list
-            alerts.addAlert(a);
+            AlertStorage.getInstance().addAlert(a);
         }
+
+        // Battery alerts
+        for(int i = 0; i < 10; i++) {
+            // Create an alert
+            Alert a = new Alert("MyAlert" + i, "description de notification");
+            Trigger t = new Trigger();
+            Condition_I c = new ConditionBatteryLevel(i * 10);
+            t.add(c);
+            a.add(t);
+
+            // store it in list
+            AlertStorage.getInstance().addAlert(a);
+        }
+
+        // Day alerts
+        for(int i = 0; i < 10; i++) {
+            // Create an alert
+            Alert a = new Alert("MyAlert" + i, "description de notification");
+            Trigger t = new Trigger();
+            Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
+            t.add(c);
+            a.add(t);
+
+            // store it in list
+            AlertStorage.getInstance().addAlert(a);
+        }
+
+        // Location alerts
+        for(int i = 0; i < 10; i++) {
+            // Create an alert
+            Alert a = new Alert("MyAlert" + i, "description de notification");
+            Trigger t = new Trigger();
+            Condition_I c = new ConditionLocalisation(1, 1, 10);
+            t.add(c);
+            a.add(t);
+
+            // store it in list
+            AlertStorage.getInstance().addAlert(a);
+        }
+
+        // Get filtered alerts
+
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
     }
 
     @Override
     public int getCount() {
-        return alerts.getAlerts().size();
+        return AlertStorage.getInstance().getFilteredAlerts().size();
+    }
+
+    public void displayAll()
+    {
+        AlertStorage.getInstance().applyFilter(Filters.ALL);
+        notifyDataSetChanged();
+    }
+
+    public void displayDates()
+    {
+        AlertStorage.getInstance().applyFilter(Filters.TIME);
+        notifyDataSetChanged();
+    }
+
+    public void displayPositions()
+    {
+        AlertStorage.getInstance().applyFilter(Filters.POSITION);
+        notifyDataSetChanged();
+    }
+
+    public void displayBattery()
+    {
+        AlertStorage.getInstance().applyFilter(Filters.BATTERY);
+        notifyDataSetChanged();
     }
 
     @Override
     public Object getItem(int position) {
-        return alerts.getAlert(position);
-    }
-
-    public Object getItem(String name) {
-        return alerts.getAlert(name);
+        return AlertStorage.getInstance().getFilteredAlerts().get(position);
     }
 
     @Override
@@ -80,27 +134,37 @@ public class AlertAdapter extends BaseAdapter {
         AlertHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(CONTEXT).inflate(R.layout.row_alert_list, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_alert_list, parent, false);
 
             holder = new AlertHolder();
 
             holder.selectCheckBox = convertView.findViewById(R.id.selectCheckBox);
             holder.nameTextView = convertView.findViewById(R.id.nameTextView);
             holder.editButton = convertView.findViewById(R.id.editButton);
+            holder.suppressButton = convertView.findViewById(R.id.suppressButton);
 
             convertView.setTag(holder);
         } else {
             holder = (AlertHolder) convertView.getTag();
         }
 
-        Alert alert = alerts.getAlert(position);
+        // Get alert
+        final Alert alert = AlertStorage.getInstance().getFilteredAlert(position);
 
+        // Set data
+        holder.selectCheckBox.setChecked(false);
         holder.nameTextView.setText(alert.getName());
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO
+                //Nice to have, for now users will have to suppress and add a new alert
+                
+            }
+        });
+        holder.suppressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertStorage.getInstance().removeAlert(alert);
             }
         });
 

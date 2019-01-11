@@ -1,17 +1,18 @@
 package devmobile.hearc.ch.notifium.activities;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.lang.ref.SoftReference;
 import java.util.Observable;
-import java.util.Observer;
 
-import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.R;
 
 /**
  * Show the garbage list.
@@ -25,8 +26,11 @@ import devmobile.hearc.ch.notifium.AlertAdapter;
  */
 public class AlertListActivity extends ObserverActivity {
 
+    private static transient SoftReference<Context> contextReference;
+
     private Button addAlertButton;
 
+    private TabLayout alertsLayout;
     private ListView alertListView;
     private AlertAdapter alertAdapter;
 
@@ -41,12 +45,18 @@ public class AlertListActivity extends ObserverActivity {
         updateRows();
     }
 
+    public static Context getContext()
+    {
+        return contextReference.get();
+    }
+
     /**
      * Retrieve all views inside res/layout/garbage_list_activity.xml.
      */
     private void retrieveViews() {
         addAlertButton = (Button) findViewById(R.id.addAlertButton);
         alertListView = (ListView) findViewById(R.id.alertListView);
+        alertsLayout = (TabLayout) findViewById(R.id.tabLayout);
     }
 
     @Override
@@ -73,7 +83,7 @@ public class AlertListActivity extends ObserverActivity {
      *   - being able to start the creation of a new garbage by clicking the "Add" button.
      */
     private void setUpViews() {
-        alertAdapter = new AlertAdapter(this);
+        alertAdapter = new AlertAdapter();
 
         // Tell by which adapter we will handle our list
         alertListView.setAdapter(alertAdapter);
@@ -102,6 +112,39 @@ public class AlertListActivity extends ObserverActivity {
                 startActivity(intent);
             }
         });
+
+        alertsLayout.setOnTabSelectedListener(
+            new TabLayout.BaseOnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition())
+                    {
+                        case 0:
+                            alertAdapter.displayAll();
+                            break;
+                        case 1:
+                            alertAdapter.displayDates();
+                            break;
+                        case 2:
+                            alertAdapter.displayPositions();
+                            break;
+                        case 3:
+                            alertAdapter.displayBattery();
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+                }
+            }
+        );
     }
 
     @Override

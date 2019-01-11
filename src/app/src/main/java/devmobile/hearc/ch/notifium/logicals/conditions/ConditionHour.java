@@ -2,12 +2,19 @@ package devmobile.hearc.ch.notifium.logicals.conditions;
 
 import java.time.LocalTime;
 
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
+
 public class ConditionHour implements Condition_I {
-    private LocalTime dateCondition;
+    private LocalTime timeCondition;
 
     public ConditionHour(int hours, int minutes)
     {
-        dateCondition = LocalTime.of(hours, minutes, 0);
+        this(LocalTime.of(hours, minutes, 0));
+    }
+
+    public ConditionHour(LocalTime time)
+    {
+        timeCondition = time;
     }
 
     /**
@@ -17,11 +24,21 @@ public class ConditionHour implements Condition_I {
     public boolean evaluatePredicate()
     {
         LocalTime now = LocalTime.now();
-        if(now.getHour() >= dateCondition.getHour())
+        if(now.getHour() >= timeCondition.getHour())
         {
-            if(now.getMinute() >= dateCondition.getMinute())
+            if(now.getMinute() >= timeCondition.getMinute())
                 return true;
         }
         return false;
     }
+
+    public LocalTime getDateCondition() {
+        return timeCondition;
+    }
+
+    @Override
+    public ConditionType getConditionType() {
+        return ConditionType.Hour;
+    }
 }
+

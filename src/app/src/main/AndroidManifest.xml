@@ -3,6 +3,8 @@
     package="devmobile.hearc.ch.notifium"
     android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
     <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
 
@@ -26,10 +28,6 @@
             android:exported="true" />
 
         <receiver
-            android:name=".NotificationReceiver"
-            android:enabled="true"
-            android:exported="true" />
-        <receiver
             android:name=".RestartReceiver"
             android:enabled="true"
             android:exported="true" >
@@ -38,6 +36,10 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
             </intent-filter>
         </receiver>
     </application>
