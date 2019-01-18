@@ -5,6 +5,11 @@ import java.util.Calendar;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert at a given day during the month
+ * If user enter an invalid day like 30 February this condition will never be evaluated as true
+ */
 public class ConditionDateMonthly implements Condition_I {
 
     private int day;

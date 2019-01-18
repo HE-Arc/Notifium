@@ -4,6 +4,10 @@ import java.time.LocalTime;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert at a given hour
+ */
 public class ConditionHour implements Condition_I {
     private LocalTime timeCondition;
 

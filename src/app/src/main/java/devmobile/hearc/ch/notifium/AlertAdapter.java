@@ -20,72 +20,15 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 
 /**
- * Our garbage adapter for list views containing garbages.
- *
- * We want to display the following text per row:
- *
- *   - GARBAGE_NAME (GARBAGE_CATEGORY_NAME)
+ * Used to control what is shown to the user with the list
  */
 public class AlertAdapter extends BaseAdapter {
 
     public AlertAdapter() {
         super();
 
-        // Hour alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I ch = new ConditionHour(i + 10, 30);
-            t.add(ch);
-            a.add(t);
-
-            // store it in list
-            AlertStorage.getInstance().addAlert(a);
-        }
-
-        // Battery alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionBatteryLevel(i * 10);
-            t.add(c);
-            a.add(t);
-
-            // store it in list
-            AlertStorage.getInstance().addAlert(a);
-        }
-
-        // Day alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
-            t.add(c);
-            a.add(t);
-
-            // store it in list
-            AlertStorage.getInstance().addAlert(a);
-        }
-
-        // Location alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionLocalisation(1, 1, 10);
-            t.add(c);
-            a.add(t);
-
-            // store it in list
-            AlertStorage.getInstance().addAlert(a);
-        }
-
-        // Get filtered alerts
-
-        AlertStorage.getInstance().applyFilter(Filters.ALL);
+        // Serve as a demo
+        AlertStorage.getInstance().seed();
     }
 
     @Override
@@ -93,24 +36,40 @@ public class AlertAdapter extends BaseAdapter {
         return AlertStorage.getInstance().getFilteredAlerts().size();
     }
 
+    /**
+     * Apply the filter ALL to the alertStorage
+     * Notify that the dataset has changed in order to refresh UI
+     */
     public void displayAll()
     {
         AlertStorage.getInstance().applyFilter(Filters.ALL);
         notifyDataSetChanged();
     }
 
+    /**
+     * Apply the filter TIME to the alertStorage
+     * Notify that the dataset has changed in order to refresh UI
+     */
     public void displayDates()
     {
         AlertStorage.getInstance().applyFilter(Filters.TIME);
         notifyDataSetChanged();
     }
 
+    /**
+     * Apply the filter POSITION to the alertStorage
+     * Notify that the dataset has changed in order to refresh UI
+     */
     public void displayPositions()
     {
         AlertStorage.getInstance().applyFilter(Filters.POSITION);
         notifyDataSetChanged();
     }
 
+    /**
+     * Apply the filter BATTERY to the alertStorage
+     * Notify that the dataset has changed in order to refresh UI
+     */
     public void displayBattery()
     {
         AlertStorage.getInstance().applyFilter(Filters.BATTERY);

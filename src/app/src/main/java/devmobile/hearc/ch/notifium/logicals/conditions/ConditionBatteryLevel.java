@@ -7,6 +7,10 @@ import android.os.BatteryManager;
 import devmobile.hearc.ch.notifium.activities.AlertListActivity;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert at a given battery level
+ */
 public class ConditionBatteryLevel implements Condition_I {
 
     private final int threshold;

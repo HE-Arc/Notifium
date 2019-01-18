@@ -1,5 +1,8 @@
 package devmobile.hearc.ch.notifium.geolocation;
 
+/**
+ * Class used to depict position on a map
+ */
 public class Coordinates {
     private double x, y;
 

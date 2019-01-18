@@ -6,6 +6,10 @@ import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 import static devmobile.hearc.ch.notifium.geolocation.LocationGetter.getInstance;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert at a given position
+ */
 public class ConditionLocalisation implements Condition_I {
 
     private float lat;

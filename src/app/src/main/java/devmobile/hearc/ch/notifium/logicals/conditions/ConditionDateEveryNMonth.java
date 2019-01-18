@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert every n month
+ */
 public class ConditionDateEveryNMonth implements Condition_I {
 
     private int month;

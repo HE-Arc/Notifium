@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert every n day
+ */
 public class ConditionDateEveryNDay implements Condition_I {
 
     private int dayOfYear;
