@@ -51,10 +51,10 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
 
-
 /***
  * This activity is used to create new Alert into the AlertStorage singleton
  */
+
 public class AddAlertActivity extends AppCompatActivity {
 
     //Declare every controls used in this activity
@@ -234,9 +234,40 @@ public class AddAlertActivity extends AppCompatActivity {
 
         //Periodic
         if (switchDateTime.isChecked() && switchPeriodic.isChecked()) {
-            boolean atLeastOneRadio = rbtnEveryMonth.isChecked() || rbtnEveryNDays.isChecked() || rbtnEveryNDays.isChecked();
-            if (!atLeastOneRadio)
+            if (rbtnEveryMonth.isChecked()) {
+                // if input is enter
+                if (!etEveryMonth.getText().toString().isEmpty()) {
+                    // if input is valid
+                    if (Integer.parseInt(etEveryMonth.getText().toString()) <= 0) {
+                        valid = false;
+                    }
+                } else {
+                    valid = false;
+                }
+            }
+            else if (rbtnEveryNDays.isChecked()) {
+                // if input is enter
+                if (!etEveryNDays.getText().toString().isEmpty()) {
+                    // if input is valid
+                    if (Integer.parseInt(etEveryNDays.getText().toString()) <= 0) {
+                        valid = false;
+                    }
+                } else {
+                    valid = false;
+                }
+            }
+            else if (rbtnEveryWeek.isChecked()) {
+                boolean atLeastOneDay = false;
+                for (int i = 0; i < btnsEveryWeek.length; ++i) {
+                    if (btnsEveryWeek[i].isSelected())
+                        atLeastOneDay = true;
+                }
+                if (!atLeastOneDay) {
+                    valid = false;
+                }
+            } else {
                 valid = false;
+            }
         }
 
 

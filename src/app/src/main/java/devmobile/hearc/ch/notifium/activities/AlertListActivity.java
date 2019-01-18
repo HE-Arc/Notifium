@@ -63,6 +63,9 @@ public class AlertListActivity extends ObserverActivity {
 
         retrieveViews();
         setUpViews();
+        // Start service
+        updateRows();
+        //context.startForegroundService(new Intent(context, NotifierService.class));
     }
 
     /**
@@ -104,17 +107,10 @@ public class AlertListActivity extends ObserverActivity {
                     }
                 }
                 // all permissions were granted
-                initialize();
                 break;
         }
     }
 
-    private void initialize()
-    {
-        // Start service
-        updateRows();
-        //context.startForegroundService(new Intent(context, NotifierService.class));
-    }
     /**
      * Retrieve all views inside res/layout/garbage_list_activity.xml.
      */
@@ -152,21 +148,6 @@ public class AlertListActivity extends ObserverActivity {
 
         // Tell by which adapter we will handle our list
         alertListView.setAdapter(alertAdapter);
-
-        // See a garbage details when clicking on it
-        /*garbageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Garbage garbage = (Garbage) garbageListView.getItemAtPosition(position);
-
-                Intent intent = new Intent(AlertListActivity.this, GarbageDetailsActivity.class);
-
-                intent.putExtra("garbageName", garbage.getName());
-
-                startActivity(intent);
-            }
-        });*/
 
         // Start the activity to add a garbage when clicking the "Add" button
         addAlertButton.setOnClickListener(new View.OnClickListener() {
