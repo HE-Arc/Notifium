@@ -8,16 +8,6 @@
  */
 package devmobile.hearc.ch.notifium.activities;
 
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
-
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
@@ -27,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +32,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+
 import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.logicals.Alert;
@@ -56,19 +51,13 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
-
-/**
- * Cette classe permet d'avoir
+/***
+ * This activity is used to create new Alert into the AlertStorage singleton
  */
 public class AddAlertActivity extends AppCompatActivity {
 
-
+    //Declare every controls used in this activity
     private EditText etAlertName;
     private EditText etAlertDescription;
 
@@ -115,24 +104,36 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private boolean[] daysOfTheWeek;
 
+    /***
+     * On the creation of the activity
+     * @param savedInstanceState
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Date and time format
         formatDate = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         formatTime = DateTimeFormatter.ofPattern("HH:mm");
+
+        //Day of the week checked tracking
         daysOfTheWeek = new boolean[7];
         btnsEveryWeek = new Button[7];
 
-        setContentView(R.layout.activity_add_alert);
-        loadUI();
-        addEventsListener();
-        setDefaultValues();
-        updateSave();
+        setContentView(R.layout.activity_add_alert); //load the layout
+        loadUI(); //load the ui in the layout into the class
+        addEventsListener(); // add every event listener for the activity
+        setDefaultValues(); //add defaut values
+        updateSave(); //update the state of the save button
 
     }
 
+    /***
+     * Create the menu on top of the screen with an add Alert menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -140,6 +141,11 @@ public class AddAlertActivity extends AppCompatActivity {
         return true;
     }
 
+    /***
+     * Close the activity on click of the menu cancel button
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -151,8 +157,10 @@ public class AddAlertActivity extends AppCompatActivity {
         }
     }
 
-    private void loadUI()
-    {
+    /***
+     * Load the layout ui into the class
+     */
+    private void loadUI() {
         etAlertName = (EditText) findViewById(R.id.etAlertName);
         etAlertDescription = (EditText) findViewById(R.id.etAlertDescription);
 
@@ -170,7 +178,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
         layoutEveryNDays = (LinearLayout) findViewById(R.id.layoutEveryNDays);
         rbtnEveryNDays = (RadioButton) findViewById(R.id.rbtnEveryNDays);
-        etEveryNDays = (EditText)findViewById(R.id.etEveryNDays);
+        etEveryNDays = (EditText) findViewById(R.id.etEveryNDays);
         btnDate2 = (Button) findViewById(R.id.btnDate2);
 
         layoutEveryWeek = (LinearLayout) findViewById(R.id.layoutEveryWeek);
@@ -204,13 +212,18 @@ public class AddAlertActivity extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btnSave);
     }
 
-    private void updateSave()
-    {
+    /***
+     * Check if the alert is valid change set the activation of the button according to it
+     */
+    private void updateSave() {
         btnSave.setEnabled(isValid());
     }
 
-    private boolean isValid()
-    {
+    /***
+     * Check if the alert is valid
+     * @return the state of the alert
+     */
+    private boolean isValid() {
         boolean valid;
 
         boolean hasName = !etAlertName.getText().toString().equals("");
@@ -220,10 +233,9 @@ public class AddAlertActivity extends AppCompatActivity {
         valid = hasName && hasDesc && atLeastOnChecked;
 
         //Periodic
-        if(switchDateTime.isChecked() && switchPeriodic.isChecked())
-        {
+        if (switchDateTime.isChecked() && switchPeriodic.isChecked()) {
             boolean atLeastOneRadio = rbtnEveryMonth.isChecked() || rbtnEveryNDays.isChecked() || rbtnEveryNDays.isChecked();
-            if(!atLeastOneRadio)
+            if (!atLeastOneRadio)
                 valid = false;
         }
 
@@ -231,9 +243,13 @@ public class AddAlertActivity extends AppCompatActivity {
         return valid;
     }
 
+    /***
+     * Add every events for the activity
+     */
     private void addEventsListener() {
 
 
+        //Text edits
         etAlertName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -268,10 +284,11 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
+        //Switch to activate submenus
         switchDateTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutDateTime.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutDateTime.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
@@ -279,7 +296,7 @@ public class AddAlertActivity extends AppCompatActivity {
         switchLocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutLocation.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutLocation.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
@@ -287,7 +304,7 @@ public class AddAlertActivity extends AppCompatActivity {
         switchBattery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutBattery.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutBattery.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
@@ -295,12 +312,13 @@ public class AddAlertActivity extends AppCompatActivity {
         switchPeriodic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutPeriodic.setVisibility(isChecked ? View.VISIBLE: View.GONE);
-                layoutDate.setVisibility(!isChecked ? View.VISIBLE: View.GONE);
+                layoutPeriodic.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                layoutDate.setVisibility(!isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
 
+        //The set the date
         View.OnClickListener vcl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -320,10 +338,12 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         };
 
-        btnDate.setOnClickListener(vcl);
-        btnDate2.setOnClickListener(vcl);
+        //To set the date
+        btnDate.setOnClickListener(vcl); //button 1
+        btnDate2.setOnClickListener(vcl); //button 2
 
 
+        //Set the time
         btnTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -343,32 +363,39 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
+        //Radio button to set the alert to every n days
         rbtnEveryNDays.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutEveryNDays.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutEveryNDays.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
 
-        etEveryMonth.setFilters(new InputFilter[]{ new MinMaxFilter("1", "31")});
+        // Add a filter to the text edit for the every month textedit
+        etEveryMonth.setFilters(new InputFilter[]{new MinMaxFilter("1", "31")});
 
+
+        //Radio button to set the alert to every week
         rbtnEveryWeek.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutEveryWeek.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutEveryWeek.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
 
+        //Radio button to set the alert to every month
         rbtnEveryMonth.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                layoutEveryMonth.setVisibility(isChecked ? View.VISIBLE: View.GONE);
+                layoutEveryMonth.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 updateSave();
             }
         });
 
+
+        //Handle the label according to the value of the bar for the batterie
         seekBarBattery.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -387,6 +414,7 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
+        //On click of the save button
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -396,15 +424,15 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
-        for(int i = 0; i < 7; i++)
-        {
+        //Add for every week buttons the toggle
+        for (int i = 0; i < 7; i++) {
             final int finalI = i;
             btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
             btnsEveryWeek[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     daysOfTheWeek[finalI] = !daysOfTheWeek[finalI];
-                    if(daysOfTheWeek[finalI])
+                    if (daysOfTheWeek[finalI])
                         btnsEveryWeek[finalI].setBackgroundColor(0xFFFA3F7E);
                     else
                         btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
@@ -414,60 +442,58 @@ public class AddAlertActivity extends AppCompatActivity {
         }
     }
 
-    private void setDefaultValues()
-    {
+    /***
+     * Add default values to now
+     */
+    private void setDefaultValues() {
         date = LocalDate.now();
         time = LocalTime.now();
         updateDate();
         updateTime();
     }
 
-    private void updateDate()
-    {
+    /***
+     * Update the dates buttons
+     */
+    private void updateDate() {
 
         btnDate.setText(date.format(formatDate));
         btnDate2.setText(date.format(formatDate));
     }
 
-    private void updateTime()
-    {
+    /***
+     * Update the time buttons
+     */
+    private void updateTime() {
         btnTime.setText(time.format(formatTime));
     }
 
-    private Alert createAlert()
-    {
+    /***
+     * Create an alerte according to the ui
+     * @return
+     */
+    private Alert createAlert() {
         Alert alert = new Alert(etAlertName.getText().toString(), etAlertDescription.getText().toString());
 
-        if(switchDateTime.isEnabled())
-        {
+        if (switchDateTime.isEnabled()) {
             Trigger trigger = new Trigger();
             trigger.add(new ConditionHour(time));
 
-            if(!switchPeriodic.isEnabled())
-            {
+            if (!switchPeriodic.isEnabled()) {
                 trigger.add(new ConditionDate(date));
-            }
-            else
-            {
-                if(rbtnEveryNDays.isChecked())
-                {
+            } else {
+                if (rbtnEveryNDays.isChecked()) {
                     int dt = Integer.parseInt(etEveryNDays.getText().toString());
                     ConditionDateEveryNDay cond = new ConditionDateEveryNDay(date, dt);
                     trigger.add(cond);
-                }
-                else if(rbtnEveryWeek.isChecked())
-                {
-                    for(int i = 0; i < daysOfTheWeek.length; i++)
-                    {
-                        if(daysOfTheWeek[i])
-                        {
+                } else if (rbtnEveryWeek.isChecked()) {
+                    for (int i = 0; i < daysOfTheWeek.length; i++) {
+                        if (daysOfTheWeek[i]) {
                             ConditionDateDayOfWeek cond = new ConditionDateDayOfWeek(DayOfWeek.of(i));
                             trigger.add(cond);
                         }
                     }
-                }
-                else if(rbtnEveryMonth.isChecked())
-                {
+                } else if (rbtnEveryMonth.isChecked()) {
                     int val = Integer.parseInt(etEveryMonth.getText().toString());
                     ConditionDateMonthly cond = new ConditionDateMonthly(val);
                     trigger.add(cond);
@@ -477,15 +503,13 @@ public class AddAlertActivity extends AppCompatActivity {
             alert.add(trigger);
         }
 
-        if(switchLocation.isEnabled())
-        {
+        if (switchLocation.isEnabled()) {
             Trigger trigger = new Trigger();
-            trigger.add(new ConditionLocalisation(0,0,0));
+            trigger.add(new ConditionLocalisation(0, 0, 0));
             alert.add(trigger);
         }
 
-        if(switchBattery.isEnabled())
-        {
+        if (switchBattery.isEnabled()) {
             Trigger trigger = new Trigger();
             trigger.add(new ConditionBatteryLevel(seekBarBattery.getProgress()));
             alert.add(trigger);
