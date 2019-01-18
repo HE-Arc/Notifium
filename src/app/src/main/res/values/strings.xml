@@ -1,3 +1,13 @@
+<!--
+    Projet : Notifium
+    Students : Raphaël Margueron / Fabien Mottier / Segan Salomon
+    Teacher : Aicha Rizzotti
+    Module : 3255.1-Developpement_mobile
+    Repository Git : https://github.com/HE-Arc/Notifium
+    Date : 25.01.2019
+
+    Strings for the app
+ -->
 <resources>
     <string name="app_name">Notifium</string>
     <string name="listAlerts_tab_all">Toutes</string>

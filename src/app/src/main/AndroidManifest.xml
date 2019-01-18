@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Projet : Notifium
+    Students : Raphaël Margueron / Fabien Mottier / Segan Salomon
+    Teacher : Aicha Rizzotti
+    Module : 3255.1-Developpement_mobile
+    Repository Git : https://github.com/HE-Arc/Notifium
+    Date : 25.01.2019
+
+    App manifeste
+ -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="devmobile.hearc.ch.notifium"
     android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
