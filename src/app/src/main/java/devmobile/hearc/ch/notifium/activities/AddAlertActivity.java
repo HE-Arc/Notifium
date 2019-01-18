@@ -1,4 +1,21 @@
+/**
+ * Projet : Notifium
+ * Students : Raphaël Margueron / Fabien Mottier / Segan Salomon
+ * Teacher : Aicha Rizzotti
+ * Module : 3255.1-Developpement_mobile
+ * Repository Git : https://github.com/HE-Arc/Notifium
+ * Date : 25.01.2019
+ */
 package devmobile.hearc.ch.notifium.activities;
+
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -45,7 +62,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
+
+/**
+ * Cette classe permet d'avoir
+ */
 public class AddAlertActivity extends AppCompatActivity {
+
 
     private EditText etAlertName;
     private EditText etAlertDescription;
