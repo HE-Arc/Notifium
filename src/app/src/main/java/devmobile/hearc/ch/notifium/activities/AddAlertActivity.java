@@ -51,13 +51,10 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
 
-<<<<<<< HEAD
-=======
 
 /***
  * This activity is used to create new Alert into the AlertStorage singleton
  */
->>>>>>> 342ca7a3d5c27d1517c4d9dce863e206be65e2ff
 public class AddAlertActivity extends AppCompatActivity {
 
     //Declare every controls used in this activity

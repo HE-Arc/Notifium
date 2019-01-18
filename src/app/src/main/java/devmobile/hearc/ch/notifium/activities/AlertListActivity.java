@@ -14,16 +14,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
-import devmobile.hearc.ch.notifium.NotifierService;
 import devmobile.hearc.ch.notifium.R;
 
 /**
@@ -45,51 +48,73 @@ public class AlertListActivity extends ObserverActivity {
     private ListView alertListView;
     private AlertAdapter alertAdapter;
 
+    private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
+    private static final String[] REQUIRED_SDK_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (CheckPermissions()) {
-            context = this.getApplicationContext();
-            setContentView(R.layout.activity_alert_list);
+        CheckPermissions();
 
-            retrieveViews();
-            setUpViews();
-            updateRows();
+        context = this.getApplicationContext();
+        setContentView(R.layout.activity_alert_list);
 
-            // Start service
-            context.startForegroundService(new Intent(context, NotifierService.class));
-        }
-        else
-        {
-            this.onDestroy();
-        }
+        retrieveViews();
+        setUpViews();
     }
 
     /**
      * Ask permission to the user
      * @return
      */
-    private boolean CheckPermissions()
+    private void CheckPermissions()
     {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        ArrayList<String> missingPermissions  = new ArrayList<String>();
+
+        for (final String permission : REQUIRED_SDK_PERMISSIONS) {
+            final int result = ContextCompat.checkSelfPermission(this, permission);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                missingPermissions.add(permission);
+            }
         }
 
-        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return false;
+        if (!missingPermissions.isEmpty())
+        {
+            requestPermissions(missingPermissions.toArray(new String[missingPermissions.size()]), REQUEST_CODE_ASK_PERMISSIONS);
         }
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED) != PackageManager.PERMISSION_GRANTED) {
-            return false;
+        else {
+            final int[] grantResults = new int[REQUIRED_SDK_PERMISSIONS.length];
+            Arrays.fill(grantResults, PackageManager.PERMISSION_GRANTED);
+            onRequestPermissionsResult(REQUEST_CODE_ASK_PERMISSIONS, REQUIRED_SDK_PERMISSIONS, grantResults);
         }
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WAKE_LOCK) != PackageManager.PERMISSION_GRANTED) {
-            return false;
-        }*/
-
-        return true;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_PERMISSIONS:
+                for (int index = permissions.length - 1; index >= 0; --index) {
+                    if (grantResults[index] != PackageManager.PERMISSION_GRANTED) {
+                        // exit the app if one permission is not granted
+                        Toast.makeText(this, "Required permission '" + permissions[index] + "' not granted, exiting", Toast.LENGTH_LONG).show();
+                        finish();
+                        return;
+                    }
+                }
+                // all permissions were granted
+                initialize();
+                break;
+        }
+    }
+
+    private void initialize()
+    {
+        // Start service
+        updateRows();
+        //context.startForegroundService(new Intent(context, NotifierService.class));
+    }
     /**
      * Retrieve all views inside res/layout/garbage_list_activity.xml.
      */
