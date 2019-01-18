@@ -10,6 +10,9 @@ import java.lang.reflect.Type;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 
+/**
+ * Deserializer for a condition to check a geolocation
+ */
 public class ConditionLocalisationDeserializer implements JsonDeserializer<ConditionLocalisation> {
     @Override
     public ConditionLocalisation deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {

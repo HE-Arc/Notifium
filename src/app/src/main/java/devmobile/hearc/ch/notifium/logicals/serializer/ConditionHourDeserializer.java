@@ -10,6 +10,9 @@ import java.lang.reflect.Type;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 
+/**
+ * Deserializer for a condition to check a time
+ */
 public class ConditionHourDeserializer implements JsonDeserializer<ConditionHour> {
     @Override
     public ConditionHour deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {

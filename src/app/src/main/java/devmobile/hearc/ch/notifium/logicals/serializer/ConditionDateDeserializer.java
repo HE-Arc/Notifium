@@ -10,6 +10,9 @@ import java.lang.reflect.Type;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
 
+/**
+ * Deserializer for a condition to check a date
+ */
 public class ConditionDateDeserializer implements JsonDeserializer<ConditionDate> {
     @Override
     public ConditionDate deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {

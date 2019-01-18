@@ -41,6 +41,9 @@ public class AlertListActivity extends ObserverActivity {
         retrieveViews();
         setUpViews();
         updateRows();
+
+        // Start service
+        context.startForegroundService(new Intent(context, NotifierService.class));
     }
 
     /**

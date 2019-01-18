@@ -11,6 +11,9 @@ import java.time.DayOfWeek;
 
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 
+/**
+ * Deserializer for a condition to check a day of week
+ */
 public class ConditionDayDeserializer implements JsonDeserializer<ConditionDateDayOfWeek> {
     @Override
     public ConditionDateDayOfWeek deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {

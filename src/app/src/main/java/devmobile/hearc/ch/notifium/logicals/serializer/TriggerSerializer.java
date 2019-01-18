@@ -16,6 +16,9 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 
+/**
+ * Serializer for a trigger
+ */
 public class TriggerSerializer implements JsonSerializer<Trigger> {
 
     @Override
@@ -29,10 +32,11 @@ public class TriggerSerializer implements JsonSerializer<Trigger> {
 
         JsonObject object = new JsonObject();
 
+        // Stock conditions as an array to loop on on the load
+        // Because there is no unique identifier in a condition
         JsonArray jsonArray = new JsonArray();
-
         for (int i = 0; i < trigger.size(); ++i) {
-            Condition_I cond = trigger.get(0);
+            Condition_I cond = trigger.get(i);
             switch (cond.getConditionType())
             {
                 case Position:

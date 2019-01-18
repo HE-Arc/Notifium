@@ -1,6 +1,5 @@
 package devmobile.hearc.ch.notifium.activities;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +24,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+
 import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.R;
 import devmobile.hearc.ch.notifium.logicals.Alert;
@@ -38,12 +42,6 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateMonthly;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.tools.MinMaxFilter;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 public class AddAlertActivity extends AppCompatActivity {
 

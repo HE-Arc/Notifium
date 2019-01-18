@@ -17,6 +17,9 @@ import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Deserializer for a trigger
+ */
 public class TriggerDeserializer implements JsonDeserializer<Trigger> {
 
     @Override
@@ -30,6 +33,7 @@ public class TriggerDeserializer implements JsonDeserializer<Trigger> {
         ConditionDayDeserializer conditionDayDeserializer = new ConditionDayDeserializer();
         ConditionHourDeserializer conditionHourDeserializer = new ConditionHourDeserializer();
 
+        // deserialize an array of trigger
         JsonArray conditions = object.get("conditions").getAsJsonArray();
         for (JsonElement condition:conditions) {
             String conditionTypeName = condition.getAsJsonObject().get("type").getAsString();

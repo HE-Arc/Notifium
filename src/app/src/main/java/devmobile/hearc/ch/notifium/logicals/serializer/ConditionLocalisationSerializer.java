@@ -10,12 +10,15 @@ import java.lang.reflect.Type;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Serializer for a condition to check a geolocation
+ */
 public class ConditionLocalisationSerializer implements JsonSerializer<ConditionLocalisation> {
     @Override
     public JsonElement serialize(ConditionLocalisation cond, Type ConditionLocalisation, JsonSerializationContext context)
     {
         JsonObject object = new JsonObject();
-        object.addProperty("type", ConditionType.Position.name());
+        object.addProperty("type", ConditionType.Position.name()); // use to retrieve the type on load
         object.addProperty("lat", cond.getLat());
         object.addProperty("lng", cond.getLng());
         object.addProperty("radius", cond.getRadius());

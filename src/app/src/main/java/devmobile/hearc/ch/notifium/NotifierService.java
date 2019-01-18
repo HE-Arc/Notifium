@@ -11,7 +11,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -19,13 +18,19 @@ import java.util.TimerTask;
 
 import devmobile.hearc.ch.notifium.logicals.Alert;
 
-
-
-
+/**
+ * Service is always working in background
+ * even without the app
+ *
+ * In API 28, it's not possible to block the closing of the service
+ * when the app is closed. So a broadcast reciever is used to start
+ * service at the closing and on the boot
+ */
 public class NotifierService extends Service {
-    private Timer timer;
-    private TimerTask timerTask;
+    private Timer timer; // use to execute code periodically
+    private TimerTask timerTask; // code executed periodically
     private ArrayList<Alert> alerts;
+    private ArrayList<String> triggeredAlerts; // use to trigger one time
 
     public NotifierService() {}
 
@@ -42,6 +47,7 @@ public class NotifierService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         createNotificationChannel();
+        triggeredAlerts = new ArrayList<String>();
         startTimer();
 
         return START_STICKY;
@@ -57,9 +63,12 @@ public class NotifierService extends Service {
             timer = null;
         }
 
+        // Instantiate a broadcast reciever
+        // which restart the service
+        // after the closure
         Intent restartIntent = new Intent(this, RestartServiceReceiver.class);
+        //filter use by the broadcast reciever and defined in AndroidManifest.xml
         restartIntent.setAction("devmobile.hearc.ch.notifium");
-
         sendBroadcast(restartIntent);
     }
 
@@ -91,6 +100,8 @@ public class NotifierService extends Service {
     }
 
     public void initializeTimerTask() {
+        // define the task which be
+        // executed every second
         timerTask = new TimerTask() {
             public void run() {
                 launchNotification();
@@ -100,13 +111,34 @@ public class NotifierService extends Service {
 
     private void launchNotification()
     {
+        // launch notifications of the alerts
+
+
+        // currently the data must be reloaded
+        // each time, because it impossible for
+        // the app to reach the service
+        // after a reboot of the phone
         loadAlerts();
 
+        // Check all alert
         for (Alert alert: alerts) {
-            if (alert.evaluate())
-            {
-                startRingtone(getApplicationContext());
-                showNotification(getApplicationContext(),alert.getName(),"toto");
+            boolean result = alert.evaluate();
+
+            // Check if the alert is still in the same trigger
+            if (triggeredAlerts.contains("")) {
+                if (!result)
+                {
+                    triggeredAlerts.remove("");
+                }
+            }
+            else {
+                // Launch the notification if the alert is triggered
+                if (result)
+                {
+                    startRingtone(getApplicationContext());
+                    showNotification(getApplicationContext(), alert.getName(), alert.getNotification());
+                    triggeredAlerts.add("");
+                }
             }
         }
     }
@@ -128,6 +160,8 @@ public class NotifierService extends Service {
     }
 
     private void showNotification(Context context, String title, String text) {
+        // Push a notifiaction in the Notifier Channel
+
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -138,10 +172,13 @@ public class NotifierService extends Service {
                         .setContentText(text)
                         .setChannelId("Notifier Channel").build();
 
+        // Launch the notification
         notificationManager.notify(1, notification);
     }
 
     private void startRingtone(Context context) {
+        // Launch a ringtone if one is set in the phone
+
         try {
             Uri alarmUri = RingtoneManager
                     .getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -158,7 +195,6 @@ public class NotifierService extends Service {
 
     public void loadAlerts()
     {
-        Log.i("fabien","load service alert");
         this.alerts = AlertStorage.load(this.getApplicationContext());
     }
 }
