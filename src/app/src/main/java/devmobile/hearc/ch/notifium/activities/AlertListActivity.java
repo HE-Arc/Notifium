@@ -1,9 +1,12 @@
 package devmobile.hearc.ch.notifium.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -11,6 +14,7 @@ import android.widget.ListView;
 import java.util.Observable;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.NotifierService;
 import devmobile.hearc.ch.notifium.R;
 
 /**
@@ -35,15 +39,46 @@ public class AlertListActivity extends ObserverActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this.getApplicationContext();
-        setContentView(R.layout.activity_alert_list);
+        if (CheckPermissions()) {
+            context = this.getApplicationContext();
+            setContentView(R.layout.activity_alert_list);
 
-        retrieveViews();
-        setUpViews();
-        updateRows();
+            retrieveViews();
+            setUpViews();
+            updateRows();
 
-        // Start service
-        context.startForegroundService(new Intent(context, NotifierService.class));
+            // Start service
+            context.startForegroundService(new Intent(context, NotifierService.class));
+        }
+        else
+        {
+            this.onDestroy();
+        }
+    }
+
+    /**
+     * Ask permission to the user
+     * @return
+     */
+    private boolean CheckPermissions()
+    {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WAKE_LOCK) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }*/
+
+        return true;
     }
 
     /**

@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert every n year
+ */
 public class ConditionDateEveryNYear implements Condition_I {
 
     private int year;
@@ -52,6 +56,11 @@ public class ConditionDateEveryNYear implements Condition_I {
     @Override
     public ConditionType getConditionType() {
         return ConditionType.DateEveryNYear;
+    }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (year ^ dt & 65535);
     }
 
 }

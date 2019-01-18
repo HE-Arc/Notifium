@@ -5,6 +5,10 @@ import java.time.LocalDate;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Implements Condition_I
+ * Used to raise an alert at a given day of the week
+ */
 public class ConditionDateDayOfWeek implements Condition_I {
 
     private DayOfWeek dayOfWeek;
@@ -26,6 +30,11 @@ public class ConditionDateDayOfWeek implements Condition_I {
     @Override
     public ConditionType getConditionType() {
         return ConditionType.DateDayOfWeek;
+    }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (dayOfWeek.hashCode() & 65535);
     }
 }
 

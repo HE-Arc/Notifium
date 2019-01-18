@@ -7,6 +7,9 @@ import java.util.Set;
 
 import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
+/**
+ * Static final class containing every filters that can be applied to the alertStorage
+ */
 public final class Filters {
 
     /**
@@ -16,10 +19,15 @@ public final class Filters {
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Position,
                     ConditionType.Date,
+                    ConditionType.DateDelay,
+                    ConditionType.DateEveryNDay,
+                    ConditionType.DateEveryNMonth,
+                    ConditionType.DateEveryNYear,
                     ConditionType.DateDayOfWeek,
+                    ConditionType.DateDayOfTheMonth,
                     ConditionType.Hour,
                     ConditionType.Battery
-            )
+                )
             )
     );
 
@@ -29,7 +37,7 @@ public final class Filters {
     public static final Set<ConditionType> POSITION = Collections.unmodifiableSet(
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Position
-            )
+                )
             )
     );
 
@@ -39,9 +47,14 @@ public final class Filters {
     public static final Set<ConditionType> TIME = Collections.unmodifiableSet(
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Date,
+                    ConditionType.DateDelay,
+                    ConditionType.DateEveryNDay,
+                    ConditionType.DateEveryNMonth,
+                    ConditionType.DateEveryNYear,
                     ConditionType.DateDayOfWeek,
+                    ConditionType.DateDayOfTheMonth,
                     ConditionType.Hour
-            )
+                )
             )
     );
 
@@ -51,7 +64,7 @@ public final class Filters {
     public static final Set<ConditionType> BATTERY = Collections.unmodifiableSet(
             new HashSet<ConditionType>(Arrays.asList(
                     ConditionType.Battery
-            )
+                )
             )
     );
 
