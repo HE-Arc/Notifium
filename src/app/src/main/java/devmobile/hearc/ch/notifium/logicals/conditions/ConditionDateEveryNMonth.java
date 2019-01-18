@@ -54,4 +54,9 @@ public class ConditionDateEveryNMonth implements Condition_I {
         return ConditionType.DateEveryNMonth;
     }
 
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (month ^ dt & 65535);
+    }
+
 }

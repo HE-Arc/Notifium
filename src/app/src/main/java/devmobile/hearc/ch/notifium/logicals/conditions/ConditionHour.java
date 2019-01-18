@@ -40,5 +40,10 @@ public class ConditionHour implements Condition_I {
     public ConditionType getConditionType() {
         return ConditionType.Hour;
     }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (timeCondition.hashCode() & 65535);
+    }
 }
 

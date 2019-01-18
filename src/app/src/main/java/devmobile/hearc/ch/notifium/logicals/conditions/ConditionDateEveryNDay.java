@@ -54,4 +54,9 @@ public class ConditionDateEveryNDay implements Condition_I {
         return ConditionType.DateEveryNDay;
     }
 
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (dayOfYear ^ dt & 65535);
+    }
+
 }

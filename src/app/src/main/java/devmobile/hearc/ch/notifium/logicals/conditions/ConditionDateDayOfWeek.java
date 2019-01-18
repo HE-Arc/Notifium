@@ -27,5 +27,10 @@ public class ConditionDateDayOfWeek implements Condition_I {
     public ConditionType getConditionType() {
         return ConditionType.DateDayOfWeek;
     }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (dayOfWeek.hashCode() & 65535);
+    }
 }
 

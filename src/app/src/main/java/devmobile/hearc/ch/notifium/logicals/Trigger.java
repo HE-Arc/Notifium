@@ -24,5 +24,10 @@ public class Trigger extends ArrayList<Condition_I> {
             types.add(c.getConditionType());
         return types;
     }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (getConditionsTypes().hashCode() & 65535);
+    }
 }
 

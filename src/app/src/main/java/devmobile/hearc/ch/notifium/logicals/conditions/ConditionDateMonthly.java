@@ -40,4 +40,9 @@ public class ConditionDateMonthly implements Condition_I {
         return ConditionType.DateDayOfTheMonth;
     }
 
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (((Integer)day).hashCode() & 65535);
+    }
+
 }

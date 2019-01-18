@@ -54,4 +54,9 @@ public class ConditionDateEveryNYear implements Condition_I {
         return ConditionType.DateEveryNYear;
     }
 
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (year ^ dt & 65535);
+    }
+
 }

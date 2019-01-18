@@ -53,4 +53,9 @@ public class ConditionLocalisation implements Condition_I {
     public ConditionType getConditionType() {
         return ConditionType.Position;
     }
+
+    @Override
+    public int hashCode() {
+        return (((Float)lng).hashCode() << 16) ^ (((Float)lat).hashCode() & 65535);
+    }
 }

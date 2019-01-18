@@ -35,5 +35,10 @@ public class ConditionDate implements Condition_I {
     public ConditionType getConditionType() {
         return ConditionType.Date;
     }
+
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (dateCondition.hashCode() & 65535);
+    }
 }
 

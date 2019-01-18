@@ -77,5 +77,10 @@ public class Alert extends ArrayList<Trigger> {
         return types;
     }
 
+    @Override
+    public int hashCode() {
+        return (super.hashCode() << 16) ^ (getConditionsTypes().hashCode() & 65535);
+    }
+
 }
 
