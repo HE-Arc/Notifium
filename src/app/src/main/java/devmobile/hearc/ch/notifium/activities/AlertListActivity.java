@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Observable;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.NotifierService;
 import devmobile.hearc.ch.notifium.R;
 
 /**
@@ -63,9 +64,10 @@ public class AlertListActivity extends ObserverActivity {
 
         retrieveViews();
         setUpViews();
-        // Start service
         updateRows();
-        //context.startForegroundService(new Intent(context, NotifierService.class));
+
+        // Start service
+        context.startService(new Intent(context, NotifierService.class));
     }
 
     /**

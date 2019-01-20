@@ -9,7 +9,6 @@
 package devmobile.hearc.ch.notifium;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -296,12 +295,13 @@ public class AlertStorage extends Observable {
     }
 
     /**
-     * Serialize this object
+     * Serialize a list of alerts and save on a json file
      * @param context
      */
     public synchronized void save(Context context)
     {
         try {
+            // create json file
             File file = new File(context.getFilesDir(), "listAlert.json");
             if (file.exists())
             {
@@ -311,12 +311,17 @@ public class AlertStorage extends Observable {
 
             FileOutputStream outputStream;
             outputStream = context.openFileOutput("listAlert.json", Context.MODE_PRIVATE);
+
+            // Set custom serializer to GsonBuilder
             AlertSerializer alertSerializer = new AlertSerializer();
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
             Gson gson = gsonBuilder.create();
 
+            // Serialize data
             String json = gson.toJson(listAlerts);
+
+            // Save file
             outputStream.write(json.getBytes());
             outputStream.close();
 
@@ -326,26 +331,36 @@ public class AlertStorage extends Observable {
     }
 
     /**
-     * Deserialize this object
+     * Load a json file and deserialize a list of alerts
      * @param context
      */
     public synchronized static ArrayList<Alert> load(Context context) {
         try {
+
+            //Read the json file
             FileInputStream fis = context.openFileInput("listAlert.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
             String line;
+
+            // Set a custom desrializer to GsonBuilder
             AlertDeserializer alertDeserializer = new AlertDeserializer();
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
             Gson gson = gsonBuilder.create();
+
+            // Deserialize
             Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
             if ((line = bufferedReader.readLine()) != null) {
                 return  gson.fromJson(line, listAlertType);
             }
+
+            // close streams
+            bufferedReader.close();
+            isr.close();
+            fis.close();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i("fabien",e.getMessage());
         }
 
         return new ArrayList<Alert>();
