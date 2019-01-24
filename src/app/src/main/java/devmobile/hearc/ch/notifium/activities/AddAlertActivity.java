@@ -38,8 +38,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.R;
+import devmobile.hearc.ch.notifium.AlertStorage;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
@@ -88,6 +88,9 @@ public class AddAlertActivity extends AppCompatActivity {
 
     private Switch switchLocation;
     private LinearLayout layoutLocation;
+    private EditText etLatitude;
+    private EditText etLongitude;
+    private EditText etRadius;
 
     private Switch switchBattery;
     private LinearLayout layoutBattery;
@@ -200,6 +203,11 @@ public class AddAlertActivity extends AppCompatActivity {
         switchLocation = (Switch) findViewById(R.id.switchLocation);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
 
+
+        etLatitude = (EditText) findViewById(R.id.etLocationLat);
+        etLongitude = (EditText) findViewById(R.id.etLocationLong);
+        etRadius = (EditText) findViewById(R.id.etLocationRadius);
+
         switchBattery = (Switch) findViewById(R.id.switchBattery);
         layoutBattery = (LinearLayout) findViewById(R.id.layoutBattery);
 
@@ -268,6 +276,12 @@ public class AddAlertActivity extends AppCompatActivity {
             } else {
                 valid = false;
             }
+        }
+
+        if(switchLocation.isChecked())
+        {
+            if(etLatitude.getText().toString().isEmpty() || etLongitude.getText().toString().isEmpty())
+                valid = false;
         }
 
 
@@ -425,6 +439,57 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
+        etLatitude.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSave();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etLongitude.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSave();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etRadius.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSave();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         //Handle the label according to the value of the bar for the batterie
         seekBarBattery.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -536,7 +601,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
         if (switchLocation.isEnabled()) {
             Trigger trigger = new Trigger();
-            trigger.add(new ConditionLocalisation(0, 0, 0));
+            trigger.add(new ConditionLocalisation(Integer.parseInt(etLatitude.getText().toString()), Integer.parseInt(etLongitude.getText().toString()), Integer.parseInt(etRadius.getText().toString())));
             alert.add(trigger);
         }
 

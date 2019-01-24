@@ -271,19 +271,66 @@
                 android:text="@string/addAlertLocation"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="138dp" />
+
             <LinearLayout
                 android:id="@+id/layoutLocation"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:visibility="gone"
                 android:background="@color/colorPrimaryLight"
                 android:padding="10dp">
-                <Button
-                    android:id="@+id/foo"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:text="@string/addAlertDefaultTime"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:text="@string/addAlertLatitude"/>
+                    <EditText
+                        android:id="@+id/etLocationLat"
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:digits="0123456789."
+                        android:inputType="numberDecimal"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:text="@string/addAlertLongitude"/>
+                    <EditText
+                        android:id="@+id/etLocationLong"
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:digits="0123456789."
+                        android:inputType="numberDecimal"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:text="@string/addAlertRayon"/>
+                    <EditText
+                        android:id="@+id/etLocationRadius"
+                        android:layout_width="75dp"
+                        android:layout_height="42dp"
+                        android:digits="0123456789."
+                        android:inputType="numberDecimal"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <!--
                 Battery

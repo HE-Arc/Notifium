@@ -34,6 +34,11 @@
     <string name="addAlertCancelButtonMenu">Cancel</string>
     <string name="addAlertAddButtonMenu">Add alert</string>
 
+
+    <string name="addAlertLatitude">Latitude</string>
+    <string name="addAlertLongitude">Longitude</string>
+    <string name="addAlertRayon">Rayon</string>
+
     <string-array name="addAlertWeekDays">
         <item>Lundi</item>
         <item>Mardi</item>
