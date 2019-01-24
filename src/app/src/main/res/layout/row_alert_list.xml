@@ -14,12 +14,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/selectCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
     <Space
         android:layout_width="4dp"
         android:layout_height="wrap_content"
@@ -36,14 +30,6 @@
         android:layout_height="wrap_content"
         />
 
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/rowAlert_button_edit"
-        android:background="@android:color/transparent"
-        />
 
     <Button
         android:id="@+id/suppressButton"
