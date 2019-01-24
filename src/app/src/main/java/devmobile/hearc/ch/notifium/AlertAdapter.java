@@ -16,16 +16,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.time.DayOfWeek;
-
 import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
-import devmobile.hearc.ch.notifium.logicals.Trigger;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
-import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 
 /**
  * Used to control what is shown to the user with the list

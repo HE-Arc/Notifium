@@ -143,6 +143,7 @@ public class AlertStorage extends Observable {
 
         // Get filtered alerts
         applyFilter(Filters.ALL);
+
     }
 
     /**
@@ -336,29 +337,32 @@ public class AlertStorage extends Observable {
      */
     public synchronized static ArrayList<Alert> load(Context context) {
         try {
+            File file = new File(context.getFilesDir(), "listAlert.json");
+            if (file.exists()) {
+                //Read the json file
+                FileInputStream fis = context.openFileInput("listAlert.json");
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader bufferedReader = new BufferedReader(isr);
+                String line;
 
-            //Read the json file
-            FileInputStream fis = context.openFileInput("listAlert.json");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-            String line;
+                // Set a custom desrializer to GsonBuilder
+                AlertDeserializer alertDeserializer = new AlertDeserializer();
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
+                Gson gson = gsonBuilder.create();
 
-            // Set a custom desrializer to GsonBuilder
-            AlertDeserializer alertDeserializer = new AlertDeserializer();
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
-            Gson gson = gsonBuilder.create();
+                // Deserialize
+                Type listAlertType = new TypeToken<ArrayList<Alert>>() {
+                }.getType();
+                if ((line = bufferedReader.readLine()) != null) {
+                    return gson.fromJson(line, listAlertType);
+                }
 
-            // Deserialize
-            Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
-            if ((line = bufferedReader.readLine()) != null) {
-                return  gson.fromJson(line, listAlertType);
+                // close streams
+                bufferedReader.close();
+                isr.close();
+                fis.close();
             }
-
-            // close streams
-            bufferedReader.close();
-            isr.close();
-            fis.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
