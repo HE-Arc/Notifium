@@ -122,6 +122,10 @@ public class AddAlertActivity extends AppCompatActivity {
 
         //Day of the week checked tracking
         daysOfTheWeek = new boolean[7];
+        for(int i = 0; i < daysOfTheWeek.length; i++)
+        {
+            daysOfTheWeek[i] = false;
+        }
         btnsEveryWeek = new Button[7];
 
         setContentView(R.layout.activity_add_alert); //load the layout
@@ -129,7 +133,7 @@ public class AddAlertActivity extends AppCompatActivity {
         addEventsListener(); // add every event listener for the activity
         setDefaultValues(); //add defaut values
         updateSave(); //update the state of the save button
-
+        updateButtonsEveryWeeks();
     }
 
     /***
@@ -242,33 +246,23 @@ public class AddAlertActivity extends AppCompatActivity {
 
         //Periodic
         if (switchDateTime.isChecked() && switchPeriodic.isChecked()) {
-            if (rbtnEveryMonth.isChecked()) {
-                // if input is enter
-                if (!etEveryMonth.getText().toString().isEmpty()) {
-                    // if input is valid
-                    if (Integer.parseInt(etEveryMonth.getText().toString()) <= 0) {
-                        valid = false;
-                    }
-                } else {
+            if (rbtnEveryNDays.isChecked()) {
+                if (etEveryNDays.getText().toString().isEmpty()) {
                     valid = false;
                 }
             }
-            else if (rbtnEveryNDays.isChecked()) {
-                // if input is enter
-                if (!etEveryNDays.getText().toString().isEmpty()) {
-                    // if input is valid
-                    if (Integer.parseInt(etEveryNDays.getText().toString()) <= 0) {
-                        valid = false;
-                    }
-                } else {
+            else if (rbtnEveryMonth.isChecked()) {
+                if (etEveryMonth.getText().toString().isEmpty()) {
                     valid = false;
                 }
             }
             else if (rbtnEveryWeek.isChecked()) {
                 boolean atLeastOneDay = false;
-                for (int i = 0; i < btnsEveryWeek.length; ++i) {
-                    if (btnsEveryWeek[i].isSelected())
+                for (int i = 0; i < daysOfTheWeek.length; ++i) {
+                    if (daysOfTheWeek[i]) {
                         atLeastOneDay = true;
+                        break;
+                    }
                 }
                 if (!atLeastOneDay) {
                     valid = false;
@@ -280,7 +274,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
         if(switchLocation.isChecked())
         {
-            if(etLatitude.getText().toString().isEmpty() || etLongitude.getText().toString().isEmpty())
+            if(etLatitude.getText().toString().isEmpty() || etLongitude.getText().toString().isEmpty() || etRadius.getText().toString().isEmpty())
                 valid = false;
         }
 
@@ -292,42 +286,14 @@ public class AddAlertActivity extends AppCompatActivity {
      * Add every events for the activity
      */
     private void addEventsListener() {
-
-
         //Text edits
-        etAlertName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSave();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etAlertDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSave();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        addCheck(etAlertDescription);
+        addCheck(etAlertName);
+        addCheck(etEveryMonth);
+        addCheck(etEveryNDays);
+        addCheck(etLatitude);
+        addCheck(etRadius);
+        addCheck(etLongitude);
 
         //Switch to activate submenus
         switchDateTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -439,57 +405,6 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         });
 
-        etLatitude.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSave();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etLongitude.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSave();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etRadius.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSave();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
 
         //Handle the label according to the value of the bar for the batterie
         seekBarBattery.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -521,21 +436,52 @@ public class AddAlertActivity extends AppCompatActivity {
         });
 
         //Add for every week buttons the toggle
-        for (int i = 0; i < 7; i++) {
-            final int finalI = i;
-            btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
+
+        for (int i = 0; i < daysOfTheWeek.length; i++) {
+            final int j = i;
             btnsEveryWeek[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    daysOfTheWeek[finalI] = !daysOfTheWeek[finalI];
-                    if (daysOfTheWeek[finalI])
-                        btnsEveryWeek[finalI].setBackgroundColor(0xFFFA3F7E);
-                    else
-                        btnsEveryWeek[finalI].setBackgroundColor(0xFF3F51B5);
+                    daysOfTheWeek[j] = !daysOfTheWeek[j];
+                    updateButtonsEveryWeeks();
+                    updateSave();
                 }
             });
-            daysOfTheWeek[i] = false;
         }
+    }
+
+    private void updateButtonsEveryWeeks()
+    {
+        for (int i = 0; i < daysOfTheWeek.length; i++) {
+            if (daysOfTheWeek[i]) {
+                btnsEveryWeek[i].setBackgroundColor(0xFFFA3F7E);
+                btnsEveryWeek[i].setAlpha(1.0f);
+            }
+            else {
+                btnsEveryWeek[i].setBackgroundColor(0xFF3F51B5);
+                btnsEveryWeek[i].setAlpha(0.3f);
+            }
+        }
+    }
+
+    private void addCheck(EditText et)
+    {
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSave();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     /***
@@ -601,7 +547,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
         if (switchLocation.isEnabled()) {
             Trigger trigger = new Trigger();
-            trigger.add(new ConditionLocalisation(Integer.parseInt(etLatitude.getText().toString()), Integer.parseInt(etLongitude.getText().toString()), Integer.parseInt(etRadius.getText().toString())));
+            trigger.add(new ConditionLocalisation(Float.parseFloat(etLatitude.getText().toString()), Float.parseFloat(etLongitude.getText().toString()), Float.parseFloat(etRadius.getText().toString())));
             alert.add(trigger);
         }
 
