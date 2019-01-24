@@ -518,11 +518,11 @@ public class AddAlertActivity extends AppCompatActivity {
     private Alert createAlert() {
         Alert alert = new Alert(etAlertName.getText().toString(), etAlertDescription.getText().toString());
 
-        if (switchDateTime.isEnabled()) {
+        if (switchDateTime.isChecked()) {
             Trigger trigger = new Trigger();
             trigger.add(new ConditionHour(time));
 
-            if (!switchPeriodic.isEnabled()) {
+            if (!switchPeriodic.isChecked()) {
                 trigger.add(new ConditionDate(date));
             } else {
                 if (rbtnEveryNDays.isChecked()) {
@@ -546,13 +546,13 @@ public class AddAlertActivity extends AppCompatActivity {
             alert.add(trigger);
         }
 
-        if (switchLocation.isEnabled()) {
+        if (switchLocation.isChecked()) {
             Trigger trigger = new Trigger();
             trigger.add(new ConditionLocalisation(Float.parseFloat(etLatitude.getText().toString()), Float.parseFloat(etLongitude.getText().toString()), Float.parseFloat(etRadius.getText().toString())));
             alert.add(trigger);
         }
 
-        if (switchBattery.isEnabled()) {
+        if (switchBattery.isChecked()) {
             Trigger trigger = new Trigger();
             trigger.add(new ConditionBatteryLevel(seekBarBattery.getProgress()));
             alert.add(trigger);
