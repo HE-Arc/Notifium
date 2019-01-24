@@ -36,8 +36,10 @@ public class ConditionHour implements Condition_I {
     public boolean evaluatePredicate()
     {
         LocalTime now = LocalTime.now();
-        if(now.getHour() >= timeCondition.getHour())
+        if(now.getHour() > timeCondition.getHour())
         {
+            return true;
+        } else if(now.getHour() == timeCondition.getHour()) {
             if(now.getMinute() >= timeCondition.getMinute())
                 return true;
         }

@@ -38,7 +38,9 @@ public class NotifierService extends Service {
     private Timer timer; // use to execute code periodically
     private TimerTask timerTask; // code executed periodically
     private ArrayList<Alert> alerts;
-    private ArrayList<Integer> triggeredAlerts; // use to trigger one time
+    private ArrayList<String> triggeredAlerts; // use to trigger one time
+    private int notificationId;
+    private Ringtone ringtone;
 
     public NotifierService() {}
 
@@ -54,8 +56,10 @@ public class NotifierService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        notificationId = 1;
         createNotificationChannel();
-        triggeredAlerts = new ArrayList<Integer>();
+        setRingtone(getApplicationContext());
+        triggeredAlerts = new ArrayList<String>();
         startTimer();
 
         return START_STICKY;
@@ -143,19 +147,19 @@ public class NotifierService extends Service {
             boolean result = alert.evaluate();
 
             // Check if the alert is still in the same trigger
-            if (triggeredAlerts.contains(alert.hashCode())) {
+            if (triggeredAlerts.contains(alert.getName())) {
                 if (!result)
                 {
-                    triggeredAlerts.remove(alert.hashCode());
+                    triggeredAlerts.remove(alert.getName());
                 }
             }
             else {
                 // Launch the notification if the alert is triggered
                 if (result)
                 {
-                    startRingtone(getApplicationContext());
+                    startRingtone();
                     showNotification(getApplicationContext(), alert.getName(), alert.getNotification());
-                    triggeredAlerts.add(alert.hashCode());
+                    triggeredAlerts.add(alert.getName());
                 }
             }
         }
@@ -200,16 +204,15 @@ public class NotifierService extends Service {
                         .setChannelId("Notifier Channel").build();
 
         // Launch the notification
-        notificationManager.notify(1, notification);
+        notificationManager.notify(notificationId++, notification);
     }
 
     /**
-     * Start the ringtone
+     * Define the ringtone
      * @param context
      */
-    private void startRingtone(Context context) {
-        // Launch a ringtone if one is set in the phone
-
+    private void setRingtone(Context context)
+    {
         try {
             Uri alarmUri = RingtoneManager
                     .getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -217,8 +220,43 @@ public class NotifierService extends Service {
                 alarmUri = RingtoneManager
                         .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             }
-            Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
-            ringtone.play();
+            ringtone = RingtoneManager.getRingtone(context, alarmUri);
+        } catch (Exception ex) {
+        }
+    }
+
+    /**
+     * Start the ringtone
+     */
+    private void startRingtone() {
+        try {
+            if (!ringtone.isPlaying()) {
+                ringtone.play();
+
+                // Stop playing after 10 seconds
+                long ringDelay = 10000;
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        ringtone.stop();
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(task, ringDelay);
+            }
+
+        } catch (Exception ex) {
+        }
+    }
+
+    /**
+     * Stop the ringtone
+     */
+    private void stopRingtone() {
+        try {
+            if (ringtone.isPlaying()) {
+                ringtone.stop();
+            }
 
         } catch (Exception ex) {
         }

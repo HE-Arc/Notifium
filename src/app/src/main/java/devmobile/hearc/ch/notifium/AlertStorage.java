@@ -31,7 +31,6 @@ import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
@@ -90,26 +89,11 @@ public class AlertStorage extends Observable {
      */
     public void seed()
     {
-        for (int i = 0; i < 2; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I ch = new ConditionHour(15,49 + i);
-            Condition_I cd = new ConditionDate(24, 01, 2019);
-            t.add(ch);
-            t.add(cd);
-            a.add(t);
-
-            // store it in list
-            addAlert(a);
-        }
-
-        if (false) {
-        //if (listAlerts.size() == 0) {
+        if (listAlerts.size() == 0) {
             // Hour alerts
             for (int i = 0; i < 10; i++) {
                 // Create an alert
-                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Alert a = new Alert("MyAlert0" + i, "description de notification");
                 Trigger t = new Trigger();
                 Condition_I ch = new ConditionHour(i + 10, 30);
                 t.add(ch);
@@ -122,7 +106,7 @@ public class AlertStorage extends Observable {
             // Battery alerts
             for (int i = 0; i < 10; i++) {
                 // Create an alert
-                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Alert a = new Alert("MyAlert1" + i, "description de notification");
                 Trigger t = new Trigger();
                 Condition_I c = new ConditionBatteryLevel(i * 10);
                 t.add(c);
@@ -135,7 +119,7 @@ public class AlertStorage extends Observable {
             // Day alerts
             for (int i = 0; i < 10; i++) {
                 // Create an alert
-                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Alert a = new Alert("MyAlert2" + i, "description de notification");
                 Trigger t = new Trigger();
                 Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
                 t.add(c);
@@ -148,7 +132,7 @@ public class AlertStorage extends Observable {
             // Location alerts
             for (int i = 0; i < 10; i++) {
                 // Create an alert
-                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Alert a = new Alert("MyAlert3" + i, "description de notification");
                 Trigger t = new Trigger();
                 Condition_I c = new ConditionLocalisation(1, 1, 10);
                 t.add(c);
