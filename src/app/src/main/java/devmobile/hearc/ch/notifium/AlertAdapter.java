@@ -8,6 +8,7 @@
  */
 package devmobile.hearc.ch.notifium;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,25 +17,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.time.DayOfWeek;
+import java.io.File;
 
 import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
-import devmobile.hearc.ch.notifium.logicals.Trigger;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
-import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
-import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
 
 /**
  * Used to control what is shown to the user with the list
  */
 public class AlertAdapter extends BaseAdapter {
 
-    public AlertAdapter() {
+    public AlertAdapter(Context context) {
         super();
 
+        File file = new File(context.getFilesDir(), "listAlert.json");
+        if (file.exists())
+        {
+            file.delete();
+        }
+        AlertStorage.load(context);
         // Serve as a demo
         AlertStorage.getInstance().seed();
     }
@@ -104,9 +105,7 @@ public class AlertAdapter extends BaseAdapter {
 
             holder = new AlertHolder();
 
-            holder.selectCheckBox = convertView.findViewById(R.id.selectCheckBox);
             holder.nameTextView = convertView.findViewById(R.id.nameTextView);
-            //holder.editButton = convertView.findViewById(R.id.editButton); nicetohave
             holder.suppressButton = convertView.findViewById(R.id.suppressButton);
 
             convertView.setTag(holder);
@@ -118,16 +117,7 @@ public class AlertAdapter extends BaseAdapter {
         final Alert alert = AlertStorage.getInstance().getFilteredAlert(position);
 
         // Set data
-        holder.selectCheckBox.setChecked(false);
         holder.nameTextView.setText(alert.getName());
-        /*holder.editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Nice to have, for now users will have to suppress and add a new alert
-                
-            }
-        });
-        */
         holder.suppressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

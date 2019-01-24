@@ -30,7 +30,7 @@ public class Trigger extends ArrayList<Condition_I> {
      * @return True if all trigger are evaluated as true
      */
     public boolean evaluate() {
-        boolean b = false;
+        boolean b = true;
         for (Condition_I c : this)
             b &= c.evaluatePredicate();
         return b;

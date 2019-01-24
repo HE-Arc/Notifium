@@ -36,7 +36,7 @@ public class ConditionDate implements Condition_I {
      */
     public boolean evaluatePredicate()
     {
-        return LocalDate.now().isAfter(dateCondition);
+        return LocalDate.now().isAfter(dateCondition) || LocalDate.now().isEqual(dateCondition);
     }
 
     public LocalDate getDateCondition() {

@@ -38,7 +38,7 @@ public class NotifierService extends Service {
     private Timer timer; // use to execute code periodically
     private TimerTask timerTask; // code executed periodically
     private ArrayList<Alert> alerts;
-    private ArrayList<String> triggeredAlerts; // use to trigger one time
+    private ArrayList<Integer> triggeredAlerts; // use to trigger one time
 
     public NotifierService() {}
 
@@ -55,7 +55,7 @@ public class NotifierService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         createNotificationChannel();
-        triggeredAlerts = new ArrayList<String>();
+        triggeredAlerts = new ArrayList<Integer>();
         startTimer();
 
         return START_STICKY;
@@ -96,6 +96,9 @@ public class NotifierService extends Service {
         sendBroadcast(restartIntent);
     }
 
+    /**
+     * Launch the timer to execute the code
+     */
     public void startTimer() {
         //set a new Timer
         timer = new Timer();
@@ -107,6 +110,10 @@ public class NotifierService extends Service {
         timer.schedule(timerTask, 1000, 1000); //
     }
 
+    /**
+     * Set the code to be executed
+     *
+     */
     public void initializeTimerTask() {
         // define the task which be
         // executed every second
@@ -117,6 +124,9 @@ public class NotifierService extends Service {
         };
     }
 
+    /**
+     * Check alerts and launch notifcations
+     */
     private void launchNotification()
     {
         // launch notifications of the alerts
@@ -133,10 +143,10 @@ public class NotifierService extends Service {
             boolean result = alert.evaluate();
 
             // Check if the alert is still in the same trigger
-            if (triggeredAlerts.contains("")) {
+            if (triggeredAlerts.contains(alert.hashCode())) {
                 if (!result)
                 {
-                    triggeredAlerts.remove("");
+                    triggeredAlerts.remove(alert.hashCode());
                 }
             }
             else {
@@ -145,12 +155,15 @@ public class NotifierService extends Service {
                 {
                     startRingtone(getApplicationContext());
                     showNotification(getApplicationContext(), alert.getName(), alert.getNotification());
-                    triggeredAlerts.add("");
+                    triggeredAlerts.add(alert.hashCode());
                 }
             }
         }
     }
 
+    /**
+     * Create the channel where launch notification
+     */
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -167,6 +180,12 @@ public class NotifierService extends Service {
         }
     }
 
+    /**
+     * Push the notification
+     * @param context
+     * @param title
+     * @param text
+     */
     private void showNotification(Context context, String title, String text) {
         // Push a notifiaction in the Notifier Channel
 
@@ -184,6 +203,10 @@ public class NotifierService extends Service {
         notificationManager.notify(1, notification);
     }
 
+    /**
+     * Start the ringtone
+     * @param context
+     */
     private void startRingtone(Context context) {
         // Launch a ringtone if one is set in the phone
 
@@ -201,6 +224,9 @@ public class NotifierService extends Service {
         }
     }
 
+    /**
+     * Load the alerts from a json file
+     */
     public void loadAlerts()
     {
         this.alerts = AlertStorage.load(this.getApplicationContext());

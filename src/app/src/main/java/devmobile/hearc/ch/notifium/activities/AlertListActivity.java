@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.Observable;
 
 import devmobile.hearc.ch.notifium.AlertAdapter;
+import devmobile.hearc.ch.notifium.AlertStorage;
+import devmobile.hearc.ch.notifium.NotifierService;
 import devmobile.hearc.ch.notifium.R;
 
 /**
@@ -63,9 +65,10 @@ public class AlertListActivity extends ObserverActivity {
 
         retrieveViews();
         setUpViews();
-        // Start service
         updateRows();
-        //context.startForegroundService(new Intent(context, NotifierService.class));
+
+        // Start service
+        context.startService(new Intent(context, NotifierService.class));
     }
 
     /**
@@ -144,7 +147,8 @@ public class AlertListActivity extends ObserverActivity {
      *   - being able to start the creation of a new garbage by clicking the "Add" button.
      */
     private void setUpViews() {
-        alertAdapter = new AlertAdapter();
+        alertAdapter = new AlertAdapter(getApplicationContext());
+        AlertStorage.getInstance().save(getApplicationContext());
 
         // Tell by which adapter we will handle our list
         alertListView.setAdapter(alertAdapter);

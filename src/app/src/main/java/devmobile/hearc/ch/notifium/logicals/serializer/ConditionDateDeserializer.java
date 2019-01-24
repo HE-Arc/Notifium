@@ -29,6 +29,6 @@ public class ConditionDateDeserializer implements JsonDeserializer<ConditionDate
         int month = object.get("month").getAsInt();
         int day = object.get("day").getAsInt();
 
-        return new ConditionDate(year, month, day);
+        return new ConditionDate(day, month, year);
     }
 }

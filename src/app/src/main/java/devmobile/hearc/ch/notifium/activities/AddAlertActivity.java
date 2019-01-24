@@ -431,6 +431,7 @@ public class AddAlertActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Alert alert = createAlert();
                 AlertStorage.getInstance().addAlert(alert);
+                AlertStorage.getInstance().save(getApplicationContext());
                 AddAlertActivity.this.finish();
             }
         });

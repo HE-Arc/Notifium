@@ -20,7 +20,7 @@ public class RestartServiceReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
-            context.startForegroundService(new Intent(context, NotifierService.class));
+            context.startService(new Intent(context, NotifierService.class));
         }
         catch (Exception e)
         {

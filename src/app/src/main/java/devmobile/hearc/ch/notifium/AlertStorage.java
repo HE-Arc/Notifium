@@ -9,7 +9,6 @@
 package devmobile.hearc.ch.notifium;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,6 +31,7 @@ import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
 import devmobile.hearc.ch.notifium.logicals.Trigger;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionBatteryLevel;
+import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDate;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionDateDayOfWeek;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionHour;
 import devmobile.hearc.ch.notifium.logicals.conditions.ConditionLocalisation;
@@ -90,60 +90,77 @@ public class AlertStorage extends Observable {
      */
     public void seed()
     {
-        // Hour alerts
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             // Create an alert
             Alert a = new Alert("MyAlert" + i, "description de notification");
             Trigger t = new Trigger();
-            Condition_I ch = new ConditionHour(i + 10, 30);
+            Condition_I ch = new ConditionHour(15,49 + i);
+            Condition_I cd = new ConditionDate(24, 01, 2019);
             t.add(ch);
+            t.add(cd);
             a.add(t);
 
             // store it in list
             addAlert(a);
         }
 
-        // Battery alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionBatteryLevel(i * 10);
-            t.add(c);
-            a.add(t);
+        if (false) {
+        //if (listAlerts.size() == 0) {
+            // Hour alerts
+            for (int i = 0; i < 10; i++) {
+                // Create an alert
+                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Trigger t = new Trigger();
+                Condition_I ch = new ConditionHour(i + 10, 30);
+                t.add(ch);
+                a.add(t);
 
-            // store it in list
-            addAlert(a);
+                // store it in list
+                addAlert(a);
+            }
+
+            // Battery alerts
+            for (int i = 0; i < 10; i++) {
+                // Create an alert
+                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Trigger t = new Trigger();
+                Condition_I c = new ConditionBatteryLevel(i * 10);
+                t.add(c);
+                a.add(t);
+
+                // store it in list
+                addAlert(a);
+            }
+
+            // Day alerts
+            for (int i = 0; i < 10; i++) {
+                // Create an alert
+                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Trigger t = new Trigger();
+                Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
+                t.add(c);
+                a.add(t);
+
+                // store it in list
+                addAlert(a);
+            }
+
+            // Location alerts
+            for (int i = 0; i < 10; i++) {
+                // Create an alert
+                Alert a = new Alert("MyAlert" + i, "description de notification");
+                Trigger t = new Trigger();
+                Condition_I c = new ConditionLocalisation(1, 1, 10);
+                t.add(c);
+                a.add(t);
+
+                // store it in list
+                addAlert(a);
+            }
+
+            // Get filtered alerts
+            applyFilter(Filters.ALL);
         }
-
-        // Day alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionDateDayOfWeek(DayOfWeek.of((i % 7) + 1));
-            t.add(c);
-            a.add(t);
-
-            // store it in list
-            addAlert(a);
-        }
-
-        // Location alerts
-        for(int i = 0; i < 10; i++) {
-            // Create an alert
-            Alert a = new Alert("MyAlert" + i, "description de notification");
-            Trigger t = new Trigger();
-            Condition_I c = new ConditionLocalisation(1, 1, 10);
-            t.add(c);
-            a.add(t);
-
-            // store it in list
-            addAlert(a);
-        }
-
-        // Get filtered alerts
-        applyFilter(Filters.ALL);
     }
 
     /**
@@ -296,12 +313,13 @@ public class AlertStorage extends Observable {
     }
 
     /**
-     * Serialize this object
+     * Serialize a list of alerts and save on a json file
      * @param context
      */
     public synchronized void save(Context context)
     {
         try {
+            // create json file
             File file = new File(context.getFilesDir(), "listAlert.json");
             if (file.exists())
             {
@@ -311,12 +329,17 @@ public class AlertStorage extends Observable {
 
             FileOutputStream outputStream;
             outputStream = context.openFileOutput("listAlert.json", Context.MODE_PRIVATE);
+
+            // Set custom serializer to GsonBuilder
             AlertSerializer alertSerializer = new AlertSerializer();
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.registerTypeAdapter(Alert.class, alertSerializer);
             Gson gson = gsonBuilder.create();
 
+            // Serialize data
             String json = gson.toJson(listAlerts);
+
+            // Save file
             outputStream.write(json.getBytes());
             outputStream.close();
 
@@ -326,26 +349,39 @@ public class AlertStorage extends Observable {
     }
 
     /**
-     * Deserialize this object
+     * Load a json file and deserialize a list of alerts
      * @param context
      */
     public synchronized static ArrayList<Alert> load(Context context) {
         try {
-            FileInputStream fis = context.openFileInput("listAlert.json");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-            String line;
-            AlertDeserializer alertDeserializer = new AlertDeserializer();
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
-            Gson gson = gsonBuilder.create();
-            Type listAlertType = new TypeToken<ArrayList<Alert>>(){}.getType();
-            if ((line = bufferedReader.readLine()) != null) {
-                return  gson.fromJson(line, listAlertType);
+            File file = new File(context.getFilesDir(), "listAlert.json");
+            if (file.exists()) {
+                //Read the json file
+                FileInputStream fis = context.openFileInput("listAlert.json");
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader bufferedReader = new BufferedReader(isr);
+                String line;
+
+                // Set a custom desrializer to GsonBuilder
+                AlertDeserializer alertDeserializer = new AlertDeserializer();
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.registerTypeAdapter(Alert.class, alertDeserializer);
+                Gson gson = gsonBuilder.create();
+
+                // Deserialize
+                Type listAlertType = new TypeToken<ArrayList<Alert>>() {
+                }.getType();
+                if ((line = bufferedReader.readLine()) != null) {
+                    return gson.fromJson(line, listAlertType);
+                }
+
+                // close streams
+                bufferedReader.close();
+                isr.close();
+                fis.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i("fabien",e.getMessage());
         }
 
         return new ArrayList<Alert>();
