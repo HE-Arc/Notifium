@@ -115,6 +115,7 @@ public class AlertAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 AlertStorage.getInstance().removeAlert(alert);
+                notifyDataSetChanged();
             }
         });
 
