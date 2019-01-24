@@ -105,9 +105,7 @@ public class AlertAdapter extends BaseAdapter {
 
             holder = new AlertHolder();
 
-            holder.selectCheckBox = convertView.findViewById(R.id.selectCheckBox);
             holder.nameTextView = convertView.findViewById(R.id.nameTextView);
-            //holder.editButton = convertView.findViewById(R.id.editButton); nicetohave
             holder.suppressButton = convertView.findViewById(R.id.suppressButton);
 
             convertView.setTag(holder);
@@ -119,16 +117,7 @@ public class AlertAdapter extends BaseAdapter {
         final Alert alert = AlertStorage.getInstance().getFilteredAlert(position);
 
         // Set data
-        holder.selectCheckBox.setChecked(false);
         holder.nameTextView.setText(alert.getName());
-        /*holder.editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Nice to have, for now users will have to suppress and add a new alert
-                
-            }
-        });
-        */
         holder.suppressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
