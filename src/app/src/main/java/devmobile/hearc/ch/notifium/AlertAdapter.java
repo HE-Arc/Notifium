@@ -8,6 +8,7 @@
  */
 package devmobile.hearc.ch.notifium;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import java.io.File;
 
 import devmobile.hearc.ch.notifium.filters.Filters;
 import devmobile.hearc.ch.notifium.logicals.Alert;
@@ -24,9 +27,15 @@ import devmobile.hearc.ch.notifium.logicals.Alert;
  */
 public class AlertAdapter extends BaseAdapter {
 
-    public AlertAdapter() {
+    public AlertAdapter(Context context) {
         super();
 
+        File file = new File(context.getFilesDir(), "listAlert.json");
+        if (file.exists())
+        {
+            file.delete();
+        }
+        AlertStorage.load(context);
         // Serve as a demo
         AlertStorage.getInstance().seed();
     }
