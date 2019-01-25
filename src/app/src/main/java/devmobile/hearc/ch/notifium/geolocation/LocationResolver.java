@@ -93,10 +93,6 @@ public class LocationResolver  {
             catch (SecurityException e) {
                 String text = e.getMessage();
                 int duration = Toast.LENGTH_SHORT;
-
-                // Should not be done like this but ...
-                // Toast toast = Toast.makeToast(, text, duration);
-                // toast.show();
             }
         }
     };
@@ -158,10 +154,8 @@ public class LocationResolver  {
 
             if (gpsEnabled)
                 locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListenerGps, Looper.myLooper());
-            //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListenerGps);
             if (networkEnabled)
                 locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListenerNetwork, Looper.myLooper());
-            //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListenerNetwork);
 
             timer = new Timer();
             timer.schedule(new GetLastLocationTask(), maxMillisToWait);
@@ -187,13 +181,5 @@ public class LocationResolver  {
     public static abstract class LocationResult {
         public abstract void gotLocation(Location location);
     }
-
-    /*
-    public void cancelTimer() {
-        timer1.cancel();
-        lm.removeUpdates(locationListenerGps);
-        lm.removeUpdates(locationListenerNetwork);
-    }
-    */
 
 }
