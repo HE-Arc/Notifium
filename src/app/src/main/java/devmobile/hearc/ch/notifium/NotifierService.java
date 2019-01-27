@@ -8,23 +8,39 @@
  */
 package devmobile.hearc.ch.notifium;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.content.ContextCompat;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import devmobile.hearc.ch.notifium.logicals.Alert;
+import devmobile.hearc.ch.notifium.logicals.Trigger;
+import devmobile.hearc.ch.notifium.logicals.conditions.Condition_I;
+import devmobile.hearc.ch.notifium.logicals.enums.ConditionType;
 
 /**
  * Service is always working in background
@@ -42,6 +58,11 @@ public class NotifierService extends Service {
     private int notificationId;
     private Ringtone ringtone;
 
+    private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
+    private static final String[] REQUIRED_SDK_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
     public NotifierService() {}
 
     @Override
@@ -52,6 +73,7 @@ public class NotifierService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        triggeredAlerts = new ArrayList<String>();
     }
 
     @Override
@@ -59,7 +81,7 @@ public class NotifierService extends Service {
         notificationId = 1;
         createNotificationChannel();
         setRingtone(getApplicationContext());
-        triggeredAlerts = new ArrayList<String>();
+        loadTriggerAlerts(getApplicationContext());
         startTimer();
 
         return START_STICKY;
@@ -74,6 +96,8 @@ public class NotifierService extends Service {
             timer.cancel();
             timer = null;
         }
+
+        saveTriggeredAlerts(getApplicationContext());
 
         // Instantiate a broadcast reciever
         // which restart the service
@@ -94,9 +118,14 @@ public class NotifierService extends Service {
             timer = null;
         }
 
+        saveTriggeredAlerts(getApplicationContext());
+
+        // Instantiate a broadcast reciever
+        // which restart the service
+        // after the closure
         Intent restartIntent = new Intent(this, RestartServiceReceiver.class);
         restartIntent.setAction("devmobile.hearc.ch.notifium");
-
+        //filter use by the broadcast reciever and defined in AndroidManifest.xml
         sendBroadcast(restartIntent);
     }
 
@@ -144,6 +173,21 @@ public class NotifierService extends Service {
 
         // Check all alert
         for (Alert alert: alerts) {
+
+            // Assure that the permission is granted
+            for (Trigger trigger: alert) {
+                for (Condition_I condition: trigger) {
+                    if (condition.getConditionType() == ConditionType.Position)
+                    {
+                        for (final String permission : REQUIRED_SDK_PERMISSIONS) {
+                            final int result = ContextCompat.checkSelfPermission(this, permission);
+                            if (result != PackageManager.PERMISSION_GRANTED) {
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
             boolean result = alert.evaluate();
 
             // Check if the alert is still in the same trigger
@@ -238,7 +282,9 @@ public class NotifierService extends Service {
                 TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
-                        ringtone.stop();
+                        if (ringtone != null) {
+                            ringtone.stop();
+                        }
                     }
                 };
                 Timer timer = new Timer();
@@ -268,5 +314,73 @@ public class NotifierService extends Service {
     public void loadAlerts()
     {
         this.alerts = AlertStorage.load(this.getApplicationContext());
+    }
+
+    /**
+     * Serialize a list of triggered alerts and save on a json file
+     * @param context
+     */
+    public synchronized void saveTriggeredAlerts(Context context)
+    {
+        if (!triggeredAlerts.isEmpty()) {
+            try {
+                // create json file
+                File file = new File(context.getFilesDir(), "listTriggeredAlerts.json");
+                if (file.exists()) {
+                    file.delete();
+                    file.createNewFile();
+                }
+
+                FileOutputStream outputStream;
+                outputStream = context.openFileOutput("listTriggeredAlerts.json", Context.MODE_PRIVATE);
+
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                Gson gson = gsonBuilder.create();
+
+                // Serialize data
+                String json = gson.toJson(triggeredAlerts);
+
+                // Save file
+                outputStream.write(json.getBytes());
+                outputStream.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Load a json file and deserialize a list of triggered alerts
+     * @param context
+     */
+    public synchronized void loadTriggerAlerts(Context context) {
+        try {
+            File file = new File(context.getFilesDir(), "listTriggeredAlerts.json");
+            if (file.exists()) {
+                //Read the json file
+                FileInputStream fis = context.openFileInput("listTriggeredAlerts.json");
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader bufferedReader = new BufferedReader(isr);
+                String line;
+
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                Gson gson = gsonBuilder.create();
+
+                // Deserialize
+                Type listTriggeredAlertsType = new TypeToken<ArrayList<String>>() {
+                }.getType();
+                if ((line = bufferedReader.readLine()) != null) {
+                    triggeredAlerts = gson.fromJson(line, listTriggeredAlertsType);
+                }
+
+                // close streams
+                bufferedReader.close();
+                isr.close();
+                fis.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
